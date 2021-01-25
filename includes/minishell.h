@@ -6,7 +6,7 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:42:35 by mwinter           #+#    #+#             */
-/*   Updated: 2021/01/25 15:42:50 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/01/25 19:14:48 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <signal.h>
-# include "libft.h"
+# include "../srcs/libft/libft.h"
+
+# define EXIT_SUCCESS 0
+# define EXIT_FAILURE 1
 
 #endif
