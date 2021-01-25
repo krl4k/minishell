@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrisell <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 12:12:16 by fgrisell          #+#    #+#             */
-/*   Updated: 2020/11/02 14:31:33 by fgrisell         ###   ########.fr       */
+/*   Updated: 2021/01/25 15:28:32 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stddef.h>
-# define BUFFER_SIZE 100000
+# define BUFFER_SIZE 1
 
 typedef struct	s_list
 {
@@ -77,5 +77,7 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 				void (*del)(void *));
 char			*ft_strcpy(char *dst, const char *src);
 int				ft_lennbr(int nbr);
+char			**ft_setsplit(const char *s, char *set);
+void			*ft_free_split(char **res);
 
 #endif
