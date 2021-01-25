@@ -1,11 +1,13 @@
-#ifndef MINISHELL1_MINISHELL_H
-#define MINISHELL1_MINISHELL_H
+#ifndef MINISHELL_MINISHELL_H
+# define MINISHELL_MINISHELL_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <errno.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <signal.h>
+# include "libft.h"
 
-#endif //MINISHELL1_MINISHELL_H
+#endif
