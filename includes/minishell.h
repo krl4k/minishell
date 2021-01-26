@@ -26,22 +26,22 @@
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
 # define MALLOC_ERROR "malloc error!"
-# define FLAG_NONE	0b000000000
-# define ECHO		0b000000001
-# define CD			0b000000010
-# define PWD		0b000000100
-# define EXPORT		0b000001000
-# define UNSET		0b000010000
-# define ENV		0b000100000
-# define EXIT		0b001000000
-# define BIN_EXEC	0b010000000
+# define FLAG_NONE	0b00000000
+# define ECHO		0b00000001
+# define CD			0b00000010
+# define PWD		0b00000100
+# define EXPORT		0b00001000
+# define UNSET		0b00010000
+# define ENV		0b00100000
+# define EXIT		0b01000000
+# define BIN_EXEC	0b10000000
 
 
 typedef struct s_all
 {
-	unsigned char flag;
+	unsigned char	flag;
+	char			**command_argv;
 
-	char **command_argv
 }				t_all;
 /*
 ** for init any variables
@@ -53,6 +53,7 @@ void			init_all(t_all *all);
 ** execute function
 **
 */
-int				execute(t_all *all, char **argv, char **env);
+int				execute(t_all *all, char *line, char **argv, char **env);
+//int				execute(t_all *all, char **argv, char **env);
 
 #endif

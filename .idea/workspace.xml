@@ -30,12 +30,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b61a94d-dcda-42f4-afed-90668377d83d" name="Default Changelist" comment="&quot;add libft&quot;">
-      <change afterPath="$PROJECT_DIR$/script" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/minishell.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/minishell.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minishell" beforeDir="false" afterPath="$PROJECT_DIR$/minishell" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/execute.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/execute.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/execute.o" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/execute.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/init_all.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/init_all.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/init_all.o" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/init_all.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/tests/a.out" afterDir="false" />
@@ -128,7 +130,7 @@
       <workItem from="1611579842270" duration="2000" />
       <workItem from="1611579852123" duration="3762000" />
       <workItem from="1611589446969" duration="4618000" />
-      <workItem from="1611643700021" duration="8223000" />
+      <workItem from="1611643700021" duration="9827000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;krl4k commit&quot;">
       <created>1611573998726</created>
@@ -195,10 +197,10 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="1293" y="537" key="#Notifications/0.23.2560.1337@0.23.2560.1337" timestamp="1611574760828" />
-    <state x="1022" y="368" width="1071" height="772" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611653431062">
+    <state x="1022" y="368" width="1071" height="772" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611655999742">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1022" y="368" width="1071" height="772" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1611653431062" />
+    <state x="1022" y="368" width="1071" height="772" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1611655999742" />
     <state x="1298" y="515" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1611593000506">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -211,26 +213,26 @@
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="1145" y="282" key="CommitChangelistDialog2/0.23.2560.1337@0.23.2560.1337" timestamp="1611592569438" />
-    <state x="1417" y="486" key="EnvironmentVariablesDialog" timestamp="1611579823983">
+    <state x="1417" y="486" key="EnvironmentVariablesDialog" timestamp="1611655812820">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state x="1417" y="486" key="EnvironmentVariablesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1611579823983" />
-    <state width="2496" height="372" key="GridCell.Tab.0.bottom" timestamp="1611653441207">
+    <state x="1417" y="486" key="EnvironmentVariablesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1611655812820" />
+    <state width="2496" height="372" key="GridCell.Tab.0.bottom" timestamp="1611656003606">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2496" height="372" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1611653441207" />
-    <state width="2496" height="372" key="GridCell.Tab.0.center" timestamp="1611653441206">
+    <state width="2496" height="372" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1611656003606" />
+    <state width="2496" height="372" key="GridCell.Tab.0.center" timestamp="1611656003606">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2496" height="372" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1611653441206" />
-    <state width="2496" height="372" key="GridCell.Tab.0.left" timestamp="1611653441206">
+    <state width="2496" height="372" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1611656003606" />
+    <state width="2496" height="372" key="GridCell.Tab.0.left" timestamp="1611656003605">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2496" height="372" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1611653441206" />
-    <state width="2496" height="372" key="GridCell.Tab.0.right" timestamp="1611653441207">
+    <state width="2496" height="372" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1611656003605" />
+    <state width="2496" height="372" key="GridCell.Tab.0.right" timestamp="1611656003606">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
-    <state width="2496" height="372" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1611653441207" />
+    <state width="2496" height="372" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1611656003606" />
     <state width="1963" height="458" key="GridCell.Tab.1.bottom" timestamp="1611585156946">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>

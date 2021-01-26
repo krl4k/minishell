@@ -31,8 +31,8 @@ char *get_input(char **av)
 	char *line;
 
 	get_next_line(0, &line);
+	//printf("line = %s\n", line);
 	return line;
-//	free(line);
 }
 
 void	no_interrupt(int signal_no)
@@ -64,24 +64,25 @@ int main(int ac, char **av, char **env)
 	t_all *all;
 //	pid_t pid;
 	char *line;
-	int status;
 
-	status = 1;
 	init_all(all);
 //	pid = getpid();
-	while (status)
+	while (1)
 	{
 		print_prompt();
 		//make_fork(ac, av, env, pid);
 		//while(1) ?? for a large number of teams
 		signal(SIGINT, no_interrupt);
 		line = get_input(av);
+		printf("%c dgerer\n", all->flag);
+		all->flag = all->flag | BIN_EXEC;
 		printf("main: line = %s\n", line);
 		//! todo : get the line, start parsing and sending for execution
 		//may be execute return status and break a procces
-		execute(all, line, NULL, env);
-		if (status == 0)
-			break;
+
+		// av not main argv
+		execute(all, line, av, env);
+
 
 	}
 	return (EXIT_SUCCESS);

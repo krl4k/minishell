@@ -30,7 +30,7 @@ void bin_func(t_all  *all, char **env)
 		if (pid == 0)
 		{
 			printf("bin func: CHILD:\n");
-			status = execve(line,all->command_argv[0],env);
+			status = execve(line,all->command_argv,env);
 			exit(status);
 		}
 		else
@@ -41,12 +41,14 @@ void bin_func(t_all  *all, char **env)
 	}
 }
 
-int			execute(t_all *all, char **argv, char **env)
+int			execute(t_all *all, char *line, char **argv, char **env)
 {
+	printf("execute---------------------\n");
 	if (all->flag & BIN_EXEC)
+	{
+		printf("BIN_EXEC\n");
 		bin_func(all, argv);
-	else if (all->flag == PWD)
-
+	}
 
 
 	/*pid_t pid = fork();

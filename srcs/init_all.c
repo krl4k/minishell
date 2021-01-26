@@ -17,4 +17,7 @@ void init_all(t_all *all)
 	if (!(all = (t_all *)malloc(sizeof(t_all))))
 		perror(MALLOC_ERROR);
 	all->flag = FLAG_NONE;
+	printf("flag none  = %c\n", all->flag);
+	all->command_argv = NULL;
+	printf("init_all\n");
 }

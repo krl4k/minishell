@@ -22,7 +22,7 @@ all:$(NAME)
 
 $(NAME): $(OBJS)
 	@make -C $(LIBFT_DIR)
-	@gcc -I$(HEADERS) $(OBJS) $(FLAGS) $(LIBFT_DIR)/libft.a -o $(NAME)
+	@gcc $(CFLAGS) -I$(HEADERS) $(OBJS) $(FLAGS) $(LIBFT_DIR)/libft.a -o $(NAME)
 
 $(OBJ_PARSER): %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -I$(HEADERS) -c $< -o $@
