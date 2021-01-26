@@ -6,7 +6,7 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:59:06 by mwinter           #+#    #+#             */
-/*   Updated: 2021/01/25 19:34:47 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/01/26 12:34:18 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,65 @@
 
 void	print_prompt(void)
 {
-	char *pwd;
 	char *prompt;
 
-	pwd = getcwd(pwd, 0);
-	ft_putstr_fd(pwd, 1);
 	free(pwd);
 	prompt = "٩(◕‿◕｡)۶$\0";
 	ft_putstr_fd(prompt, 1);
 }
 
-void get_input(char **av)
+void commands(char *line)
 {
-	char *line;
-
-	get_next_line(0, &line);
-	free(line);
+	char *pwd;
+	
+	if (!ft_strncmp("^C", line, 2))
+		return ;
+	if (!ft_strncmp("pwd", line, 3))
+	{
+		pwd = getcwd(pwd, 0);
+	//	write(1, pwd, ft_strlen(pwd));
+		free(pwd);
+	//	write(1, "\n", 1);
+	}	
+	if (!ft_strncmp("exit", line, 4))
+	{	
+		write(1, "exit\n", 5);
+		exit(0);
+	}
 
 }
 
-int	make_fork(int ac, char **av, char **env,pid_t status)
+void	no_interrupt(int signal_no)
 {
-	pid_t pid;
-
-	if ((pid = fork() < 0))
-		perror("fork < 0");
-	if (pid == 0)
-		printf("CHILD\n");
-	else 
-		wait(&status);
-	return (EXIT_SUCCESS);
+	if (signal_no == SIGINT)
+	{
+		write(1, "\n", 1);
+		print_prompt();
+		signal(SIGINT, no_interrupt);
+	}
 }
+/*
+** Entrypoint in minishell
+** 
+** @param	ac	arguments count
+** @param	av	arguments
+** @param	env	environment variables
+** @return	0 if success
+*/
 
 int main(int ac, char **av, char **env)
 {
 	pid_t pid;
+	char *input;
 
 	pid = getpid();
+	signal(SIGINT, no_interrupt);
 	while (1)
 	{
 		print_prompt();
-		//make_fork(ac, av, env, pid);
-		get_input(av);
-
+		get_next_line(0, &input);
+		commands(input);
+		free(input);
 	}
 	return (EXIT_SUCCESS);
 }
