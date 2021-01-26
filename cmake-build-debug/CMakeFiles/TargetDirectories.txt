@@ -1,3 +1,3 @@
-/Users/fgrisell/CLionProjects/minishell1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/fgrisell/CLionProjects/minishell1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/fgrisell/CLionProjects/minishell1/cmake-build-debug/CMakeFiles/minishell1.dir
+/Users/mwinter/projects/minishell/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/mwinter/projects/minishell/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/mwinter/projects/minishell/cmake-build-debug/CMakeFiles/minishell1.dir

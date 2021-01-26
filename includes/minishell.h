@@ -6,7 +6,7 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:42:35 by mwinter           #+#    #+#             */
-/*   Updated: 2021/01/26 12:54:41 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/01/26 13:44:36 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,17 @@
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
 # define MALLOC_ERROR "malloc error!"
-# define FLAG_NONE	0b00000000
-# define ECHO		0b00000001
-# define CD			0b00000010
-# define PWD		0b00000100
-# define EXPORT		0b00001000
-# define UNSET		0b00010000
-# define ENV		0b00100000
-# define EXIT		0b01000000
-# define BIN_EXEC	0b10000000
 
-
-typedef struct s_all
+typedef struct  s_all
 {
-	unsigned char	flag;
+	unsigned int pwd;
+    unsigned int cd;
+    unsigned int echo;
+    unsigned int export;
+    unsigned int unset;
+    unsigned int env;
+    unsigned int exit;
+    unsigned int bin_command;
 	char			**command_argv;
 
 }				t_all;

@@ -6,7 +6,7 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:39:31 by fgrisell          #+#    #+#             */
-/*   Updated: 2021/01/26 12:54:46 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/01/26 13:42:07 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,14 @@ void init_all(t_all *all)
 {
 	if (!(all = (t_all *)malloc(sizeof(t_all))))
 		perror(MALLOC_ERROR);
-	all->flag = FLAG_NONE;
-	printf("flag none  = %c\n", all->flag);
+    all->pwd = 0;
+    all->cd = 0;
+    all->echo = 0;
+    all->export = 0;
+    all->unset = 0;
+    all->env = 0;
+    all->exit = 0;
+    all->bin_command = 0;
 	all->command_argv = NULL;
-	printf("init_all\n");
+
 }

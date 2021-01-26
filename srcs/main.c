@@ -6,7 +6,7 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:59:06 by mwinter           #+#    #+#             */
-/*   Updated: 2021/01/26 12:41:15 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/01/26 13:39:09 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ int main(int ac, char **av, char **env)
 		//while(1) ?? for a large number of teams
 		signal(SIGINT, no_interrupt);
 		line = get_input(av);
-		printf("%c dgerer\n", all->flag);
-		all->flag = all->flag | BIN_EXEC;
 		printf("main: line = %s\n", line);
 		//! todo : get the line, start parsing and sending for execution
 		//may be execute return status and break a procces

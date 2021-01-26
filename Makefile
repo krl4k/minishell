@@ -1,6 +1,6 @@
 NAME = minishell
 CC = gcc
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 
 SRCS_DIR = ./srcs/
 LIBFT_DIR   = $(SRCS_DIR)libft/
