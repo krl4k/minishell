@@ -22,6 +22,7 @@ void bin_func(t_all  *all, char **env)
 {
 	int status;
 	char *line;
+
 	while (1)
 	{
 		pid_t pid = fork();
@@ -44,13 +45,12 @@ void bin_func(t_all  *all, char **env)
 int			execute(t_all *all, char *line, char **argv, char **env)
 {
 	printf("execute---------------------\n");
-	if (all->flag & BIN_EXEC)
+	if (all->bin_command)
 	{
 		printf("BIN_EXEC\n");
 		bin_func(all, argv);
 	}
-
-
+	return 0;
 	/*pid_t pid = fork();
 	if (pid < 0)
 		perror("fork()\n");

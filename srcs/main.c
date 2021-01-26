@@ -65,7 +65,7 @@ int main(int ac, char **av, char **env)
 //	pid_t pid;
 	char *line;
 
-	init_all(all);
+	init_all(&all);
 //	pid = getpid();
 	while (1)
 	{
@@ -78,9 +78,11 @@ int main(int ac, char **av, char **env)
 		//! todo : get the line, start parsing and sending for execution
 		//may be execute return status and break a procces
 
+		all->bin_command = 1;
+		printf("its work!\n");
 		// av not main argv
-		execute(all, line, av, env);
-
+		if (execute(all, line, av, env) == 0)
+			break;
 
 	}
 	return (EXIT_SUCCESS);

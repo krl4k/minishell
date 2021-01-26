@@ -30,7 +30,80 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b61a94d-dcda-42f4-afed-90668377d83d" name="Default Changelist" comment="&quot;add libft&quot;">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/README.MD" beforeDir="false" afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/srcs/execute.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/init_all.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_atoi.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_bzero.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_calloc.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_isalnum.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_isalpha.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_isascii.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_isdigit.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_isprint.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_itoa.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lennbr.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstadd_back.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstadd_front.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstclear.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstdelone.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstfree_cont.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstiter.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstlast.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstmap.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstnew.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstsize.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memccpy.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memchr.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memcmp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memcpy.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memmove.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memset.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_putchar_fd.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_putendl_fd.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_putnbr_fd.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_putstr_fd.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_setsplit.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_split.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strchr.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strcpy.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strdup.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strjoin.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strlcat.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strlcpy.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strlen.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strmapi.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strncmp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strnstr.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strrchr.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strtrim.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_substr.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_tolower.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_toupper.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/get_next_line.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/main.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/minishell1.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/minishell1.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/minishell1.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/minishell1.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/minishell1.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/minishell1.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/minishell1.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/minishell1.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/minishell.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/minishell.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minishell" beforeDir="false" afterPath="$PROJECT_DIR$/minishell" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/execute.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/execute.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/init_all.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/init_all.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/libft/libft.a" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/libft/libft.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.c" afterDir="false" />
+>>>>>>> b5d1c8a15f000edeb0677ae0a5e7de280f207fc2
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,9 +149,9 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.minishell">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="minishell" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
@@ -105,6 +178,7 @@
     <list>
       <item itemvalue="CMake Application.minishell" />
       <item itemvalue="CMake Application.minishell1" />
+      <item itemvalue="Makefile.minishell" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -122,7 +196,12 @@
       <workItem from="1611579852123" duration="3762000" />
       <workItem from="1611589446969" duration="4618000" />
       <workItem from="1611643700021" duration="9827000" />
+<<<<<<< HEAD
       <workItem from="1611657951289" duration="637000" />
+=======
+      <workItem from="1611657951289" duration="317000" />
+      <workItem from="1611658660368" duration="768000" />
+>>>>>>> b5d1c8a15f000edeb0677ae0a5e7de280f207fc2
     </task>
     <task id="LOCAL-00001" summary="&quot;krl4k commit&quot;">
       <created>1611573998726</created>
