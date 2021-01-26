@@ -6,7 +6,7 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:42:35 by mwinter           #+#    #+#             */
-/*   Updated: 2021/01/25 20:27:47 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/01/26 12:54:41 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,21 @@
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
 # define MALLOC_ERROR "malloc error!"
+# define FLAG_NONE	0b000000000
+# define ECHO		0b000000001
+# define CD			0b000000010
+# define PWD		0b000000100
+# define EXPORT		0b000001000
+# define UNSET		0b000010000
+# define ENV		0b000100000
+# define EXIT		0b001000000
+
 
 typedef struct s_all
 {
-	char **impl_builtin;
+	char echo[5];
+	char cd[3];
+	char 
 
 }				t_all;
 /*
