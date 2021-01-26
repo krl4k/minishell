@@ -20,9 +20,9 @@ void	print_prompt(void)
 	ft_putstr_fd(prompt, 1);
 }
 
-void get_commands(char *line)
+/*void get_commands(char *line)
 {
-    char *pwd;
+    char pwd[1024];
 
     if (!ft_strncmp("exit", line, 4)) {
         write(1, "exit\n", 5);
@@ -30,9 +30,45 @@ void get_commands(char *line)
     }
     if (!ft_strncmp("pwd", line, 3))
     {
-        pwd = getcwd(pwd, 0);
-        write(1, pwd, ft_strlen(pwd));
-        free(pwd);
+        getcwd(pwd, 1024);
+        ft_putendl_fd(pwd, 1);
+    }
+}*/
+
+void    ft_pwd(char **cmd)
+{
+   char pwd[1024];
+
+   getcwd(pwd, 1024);
+   ft_putendl_fd(pwd, 1);
+}
+
+void    ft_execution(char **cmd)
+{
+    if (!ft_strncmp(cmd[0], "pwd", 3))
+        ft_pwd(cmd);
+}
+
+void    get_command(char *full_cmd)
+{
+    char **cmd;
+
+    cmd = ft_setsplit(full_cmd, " ");
+    ft_execution(cmd);
+
+}
+
+void    get_commands(char *line)
+{
+    char **cmds;
+
+    cmds = ft_setsplit(line, ";");
+    int i = 0;
+    while (cmds[i])
+    {
+        get_command(cmds[i]);
+        free(cmds[i]);
+        i++;
     }
 }
 
