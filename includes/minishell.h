@@ -25,5 +25,23 @@
 
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
+# define MALLOC_ERROR "malloc error!"
+
+typedef struct s_all
+{
+	char **impl_builtin;
+
+}				t_all;
+/*
+** for init any variables
+*/
+void			init_all(t_all *all);
+
+
+/*
+** execute function
+**
+*/
+int				execute(t_all *all, char *command,char **argv, char **env);
 
 #endif

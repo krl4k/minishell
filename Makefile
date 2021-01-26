@@ -8,7 +8,7 @@ PARSER_DIR   = $(SRCS_DIR)parser/
 
 HEADERS = ./includes/
 
-SRCS_ALL = $(addprefix $(SRCS_DIR), )#ADD ALL FILES IN ./srcs/
+SRCS_ALL = $(addprefix $(SRCS_DIR), execute.c init_all.c main.c)#ADD ALL FILES IN ./srcs/
 SRC_PARSER = $(addprefix $(PARSER_DIR), )#ADD ALL FILES IN ./srcs/parser/
 
 OBJ_ALL = $(SRCS_ALL:.c=.o)
@@ -22,7 +22,7 @@ all:$(NAME)
 
 $(NAME): $(OBJS)
 	@make -C $(LIBFT_DIR)
-	@gcc -I$(HEADERS) $(OBJS) $(FLAGS) $(LIBFT_DIR)/libft.a libmlx.dylib -o $(NAME)
+	@gcc -I$(HEADERS) $(OBJS) $(FLAGS) $(LIBFT_DIR)/libft.a -o $(NAME)
 
 $(OBJ_PARSER): %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -I$(HEADERS) -c $< -o $@
