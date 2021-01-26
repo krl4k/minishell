@@ -6,7 +6,7 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:59:06 by mwinter           #+#    #+#             */
-/*   Updated: 2021/01/25 19:34:47 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/01/26 12:41:15 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,23 @@ char *get_input(char **av)
 //	free(line);
 }
 
-int	make_fork(int ac, char **av, char **env,pid_t status)
+void	no_interrupt(int signal_no)
 {
-	pid_t pid;
-
-	if ((pid = fork() < 0))
-		perror("fork < 0");
-	if (pid == 0)
+	if (signal_no == SIGINT)
 	{
-		printf("CHILD\n");
-		exit(status);
+		write(1, "\n", 1);
+		print_prompt();
+		signal(SIGINT, no_interrupt);
 	}
-	else
-		wait(&status);
-	return (EXIT_SUCCESS);
 }
+/*
+** Entrypoint in minishell
+** 
+** @param	ac	arguments count
+** @param	av	arguments
+** @param	env	environment variables
+** @return	0 if success
+*/
 
 /*!
 ** in while(1) work
@@ -72,7 +74,7 @@ int main(int ac, char **av, char **env)
 		print_prompt();
 		//make_fork(ac, av, env, pid);
 		//while(1) ?? for a large number of teams
-
+		signal(SIGINT, no_interrupt);
 		line = get_input(av);
 		printf("main: line = %s\n", line);
 		//! todo : get the line, start parsing and sending for execution

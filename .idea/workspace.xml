@@ -30,70 +30,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b61a94d-dcda-42f4-afed-90668377d83d" name="Default Changelist" comment="&quot;add libft&quot;">
-      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/minishell" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/execute.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/execute.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/init_all.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/init_all.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_atoi.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_bzero.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_calloc.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_isalnum.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_isalpha.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_isascii.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_isdigit.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_isprint.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_itoa.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lennbr.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstadd_back.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstadd_front.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstclear.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstdelone.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstfree_cont.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstiter.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstlast.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstmap.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstnew.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstsize.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memccpy.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memchr.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memcmp.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memcpy.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memmove.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memset.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_putchar_fd.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_putendl_fd.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_putnbr_fd.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_putstr_fd.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_setsplit.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_split.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strchr.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strcpy.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strdup.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strjoin.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strlcat.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strlcpy.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strlen.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strmapi.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strncmp.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strnstr.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strrchr.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strtrim.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_substr.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_tolower.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_toupper.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/get_next_line.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/libft/libft.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/srcs/main.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/execv_test.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/start.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test2.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_signals.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/script" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/minishell.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/minishell.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minishell" beforeDir="false" afterPath="$PROJECT_DIR$/minishell" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/execute.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/execute.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/init_all.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/init_all.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/tests/a.out" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +128,7 @@
       <workItem from="1611579842270" duration="2000" />
       <workItem from="1611579852123" duration="3762000" />
       <workItem from="1611589446969" duration="4618000" />
-      <workItem from="1611643700021" duration="7321000" />
+      <workItem from="1611643700021" duration="8223000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;krl4k commit&quot;">
       <created>1611573998726</created>
