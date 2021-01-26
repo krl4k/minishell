@@ -143,6 +143,33 @@ minishell1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell1.dir/build.make CMakeFiles/minishell1.dir/build
 .PHONY : minishell1/fast
 
+tester1.o: tester1.c.o
+
+.PHONY : tester1.o
+
+# target to build an object file
+tester1.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell1.dir/build.make CMakeFiles/minishell1.dir/tester1.c.o
+.PHONY : tester1.c.o
+
+tester1.i: tester1.c.i
+
+.PHONY : tester1.i
+
+# target to preprocess a source file
+tester1.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell1.dir/build.make CMakeFiles/minishell1.dir/tester1.c.i
+.PHONY : tester1.c.i
+
+tester1.s: tester1.c.s
+
+.PHONY : tester1.s
+
+# target to generate assembly for a file
+tester1.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell1.dir/build.make CMakeFiles/minishell1.dir/tester1.c.s
+.PHONY : tester1.c.s
+
 tests/test_signals.o: tests/test_signals.c.o
 
 .PHONY : tests/test_signals.o
@@ -179,6 +206,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... minishell1"
+	@echo "... tester1.o"
+	@echo "... tester1.i"
+	@echo "... tester1.s"
 	@echo "... tests/test_signals.o"
 	@echo "... tests/test_signals.i"
 	@echo "... tests/test_signals.s"

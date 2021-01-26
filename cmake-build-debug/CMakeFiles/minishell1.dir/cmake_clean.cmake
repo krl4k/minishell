@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/minishell1.dir/tester1.c.o"
   "CMakeFiles/minishell1.dir/tests/test_signals.c.o"
   "minishell1"
   "minishell1.pdb"

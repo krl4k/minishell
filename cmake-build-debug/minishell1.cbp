@@ -82,6 +82,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/mwinter/projects/minishell/tester1.c">
+			<Option target="minishell1"/>
+		</Unit>
 		<Unit filename="/Users/mwinter/projects/minishell/tests/test_signals.c">
 			<Option target="minishell1"/>
 		</Unit>

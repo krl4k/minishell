@@ -7,4 +7,4 @@ include_directories(includes)
 include_directories(srcs/libft)
 
 add_executable(minishell1
-        tests/test_signals.c)
+        tests/test_signals.c tester1.c)

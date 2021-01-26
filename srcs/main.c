@@ -47,7 +47,9 @@ void    ft_exit(char **cmd)
 {
     int ret;
 
-    ret = ft_atoi(cmd[1]);
+    ret = 0;
+    if (cmd[1])
+        ret = ft_atoi(cmd[1]);
     ft_free_split(cmd);
     exit(ret);
 }

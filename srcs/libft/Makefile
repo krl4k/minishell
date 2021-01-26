@@ -36,7 +36,7 @@ NFLAGS = -f macho64
 
 OBJ = $(SRC:.c=.o)
 
-OBJ2 = $(SRCS:.s=.o)
+OBJ2 = $(SRC2:.s=.o)
 
 %.o: %.s
 	$(NM) $(NFLAGS) $< -o $@
