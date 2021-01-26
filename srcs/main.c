@@ -20,19 +20,23 @@ void	print_prompt(void)
 	ft_putstr_fd(prompt, 1);
 }
 
-
+void get_commands(char *line)
+{
+    if (!ft_strncmp("exit", line, 4))
+        exit(0);
+}
 /*!
 ** \brief return command and argument for execute func
 ** \todo parser and validate
 ** \warning you risk make shit
 */
-char *get_input(char **av)
+void get_input(void)
 {
 	char *line;
 
 	get_next_line(0, &line);
-	//printf("line = %s\n", line);
-	return line;
+	get_commands(line);
+	free(line);
 }
 
 void	no_interrupt(int signal_no)
@@ -73,7 +77,6 @@ int main(int ac, char **av, char **env)
 		//make_fork(ac, av, env, pid);
 		//while(1) ?? for a large number of teams
 		signal(SIGINT, no_interrupt);
-		line = get_input(av);
 		printf("main: line = %s\n", line);
 		//! todo : get the line, start parsing and sending for execution
 		//may be execute return status and break a procces
