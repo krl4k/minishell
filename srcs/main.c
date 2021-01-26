@@ -22,9 +22,20 @@ void	print_prompt(void)
 
 void get_commands(char *line)
 {
-    if (!ft_strncmp("exit", line, 4))
+    char *pwd;
+
+    if (!ft_strncmp("exit", line, 4)) {
+        write(1, "exit\n", 5);
         exit(0);
+    }
+    if (!ft_strncmp("pwd", line, 3))
+    {
+        pwd = getcwd(pwd, 0);
+        write(1, pwd, ft_strlen(pwd));
+        free(pwd);
+    }
 }
+
 /*!
 ** \brief return command and argument for execute func
 ** \todo parser and validate
@@ -48,19 +59,14 @@ void	no_interrupt(int signal_no)
 		signal(SIGINT, no_interrupt);
 	}
 }
-/*
+
+/*!
 ** Entrypoint in minishell
 ** 
 ** @param	ac	arguments count
 ** @param	av	arguments
 ** @param	env	environment variables
 ** @return	0 if success
-*/
-
-/*!
-** in while(1) work
-**
-**
 */
 
 int main(int ac, char **av, char **env)
@@ -77,15 +83,13 @@ int main(int ac, char **av, char **env)
 		//make_fork(ac, av, env, pid);
 		//while(1) ?? for a large number of teams
 		signal(SIGINT, no_interrupt);
-		printf("main: line = %s\n", line);
+		get_input();
 		//! todo : get the line, start parsing and sending for execution
-		//may be execute return status and break a procces
-
+		//may be execute return status and break a proccess
 		all->bin_command = 1;
-		printf("its work!\n");
 		// av not main argv
-		if (execute(all, line, av, env) == 0)
-			break;
+		//if (execute(all, line, av, env) == 0)
+		//	break;
 
 	}
 	return (EXIT_SUCCESS);

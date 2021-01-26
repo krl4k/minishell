@@ -6,5 +6,5 @@ C_FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacO
 
 C_DEFINES = 
 
-C_INCLUDES = -I/Users/fgrisell/minishell/includes -I/Users/fgrisell/minishell/srcs/libft 
+C_INCLUDES = -I/Users/mwinter/projects/minishell/includes -I/Users/mwinter/projects/minishell/srcs/libft 
 

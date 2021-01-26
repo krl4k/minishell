@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/fgrisell/minishell/tests/test_signals.c" "/Users/fgrisell/minishell/cmake-build-debug/CMakeFiles/minishell1.dir/tests/test_signals.c.o"
+  "/Users/mwinter/projects/minishell/tests/test_signals.c" "/Users/mwinter/projects/minishell/cmake-build-debug/CMakeFiles/minishell1.dir/tests/test_signals.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 
