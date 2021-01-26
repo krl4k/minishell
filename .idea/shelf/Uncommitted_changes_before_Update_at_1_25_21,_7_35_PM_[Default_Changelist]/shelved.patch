@@ -1,0 +1,22 @@
+Index: srcs/main.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"\"\n\nint main(int ac, char **av, char **env)\n{\n\twhile (1)\n\t{\n\n\t}\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- srcs/main.c	(revision e98b51797dcc43456d40e11dc9b4a1e1fa631154)
++++ srcs/main.c	(date 1611584872000)
+@@ -1,9 +1,7 @@
+-#include ""
++#include "minishell.h"
++
++
+ 
+ int main(int ac, char **av, char **env)
+ {
+-	while (1)
+-	{
+-
+-	}
+ }

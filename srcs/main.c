@@ -14,23 +14,25 @@
 
 void	print_prompt(void)
 {
-	char *pwd;
 	char *prompt;
 
-	pwd = getcwd(pwd, 0);
-	ft_putstr_fd(pwd, 1);
-	free(pwd);
 	prompt = "٩(◕‿◕｡)۶$\0";
 	ft_putstr_fd(prompt, 1);
 }
 
-void get_input(char **av)
+
+/*!
+** \brief return command and argument for execute func
+** \todo parser and validate
+** \warning you risk make shit
+*/
+char *get_input(char **av)
 {
 	char *line;
 
 	get_next_line(0, &line);
-	free(line);
-
+	return line;
+//	free(line);
 }
 
 int	make_fork(int ac, char **av, char **env,pid_t status)
@@ -40,22 +42,44 @@ int	make_fork(int ac, char **av, char **env,pid_t status)
 	if ((pid = fork() < 0))
 		perror("fork < 0");
 	if (pid == 0)
+	{
 		printf("CHILD\n");
-	else 
+		exit(status);
+	}
+	else
 		wait(&status);
 	return (EXIT_SUCCESS);
 }
 
+/*!
+** in while(1) work
+**
+**
+*/
+
 int main(int ac, char **av, char **env)
 {
-	pid_t pid;
+	t_all *all;
+//	pid_t pid;
+	char *line;
+	int status;
 
-	pid = getpid();
-	while (1)
+	status = 1;
+	init_all(all);
+//	pid = getpid();
+	while (status)
 	{
 		print_prompt();
 		//make_fork(ac, av, env, pid);
-		get_input(av);
+		//while(1) ?? for a large number of teams
+
+		line = get_input(av);
+		printf("main: line = %s\n", line);
+		//! todo : get the line, start parsing and sending for execution
+		//may be execute return status and break a procces
+		execute(all, line, NULL, env);
+		if (status == 0)
+			break;
 
 	}
 	return (EXIT_SUCCESS);

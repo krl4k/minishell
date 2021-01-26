@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="minishell1" targetName="minishell1" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4b61a94d-dcda-42f4-afed-90668377d83d" name="Default Changelist" comment="&quot;add libft&quot;">
+      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/minishell" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/execute.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/execute.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/init_all.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/init_all.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_atoi.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_bzero.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_calloc.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_isalnum.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_isalpha.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_isascii.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_isdigit.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_isprint.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_itoa.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lennbr.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstadd_back.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstadd_front.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstclear.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstdelone.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstfree_cont.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstiter.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstlast.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstmap.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstnew.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_lstsize.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memccpy.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memchr.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memcmp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memcpy.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memmove.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_memset.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_putchar_fd.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_putendl_fd.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_putnbr_fd.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_putstr_fd.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_setsplit.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_split.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strchr.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strcpy.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strdup.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strjoin.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strlcat.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strlcpy.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strlen.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strmapi.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strncmp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strnstr.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strrchr.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_strtrim.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_substr.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_tolower.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/ft_toupper.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/get_next_line.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/libft/libft.a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/srcs/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/execv_test.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/start.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test2.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_signals.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/minishell.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/minishell.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.c" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="ProjectId" id="1nYja3Qkl0AtXVZveguMV4LXHB2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/srcs" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Makefile.minishell">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="minishell" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="minishell1" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="minishell1" TARGET_NAME="minishell1" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="minishell1" RUN_TARGET_NAME="minishell1">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="minishell" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="all" workingDirectory="$PROJECT_DIR$" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.minishell" />
+      <item itemvalue="CMake Application.minishell1" />
+      <item itemvalue="Makefile.minishell" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4b61a94d-dcda-42f4-afed-90668377d83d" name="Default Changelist" comment="" />
+      <created>1611573978057</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1611573978057</updated>
+      <workItem from="1611573979079" duration="87000" />
+      <workItem from="1611574310561" duration="4904000" />
+      <workItem from="1611579745969" duration="85000" />
+      <workItem from="1611579842270" duration="2000" />
+      <workItem from="1611579852123" duration="3762000" />
+      <workItem from="1611589446969" duration="4618000" />
+      <workItem from="1611643700021" duration="6421000" />
+    </task>
+    <task id="LOCAL-00001" summary="&quot;krl4k commit&quot;">
+      <created>1611573998726</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1611573998726</updated>
+    </task>
+    <task id="LOCAL-00002" summary="&quot;add directory&quot;">
+      <created>1611575260336</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1611575260336</updated>
+    </task>
+    <task id="LOCAL-00003" summary="&quot;add libft&quot;">
+      <created>1611575345811</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1611575345811</updated>
+    </task>
+    <task id="LOCAL-00004" summary="&quot;add libft&quot;">
+      <created>1611576642314</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1611576642314</updated>
+    </task>
+    <task id="LOCAL-00005" summary="&quot;add libft&quot;">
+      <created>1611576786253</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1611576786253</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="&quot;krl4k commit&quot;" />
+    <MESSAGE value="&quot;add directory&quot;" />
+    <MESSAGE value="&quot;add libft&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;add libft&quot;" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1293" y="537" key="#Notifications" timestamp="1611574760828">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1293" y="537" key="#Notifications/0.23.2560.1337@0.23.2560.1337" timestamp="1611574760828" />
+    <state x="1022" y="368" width="1071" height="772" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611653431062">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1022" y="368" width="1071" height="772" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1611653431062" />
+    <state x="1298" y="515" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1611593000506">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1298" y="515" key="#com.intellij.fileTypes.FileTypeChooser/0.23.2560.1337@0.23.2560.1337" timestamp="1611593000506" />
+    <state x="1345" y="466" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1611579793717">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1345" y="466" key="#com.intellij.ide.macro.MacrosDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1611579793717" />
+    <state x="1145" y="282" key="CommitChangelistDialog2" timestamp="1611592569438">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1145" y="282" key="CommitChangelistDialog2/0.23.2560.1337@0.23.2560.1337" timestamp="1611592569438" />
+    <state x="1417" y="486" key="EnvironmentVariablesDialog" timestamp="1611579823983">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1417" y="486" key="EnvironmentVariablesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1611579823983" />
+    <state width="2496" height="372" key="GridCell.Tab.0.bottom" timestamp="1611653408845">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2496" height="372" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1611653408845" />
+    <state width="2496" height="372" key="GridCell.Tab.0.center" timestamp="1611653408844">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2496" height="372" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1611653408844" />
+    <state width="2496" height="372" key="GridCell.Tab.0.left" timestamp="1611653408844">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2496" height="372" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1611653408844" />
+    <state width="2496" height="372" key="GridCell.Tab.0.right" timestamp="1611653408844">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="2496" height="372" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1611653408844" />
+    <state width="1963" height="458" key="GridCell.Tab.1.bottom" timestamp="1611585156946">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="1963" height="458" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1611585156946" />
+    <state width="1963" height="458" key="GridCell.Tab.1.center" timestamp="1611585156945">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="1963" height="458" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1611585156945" />
+    <state width="1963" height="458" key="GridCell.Tab.1.left" timestamp="1611585156945">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="1963" height="458" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1611585156945" />
+    <state width="1963" height="458" key="GridCell.Tab.1.right" timestamp="1611585156945">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="1963" height="458" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1611585156945" />
+    <state x="512" y="161" key="MergeDialog" timestamp="1611592647729">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="512" y="161" key="MergeDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1611592647729" />
+    <state x="1066" y="345" key="SettingsEditor" timestamp="1611575172900">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1066" y="345" key="SettingsEditor/0.23.2560.1337@0.23.2560.1337" timestamp="1611575172900" />
+    <state x="1157" y="446" key="Vcs.Push.Dialog.v2" timestamp="1611576805004">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1157" y="446" key="Vcs.Push.Dialog.v2/0.23.2560.1337@0.23.2560.1337" timestamp="1611576805004" />
+    <state x="1359" y="627" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1611650121332">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="1359" y="627" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.2560.1337@0.23.2560.1337" timestamp="1611650121332" />
+  </component>
+</project>
