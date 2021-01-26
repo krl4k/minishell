@@ -43,7 +43,8 @@ typedef struct  s_all
 /*
 ** for init any variables
 */
-void			init_all(t_all *all);
+void			init_all(t_all **all);
+
 
 
 /*
