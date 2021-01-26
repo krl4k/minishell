@@ -43,10 +43,21 @@ void    ft_pwd(char **cmd)
    ft_putendl_fd(pwd, 1);
 }
 
+void    ft_exit(char **cmd)
+{
+    int ret;
+
+    ret = ft_atoi(cmd[1]);
+    ft_free_split(cmd);
+    exit(ret);
+}
+
 void    ft_execution(char **cmd)
 {
     if (!ft_strncmp(cmd[0], "pwd", 3))
         ft_pwd(cmd);
+    if (!ft_strncmp(cmd[0], "exit", 4))
+        ft_exit(cmd);
 }
 
 void    get_command(char *full_cmd)
