@@ -16,14 +16,12 @@ void init_all(t_all **all)
 {
 	if (!(*all = (t_all *)malloc(sizeof(t_all))))
 		perror(MALLOC_ERROR);
-	(*all)->pwd = 0;
-	(*all)->cd = 0;
-	(*all)->echo = 0;
-	(*all)->export = 0;
-	(*all)->unset = 0;
-	(*all)->env = 0;
-	(*all)->exit = 0;
-	(*all)->bin_command = 0;
-//	all->command_argv = NULL;
-
+	(*all)->c_pwd = 0;
+	(*all)->c_cd = 0;
+	(*all)->c_echo = 0;
+	(*all)->c_export = 0;
+	(*all)->c_unset = 0;
+	(*all)->c_env = 0;
+	(*all)->c_exit = 0;
+	(*all)->c_bin_command = 0;
 }
