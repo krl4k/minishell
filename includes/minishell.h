@@ -56,7 +56,7 @@ void			init_all(t_all **all);
 /*!
 ** promt kaomoji its cute!!!
 */
-void			print_prompt(void);
+void			print_prompt(int fd);
 
 /*
 ** execute function
