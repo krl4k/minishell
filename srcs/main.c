@@ -63,8 +63,10 @@ int     check_n(char *flag)
     int i;
 
     i = 1;
+    printf("tut1\n");
     while (flag[i])
     {
+        printf("tut2\n");
         if (flag[i] != 'n')
             return (1);
         i++;
@@ -118,12 +120,12 @@ void    ft_execution(t_all *all)
         ft_echo(all->command_argv);
     else if (!ft_strncmp(all->command_argv[0], "cd", 2))
         ft_cd(all);
-    else if (!ft_strncmp(all->command_argv[0], "env", 3))
+    /*else if (!ft_strncmp(all->command_argv[0], "env", 3))
         ft_env(all);
     else if (!ft_strncmp(all->command_argv[0], "unset", 5))
         ft_unset(all);
     else if (!ft_strncmp(all->command_argv[0], "export", 6))
-        ft_export(all);
+        ft_export(all);*/
     else
     {
         all->c_bin_command = 1;//set flag
@@ -143,8 +145,6 @@ void    get_commands(t_all *all, char *line)
 
     cmds = ft_setsplit(line, ";");
     int i = 0;
-    if (ft_strncmp(cmds[0], "\0", 1))
-        ft_exit((char **){"exit", NULL});
     while (cmds[i])
     {
         get_command(all, cmds[i]);
