@@ -33,7 +33,7 @@
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
 # define MALLOC_ERROR "malloc error!"
-#define PROMT_ERROR "ヽ(*・ω・)ﾉ: \0"
+# define PROMT_ERROR "ヽ(*・ω・)ﾉ: \0"
 
 typedef struct		s_all
 {

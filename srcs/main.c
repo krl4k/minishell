@@ -20,21 +20,6 @@ void	print_prompt(int fd)
 	ft_putstr_fd(prompt, fd);
 }
 
-/*void get_commands(char *line)
-{
-    char c_pwd[1024];
-
-    if (!ft_strncmp("exit", line, 4)) {
-        write(1, "exit\n", 5);
-        exit(0);
-    }
-    if (!ft_strncmp("c_pwd", line, 3))
-    {
-        getcwd(c_pwd, 1024);
-        ft_putendl_fd(c_pwd, 1);
-    }
-}*/
-
 void    ft_pwd(char **cmd)
 {
    char pwd[1024];
@@ -63,7 +48,7 @@ void    ft_exit(char **cmd)
         ret = ft_atoi(cmd[1]);
     else if (cmd[1] && !is_numeric(cmd[1]))
     {
-        write(1, PROMT_ERROR, ft_strlen(PROMT_ERROR));
+        write(2, PROMT_ERROR, ft_strlen(PROMT_ERROR));
         write(2, ": ", 2);
         write(2, cmd[0], ft_strlen(cmd[0]));
         write(2, ": ", 2);
@@ -75,6 +60,15 @@ void    ft_exit(char **cmd)
 
 int     check_n(char *flag)
 {
+    int i;
+
+    i = 1;
+    while (flag[i])
+    {
+        if (flag[i] != 'n')
+            return (1);
+        i++;
+    }
     return (0);
 }
 
@@ -82,9 +76,10 @@ void    ft_echo(char **cmd)
 {
     int i;
 
-    if (!check_n(cmd [1]))
+    if (check_n(cmd [1]))
     {
         i = 1;
+        printf("tut\n");
         while (cmd[i])
         {
             write(1, cmd[i], ft_strlen(cmd[i]));
@@ -123,6 +118,12 @@ void    ft_execution(t_all *all)
         ft_echo(all->command_argv);
     else if (!ft_strncmp(all->command_argv[0], "cd", 2))
         ft_cd(all);
+    else if (!ft_strncmp(all->command_argv[0], "env", 3))
+        ft_env(all);
+    else if (!ft_strncmp(all->command_argv[0], "unset", 5))
+        ft_unset(all);
+    else if (!ft_strncmp(all->command_argv[0], "export", 6))
+        ft_export(all);
     else
     {
         all->c_bin_command = 1;//set flag
@@ -142,6 +143,8 @@ void    get_commands(t_all *all, char *line)
 
     cmds = ft_setsplit(line, ";");
     int i = 0;
+    if (ft_strncmp(cmds[0], "\0", 1))
+        ft_exit((char **){"exit", NULL});
     while (cmds[i])
     {
         get_command(all, cmds[i]);
