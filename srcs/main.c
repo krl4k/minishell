@@ -79,9 +79,15 @@ void    ft_echo(char **cmd)
 
     if (!check_n)
     {
-        i = 0
+        i = 0;
         while (cmd[i++])
             ft_putendl_fd(cmd[i], 1);
+    }
+    else
+    {
+        i = 1;
+        while (cmd[i++])
+            write(1, cmd[i], ft_strlen(cmd[i]));
     }
 }
 
