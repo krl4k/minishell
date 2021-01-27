@@ -12,16 +12,32 @@
 
 #include "minishell.h"
 
-void init_all(t_all **all)
+static void init_env(t_all *all, char **env)
 {
-	if (!(*all = (t_all *)malloc(sizeof(t_all))))
+	int count;
+	int i;
+
+	i = 0;
+	count = 0;
+	while (env[count])
+		count++;
+	if (!(all->env = (char **) malloc((count + 1) * sizeof(char *))))
+		exit(0);
+	all->env_count = count;
+	while (env[i])
+	{
+		if (ft_strncmp(all->env[i],"HOME=", 5) == 0)
+			all->old_home = all->env[i];
+		all->env[i] = ft_strdup(env[i]);
+		i++;
+	}
+	all->env[i] = NULL;
+}
+
+void init_all(t_all **all, char **env)
+{
+	if (!(*all = (t_all *) malloc(sizeof(t_all))))
 		perror(MALLOC_ERROR);
-	(*all)->c_pwd = 0;
-	(*all)->c_cd = 0;
-	(*all)->c_echo = 0;
-	(*all)->c_export = 0;
-	(*all)->c_unset = 0;
-	(*all)->c_env = 0;
-	(*all)->c_exit = 0;
 	(*all)->c_bin_command = 0;
+	init_env(*all, env);
 }

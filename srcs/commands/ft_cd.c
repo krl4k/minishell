@@ -12,8 +12,25 @@
 
 #include "minishell.h"
 
+static int is_home(t_all *all)
+{
+	int i;
+
+	i = 0;
+	while (all->env[i])
+	{
+		if (ft_strncmp(all->env[i], "HOME=", 5) == 0)
+			return (all->env[i])
+
+	}
+}
+
 int ft_cd(t_all *all)
 {
+	if (!all->command_argv[1] || ft_strncmp(all->command_argv[1], "~", 1) == 0)
+	{
+		if ()
+	}
 	if ((chdir(all->command_argv[1])) == -1)
 	{
 		ft_putstr_fd(PROMT_ERROR, 2);

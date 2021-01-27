@@ -191,9 +191,9 @@ int main(int ac, char **av, char **env)
 	t_all *all;
 	char *line;
 
-	init_all(&all);
+
+	init_all(&all, env);
 	all->av = av;
-	all->env = env;
 	while (1)
 	{
 		print_prompt(1);
