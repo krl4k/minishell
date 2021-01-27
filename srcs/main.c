@@ -43,13 +43,25 @@ void    ft_pwd(char **cmd)
    ft_putendl_fd(pwd, 1);
 }
 
+int     is_numeric(char *cmd)
+{
+    int i;
+
+    i = 0;
+    while (cmd[i])
+        if (!ft_isdigit(cmd[i++]))
+            return (0);
+    return (1);
+}
 void    ft_exit(char **cmd)
 {
     int ret;
 
     ret = 0;
-    if (cmd[1])
+    if (cmd[1] && is_numeric(cmd[1]))
         ret = ft_atoi(cmd[1]);
+    else if (cmd[1] && !is_numeric(cmd[1]))
+        write(2, "is not numeric!", 15);
     ft_free_split(cmd);
     exit(ret);
 }
