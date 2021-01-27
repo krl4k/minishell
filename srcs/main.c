@@ -73,15 +73,25 @@ void    ft_exit(char **cmd)
     exit(ret);
 }
 
+int     check_n(char *flag)
+{
+    return (0);
+}
+
 void    ft_echo(char **cmd)
 {
     int i;
 
-    if (!check_n)
+    if (!check_n(cmd [1]))
     {
-        i = 0;
-        while (cmd[i++])
-            ft_putendl_fd(cmd[i], 1);
+        i = 1;
+        while (cmd[i])
+        {
+            write(1, cmd[i], ft_strlen(cmd[i]));
+            write(1, " ", 1);
+            i++;
+        }
+        write(1, "\n", 1);
     }
     else
     {
