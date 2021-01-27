@@ -63,7 +63,7 @@ int     check_n(char *flag)
     int i;
 
     i = 1;
-     while (flag[i])
+    while (flag[i])
     {
         if (flag[i] != 'n')
             return (1);
@@ -90,6 +90,8 @@ void    ft_execution(t_all *all)
         ft_pwd(all->command_argv);
     else if (!ft_strncmp(all->command_argv[0], "exit", 4))
         ft_exit(all->command_argv);
+    else if (!ft_strncmp(all->command_argv[0], "echo", 4))
+        ft_echo(all->command_argv);
     else if (!ft_strncmp(all->command_argv[0], "cd", 2))
         ft_cd(all);
     /*else if (!ft_strncmp(all->command_argv[0], "env", 3))
@@ -162,9 +164,9 @@ int main(int ac, char **av, char **env)
 {
 	t_all *all;
 
-	init_all(&all);
+
+	init_all(&all, env);
 	all->av = av;
-	all->env = env;
 	while (1)
 	{
 		print_prompt(1);

@@ -48,11 +48,13 @@ typedef struct		s_all
 	char			**command_argv;
 	char            **av;
 	char            **env;
+	char			*old_home;
+	int				env_count;
 }					t_all;
 /*
 ** for init any variables
 */
-void			init_all(t_all **all);
+void			init_all(t_all **all, char **env);
 
 /*!
 ** promt kaomoji its cute!!!
@@ -70,6 +72,7 @@ void			bin_func(t_all *all);
 
 
 int				ft_cd(t_all *all);
+int				ft_env(t_all *all);
 
 
 
