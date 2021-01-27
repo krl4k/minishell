@@ -67,8 +67,8 @@ void    ft_exit(char **cmd)
 
 void    ft_execution(t_all *all, char **cmd)
 {
-	printf("all cmd[0] = %s\n", cmd[0]);
-	printf("all cmd[1] = %s\n", cmd[1]);
+//	printf("all cmd[0] = %s\n", cmd[0]);
+//	printf("all cmd[1] = %s\n", cmd[1]);
 	int i = 0;
 	all->command_argv = (char **) malloc(3 * sizeof(char *));
 	if (cmd[i])
@@ -148,11 +148,9 @@ void	no_interrupt(int signal_no)
 int main(int ac, char **av, char **env)
 {
 	t_all *all;
-//	pid_t pid;
 	char *line;
 
 	init_all(&all);
-//	pid = getpid();
 	while (1)
 	{
 		print_prompt();
@@ -162,7 +160,6 @@ int main(int ac, char **av, char **env)
 		get_input(all);
 		//! todo : get the line, start parsing and sending for execution
 		//may be execute return status and break a proccess
-		all->c_bin_command = 1;
 		// av not main argv
 		execute(all, line, av, env);
 	}

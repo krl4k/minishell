@@ -5,18 +5,21 @@ FLAGS = -Wall -Werror -Wextra -g
 SRCS_DIR = ./srcs/
 LIBFT_DIR   = $(SRCS_DIR)libft/
 PARSER_DIR   = $(SRCS_DIR)parser/
+COMMANDS_DIR   = $(SRCS_DIR)commands/
 
 HEADERS = ./includes/
 
 SRCS_ALL = $(addprefix $(SRCS_DIR), execute.c init_all.c main.c)#ADD ALL FILES IN ./srcs/
 SRC_PARSER = $(addprefix $(PARSER_DIR), )#ADD ALL FILES IN ./srcs/parser/
+SRC_COMMANDS = $(addprefix $(COMMANDS_DIR), bin_commands.c)#ADD ALL FILES IN ./srcs/parser/
 
 OBJ_ALL = $(SRCS_ALL:.c=.o)
 OBJ_PARSER = $(SRC_PARSER:.c=.o)
+OBJ_COMMANDS = $(SRC_COMMANDS:.c=.o)
 
-SRCS = $(SRCS_ALL) $(SRC_PARSER)
+SRCS = $(SRCS_ALL) $(SRC_PARSER) $(SRC_COMMANDS)
 
-OBJS = $(OBJ_ALL) $(OBJ_PARSER)
+OBJS = $(OBJ_ALL) $(OBJ_PARSER) $(OBJ_COMMANDS)
 
 all:$(NAME)
 
@@ -29,6 +32,11 @@ $(OBJ_PARSER): %.o: %.c $(HEADERS)
 
 $(OBJ_ALL): %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -I$(HEADERS) -I $(LIBFT_DIR) -c $< -o $@
+
+
+$(OBJ_COMMANDS): %.o: %.c $(HEADERS)
+	$(CC) $(CFLAGS) -I$(HEADERS) -I $(LIBFT_DIR) -c $< -o $@
+
 
 %.o:%.c%$(HEADERS)
 	$(CC) $(FLAGS) -o I$(HEADER)  $@ -c $<
