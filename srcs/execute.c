@@ -12,14 +12,13 @@
 
 #include "minishell.h"
 
-
-int execute(t_all *all, char *line, char **argv, char **env)
+int execute(t_all *all)
 {
 //	printf("execute---------------------\n");
 	if (all->c_bin_command)
 	{
 //		printf("BIN_EXEC\n");
-		bin_func(all, argv);
+		bin_func(all);
 	}
 	return (EXIT_SUCCESS);
 }

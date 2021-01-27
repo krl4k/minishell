@@ -45,6 +45,8 @@ typedef struct		s_all
     unsigned int	c_exit;
     unsigned int	c_bin_command;
 	char			**command_argv;
+	char            **av;
+	char            **env;
 }					t_all;
 /*
 ** for init any variables
@@ -60,9 +62,9 @@ void			print_prompt(void);
 ** execute function
 **
 */
-int				execute(t_all *all, char *line, char **argv, char **env);
-//int				execute(t_all *all, char **argv, char **env);
-void			bin_func(t_all *all, char **env);
+int             execute(t_all *all);
+//int			execute(t_all *all, char **argv, char **env);
+void			bin_func(t_all *all);
 
 
 

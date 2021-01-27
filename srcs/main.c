@@ -77,15 +77,18 @@ void    ft_exit(char **cmd)
 ** \todo processing commands and putting them in an array
 */
 
-void    ft_execution(t_all *all, char **cmd)
+void    ft_execution(t_all *all)
 {
-    if (!ft_strncmp(cmd[0], "pwd", 3))
-        ft_pwd(cmd);
-    if (!ft_strncmp(cmd[0], "exit", 4))
-        ft_exit(cmd);
+
+    if (!ft_strncmp(all->command_argv[0], "pwd", 3))
+        ft_pwd(all->command_argv);
+    if (!ft_strncmp(all->command_argv[0], "exit", 4))
+        ft_exit(all->command_argv);
     else
+    {
         all->c_bin_command = 1;//set flag
-    execute(all, cmd, av, env);
+        execute(all);
+    }
 }
 
 void    get_command(t_all *all, char *full_cmd)
@@ -147,6 +150,8 @@ int main(int ac, char **av, char **env)
 	char *line;
 
 	init_all(&all);
+	all->av = av;
+	all->env = env;
 	while (1)
 	{
 		print_prompt();
@@ -157,7 +162,7 @@ int main(int ac, char **av, char **env)
 		//! todo : get the line, start parsing and sending for execution
 		//may be execute return status and break a proccess
 		// av not main argv
-
+//		execute(all, line, av, env);
 	}
 	return (EXIT_SUCCESS);
 }

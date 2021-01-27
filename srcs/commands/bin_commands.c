@@ -41,7 +41,7 @@ char *check_bin_func(t_all *all)
 ** \author fgrisell
 **
 */
-void bin_func(t_all *all, char **env)
+void bin_func(t_all *all)
 {
 	int status;
 	char *command;
@@ -53,7 +53,10 @@ void bin_func(t_all *all, char **env)
 	if (pid == 0)
 	{
 		command = check_bin_func(all);
-		status = execve(command, all->command_argv, env);
+		status = execve(command, all->command_argv, all->env);
+		printf("CHILD : pid = %d\n", getpid());
+		printf("CHILD  : PARENT pid = %d\n", getppid());
+
 /*		if (status == -1)
 		{
 			char *temp = all->command_argv[0];
@@ -69,6 +72,8 @@ void bin_func(t_all *all, char **env)
 	else
 	{
 		waitpid(pid, &status, 0);// waitpid(-1, &status, 0); == wait(&status);
+		printf("PARENT : pid = %d\n", getpid());
+
 //		printf(RED"WEXITSTATUS = %d\n", WEXITSTATUS(status));
 //		printf(END);
 		if (WIFEXITED(status) != 0)
