@@ -13,7 +13,7 @@
 #include "minishell.h"
 
 
-int execute(t_all *all, char *line, char **argv, char **env)
+int execute(t_all *all, char **argv)
 {
 //	printf("execute---------------------\n");
 	if (all->c_bin_command)

@@ -70,10 +70,15 @@ void    ft_execution(t_all *all, char **cmd)
 //	printf("all cmd[0] = %s\n", cmd[0]);
 //	printf("all cmd[1] = %s\n", cmd[1]);
 	int i = 0;
-	all->command_argv = (char **) malloc(3 * sizeof(char *));
+	all->command_argv = (char **) malloc(4 * sizeof(char *));
 	if (cmd[i])
 	{
 		all->command_argv[i] = ft_strdup(cmd[i]); //bin file or command
+		i++;
+	}
+	if (cmd[i])
+	{
+		all->command_argv[i] = ft_strdup(cmd[i]); //flags, pars a lot command
 		i++;
 	}
 	if (cmd[i])
@@ -161,7 +166,7 @@ int main(int ac, char **av, char **env)
 		//! todo : get the line, start parsing and sending for execution
 		//may be execute return status and break a proccess
 		// av not main argv
-		execute(all, line, av, env);
+//		execute(all, line, av, env);
 	}
 	return (EXIT_SUCCESS);
 }

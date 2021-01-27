@@ -48,7 +48,7 @@ int main(int argc,char *argv[], char **env)
 		else
 		{
 			wait(&status);
-			waitpid(pid, &status, 0);
+//			waitpid(pid, &status, 0);
 			if (WIFEXITED(status) != 0)
 			{
 				printf("status = %d\n", WEXITSTATUS(status));
