@@ -143,33 +143,6 @@ minishell_myFork/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell_myFork.dir/build.make CMakeFiles/minishell_myFork.dir/build
 .PHONY : minishell_myFork/fast
 
-srcs/commands/ft_echo.o: srcs/commands/ft_echo.c.o
-
-.PHONY : srcs/commands/ft_echo.o
-
-# target to build an object file
-srcs/commands/ft_echo.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell_myFork.dir/build.make CMakeFiles/minishell_myFork.dir/srcs/commands/ft_echo.c.o
-.PHONY : srcs/commands/ft_echo.c.o
-
-srcs/commands/ft_echo.i: srcs/commands/ft_echo.c.i
-
-.PHONY : srcs/commands/ft_echo.i
-
-# target to preprocess a source file
-srcs/commands/ft_echo.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell_myFork.dir/build.make CMakeFiles/minishell_myFork.dir/srcs/commands/ft_echo.c.i
-.PHONY : srcs/commands/ft_echo.c.i
-
-srcs/commands/ft_echo.s: srcs/commands/ft_echo.c.s
-
-.PHONY : srcs/commands/ft_echo.s
-
-# target to generate assembly for a file
-srcs/commands/ft_echo.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell_myFork.dir/build.make CMakeFiles/minishell_myFork.dir/srcs/commands/ft_echo.c.s
-.PHONY : srcs/commands/ft_echo.c.s
-
 srcs/execute.o: srcs/execute.c.o
 
 .PHONY : srcs/execute.o
@@ -196,33 +169,6 @@ srcs/execute.s: srcs/execute.c.s
 srcs/execute.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell_myFork.dir/build.make CMakeFiles/minishell_myFork.dir/srcs/execute.c.s
 .PHONY : srcs/execute.c.s
-
-srcs/ft_command.o: srcs/ft_command.c.o
-
-.PHONY : srcs/ft_command.o
-
-# target to build an object file
-srcs/ft_command.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell_myFork.dir/build.make CMakeFiles/minishell_myFork.dir/srcs/ft_command.c.o
-.PHONY : srcs/ft_command.c.o
-
-srcs/ft_command.i: srcs/ft_command.c.i
-
-.PHONY : srcs/ft_command.i
-
-# target to preprocess a source file
-srcs/ft_command.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell_myFork.dir/build.make CMakeFiles/minishell_myFork.dir/srcs/ft_command.c.i
-.PHONY : srcs/ft_command.c.i
-
-srcs/ft_command.s: srcs/ft_command.c.s
-
-.PHONY : srcs/ft_command.s
-
-# target to generate assembly for a file
-srcs/ft_command.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell_myFork.dir/build.make CMakeFiles/minishell_myFork.dir/srcs/ft_command.c.s
-.PHONY : srcs/ft_command.c.s
 
 srcs/init_all.o: srcs/init_all.c.o
 
@@ -1691,15 +1637,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... minishell_myFork"
-	@echo "... srcs/commands/ft_echo.o"
-	@echo "... srcs/commands/ft_echo.i"
-	@echo "... srcs/commands/ft_echo.s"
 	@echo "... srcs/execute.o"
 	@echo "... srcs/execute.i"
 	@echo "... srcs/execute.s"
-	@echo "... srcs/ft_command.o"
-	@echo "... srcs/ft_command.i"
-	@echo "... srcs/ft_command.s"
 	@echo "... srcs/init_all.o"
 	@echo "... srcs/init_all.i"
 	@echo "... srcs/init_all.s"

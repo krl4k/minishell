@@ -58,20 +58,6 @@ void    ft_exit(char **cmd)
     exit(ret);
 }
 
-int     check_n(char *flag)
-{
-    int i;
-
-    i = 1;
-    while (flag[i])
-    {
-        if (flag[i] != 'n')
-            return (1);
-        i++;
-    }
-    return (0);
-}
-
 /*!
 ** set all->command_argv (command_argv this is a null-terminated array of strings)
 ** \authors fgrisell and mwinter
