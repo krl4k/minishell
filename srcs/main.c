@@ -12,12 +12,12 @@
 
 #include "minishell.h"
 
-void	print_prompt(void)
+void	print_prompt(int fd)
 {
 	char *prompt;
 
 	prompt = "٩(◕‿◕｡)۶$\0";
-	ft_putstr_fd(prompt, 1);
+	ft_putstr_fd(prompt, fd);
 }
 
 /*void get_commands(char *line)
@@ -53,6 +53,7 @@ int     is_numeric(char *cmd)
             return (0);
     return (1);
 }
+
 void    ft_exit(char **cmd)
 {
     int ret;
@@ -61,9 +62,43 @@ void    ft_exit(char **cmd)
     if (cmd[1] && is_numeric(cmd[1]))
         ret = ft_atoi(cmd[1]);
     else if (cmd[1] && !is_numeric(cmd[1]))
-        write(2, "is not numeric!", 15);
+    {
+        write(1, PROMT_ERROR, ft_strlen(PROMT_ERROR));
+        write(2, ": ", 2);
+        write(2, cmd[0], ft_strlen(cmd[0]));
+        write(2, ": ", 2);
+        ft_putendl_fd("numeric argument required!", 2);
+    }
     ft_free_split(cmd);
     exit(ret);
+}
+
+int     check_n(char *flag)
+{
+    return (0);
+}
+
+void    ft_echo(char **cmd)
+{
+    int i;
+
+    if (!check_n(cmd [1]))
+    {
+        i = 1;
+        while (cmd[i])
+        {
+            write(1, cmd[i], ft_strlen(cmd[i]));
+            write(1, " ", 1);
+            i++;
+        }
+        write(1, "\n", 1);
+    }
+    else
+    {
+        i = 1;
+        while (cmd[i++])
+            write(1, cmd[i], ft_strlen(cmd[i]));
+    }
 }
 
 /*!
@@ -86,6 +121,8 @@ void    ft_execution(t_all *all)
         ft_exit(all->command_argv);
     else if (!ft_strncmp(all->command_argv[0], "echo", 4))
         ft_echo(all->command_argv);
+    else if (!ft_strncmp(all->command_argv[0], "cd", 2))
+        ft_cd(all);
     else
     {
         all->c_bin_command = 1;//set flag
@@ -132,7 +169,7 @@ void	no_interrupt(int signal_no)
 	if (signal_no == SIGINT)
 	{
 		write(1, "\n", 1);
-		print_prompt();
+		print_prompt(1);
 		signal(SIGINT, no_interrupt);
 	}
 }
@@ -156,7 +193,7 @@ int main(int ac, char **av, char **env)
 	all->env = env;
 	while (1)
 	{
-		print_prompt();
+		print_prompt(1);
 		//make_fork(ac, av, env, pid);
 		//while(1) ?? for a large number of teams
 		signal(SIGINT, no_interrupt);

@@ -33,7 +33,7 @@
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
 # define MALLOC_ERROR "malloc error!"
-# define
+#define PROMT_ERROR "ヽ(*・ω・)ﾉ: \0"
 
 typedef struct		s_all
 {
@@ -57,7 +57,7 @@ void			init_all(t_all **all);
 /*!
 ** promt kaomoji its cute!!!
 */
-void			print_prompt(void);
+void			print_prompt(int fd);
 
 /*
 ** execute function
@@ -66,6 +66,9 @@ void			print_prompt(void);
 int             execute(t_all *all);
 //int			execute(t_all *all, char **argv, char **env);
 void			bin_func(t_all *all);
+
+
+int				ft_cd(t_all *all);
 
 
 
