@@ -121,6 +121,8 @@ void    ft_execution(t_all *all)
         ft_exit(all->command_argv);
     else if (!ft_strncmp(all->command_argv[0], "echo", 4))
         ft_echo(all->command_argv);
+    else if (!ft_strncmp(all->command_argv[0], "cd", 2))
+        ft_cd(all);
     else
     {
         all->c_bin_command = 1;//set flag
