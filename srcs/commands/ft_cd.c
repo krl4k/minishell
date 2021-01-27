@@ -15,7 +15,5 @@
 int ft_cd(t_all *all)
 {
 
-
-
 	return (0);
 }
