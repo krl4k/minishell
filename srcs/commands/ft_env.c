@@ -22,4 +22,7 @@ int ft_env(t_all *all)
 		ft_putendl_fd(all->env[i], 1);
 		i++;
 	}
+
+
+	return (0);
 }
