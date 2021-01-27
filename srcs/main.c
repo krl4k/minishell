@@ -82,8 +82,10 @@ void    ft_execution(t_all *all)
 
     if (!ft_strncmp(all->command_argv[0], "pwd", 3))
         ft_pwd(all->command_argv);
-    if (!ft_strncmp(all->command_argv[0], "exit", 4))
+    else if (!ft_strncmp(all->command_argv[0], "exit", 4))
         ft_exit(all->command_argv);
+    else if (!ft_strncmp(all->command_argv[0], "echo", 4))
+        ft_echo(all->command_argv);
     else
     {
         all->c_bin_command = 1;//set flag
@@ -93,7 +95,7 @@ void    ft_execution(t_all *all)
 
 void    get_command(t_all *all, char *full_cmd)
 {
-    all->command_argv = ft_setsplit(full_cmd, " ");
+    all->command_argv = ft_setsplit(full_cmd, "\" ");
     ft_execution(all);
 }
 
