@@ -12,10 +12,11 @@
 
 #include "minishell.h"
 
-static char **sort_vars(char **env, int count)
+static void sort_vars(char **env, int count)
 {
 	int i;
 	int	sorted;
+	char *temp;
 
 	sorted = 0;
 	while (!sorted)
@@ -24,12 +25,17 @@ static char **sort_vars(char **env, int count)
 		sorted = 1;
 		while (i < count - 1)
 		{
-			if (ft_strncmp(env[i], env[i + 1], ft_strlen(env[i])))
+			if (ft_strncmp(env[i], env[i + 1], ft_strlen(env[i])) > 0)
 			{
-
+				temp = env[i];
+				env[i] = env[i + 1];
+				env[i + 1] = temp;
+				sorted = 0;
 			}
+			i++;
 		}
 	}
+//	return (env[i]);
 }
 
 int ft_export(t_all *all)
@@ -46,7 +52,12 @@ int ft_export(t_all *all)
 		i++;
 	}
 	temp_env[i] = NULL;
-
-
-	while ()
+	sort_vars(temp_env, all->env_count);
+	i = 0;
+	while (temp_env[i])
+	{
+		ft_putendl_fd(temp_env[i], 1);
+		i++;
+	}
+	return (0);
 }

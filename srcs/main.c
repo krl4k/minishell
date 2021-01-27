@@ -122,10 +122,10 @@ void    ft_execution(t_all *all)
         ft_cd(all);
     else if (!ft_strncmp(all->command_argv[0], "env", 3))
         ft_env(all);
-    /*else if (!ft_strncmp(all->command_argv[0], "unset", 5))
-        ft_unset(all);
+//    else if (!ft_strncmp(all->command_argv[0], "unset", 5))
+//        ft_unset(all);
     else if (!ft_strncmp(all->command_argv[0], "export", 6))
-        ft_export(all);*/
+        ft_export(all);
     else
     {
         all->c_bin_command = 1;//set flag
@@ -191,8 +191,10 @@ int main(int ac, char **av, char **env)
 	t_all *all;
 	char *line;
 
+//	printf("env = %s\n", env[1]);
 
 	init_all(&all, env);
+
 	all->av = av;
 	while (1)
 	{
