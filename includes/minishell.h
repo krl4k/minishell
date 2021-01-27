@@ -56,6 +56,7 @@ void			init_all(t_all **all);
 
 /*!
 ** promt kaomoji its cute!!!
+** @param file descriptor
 */
 void			print_prompt(int fd);
 

@@ -63,4 +63,4 @@ add_executable(minishell_myFork
         tests/flags.c
         tests/start.c
         tests/test2.c
-        tests/test_signals.c)
+        tests/test_signals.c srcs/commands/ft_echo.c srcs/ft_command.c)

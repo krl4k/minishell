@@ -63,39 +63,13 @@ int     check_n(char *flag)
     int i;
 
     i = 1;
-    printf("tut1\n");
-    while (flag[i])
+     while (flag[i])
     {
-        printf("tut2\n");
         if (flag[i] != 'n')
             return (1);
         i++;
     }
     return (0);
-}
-
-void    ft_echo(char **cmd)
-{
-    int i;
-
-    if (check_n(cmd [1]))
-    {
-        i = 1;
-        printf("tut\n");
-        while (cmd[i])
-        {
-            write(1, cmd[i], ft_strlen(cmd[i]));
-            write(1, " ", 1);
-            i++;
-        }
-        write(1, "\n", 1);
-    }
-    else
-    {
-        i = 1;
-        while (cmd[i++])
-            write(1, cmd[i], ft_strlen(cmd[i]));
-    }
 }
 
 /*!
@@ -116,8 +90,6 @@ void    ft_execution(t_all *all)
         ft_pwd(all->command_argv);
     else if (!ft_strncmp(all->command_argv[0], "exit", 4))
         ft_exit(all->command_argv);
-    else if (!ft_strncmp(all->command_argv[0], "echo", 4))
-        ft_echo(all->command_argv);
     else if (!ft_strncmp(all->command_argv[0], "cd", 2))
         ft_cd(all);
     /*else if (!ft_strncmp(all->command_argv[0], "env", 3))
@@ -135,7 +107,7 @@ void    ft_execution(t_all *all)
 
 void    get_command(t_all *all, char *full_cmd)
 {
-    all->command_argv = ft_setsplit(full_cmd, "\" ");
+    all->command_argv = ft_command(full_cmd);
     ft_execution(all);
 }
 
@@ -189,7 +161,6 @@ void	no_interrupt(int signal_no)
 int main(int ac, char **av, char **env)
 {
 	t_all *all;
-	char *line;
 
 	init_all(&all);
 	all->av = av;
@@ -201,10 +172,6 @@ int main(int ac, char **av, char **env)
 		//while(1) ?? for a large number of teams
 		signal(SIGINT, no_interrupt);
 		get_input(all);
-		//! todo : get the line, start parsing and sending for execution
-		//may be execute return status and break a proccess
-		// av not main argv
-//		execute(all, line, av, env);
 	}
 	return (EXIT_SUCCESS);
 }
