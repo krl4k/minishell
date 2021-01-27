@@ -5,30 +5,38 @@ FLAGS = -Wall -Werror -Wextra -g
 SRCS_DIR = ./srcs/
 LIBFT_DIR   = $(SRCS_DIR)libft/
 PARSER_DIR   = $(SRCS_DIR)parser/
+COMMANDS_DIR   = $(SRCS_DIR)commands/
 
 HEADERS = ./includes/
 
 SRCS_ALL = $(addprefix $(SRCS_DIR), execute.c init_all.c main.c)#ADD ALL FILES IN ./srcs/
 SRC_PARSER = $(addprefix $(PARSER_DIR), )#ADD ALL FILES IN ./srcs/parser/
+SRC_COMMANDS = $(addprefix $(COMMANDS_DIR), bin_commands.c)#ADD ALL FILES IN ./srcs/parser/
 
 OBJ_ALL = $(SRCS_ALL:.c=.o)
 OBJ_PARSER = $(SRC_PARSER:.c=.o)
+OBJ_COMMANDS = $(SRC_COMMANDS:.c=.o)
 
-SRCS = $(SRCS_ALL) $(SRC_PARSER)
+SRCS = $(SRCS_ALL) $(SRC_PARSER) $(SRC_COMMANDS)
 
-OBJS = $(OBJ_ALL) $(OBJ_PARSER)
+OBJS = $(OBJ_ALL) $(OBJ_PARSER) $(OBJ_COMMANDS)
 
 all:$(NAME)
 
 $(NAME): $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@gcc $(CFLAGS) -I$(HEADERS) $(OBJS) $(FLAGS) $(LIBFT_DIR)/libft.a -o $(NAME)
-
+	./minishell
 $(OBJ_PARSER): %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -I$(HEADERS) -c $< -o $@
 
 $(OBJ_ALL): %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -I$(HEADERS) -I $(LIBFT_DIR) -c $< -o $@
+
+
+$(OBJ_COMMANDS): %.o: %.c $(HEADERS)
+	$(CC) $(CFLAGS) -I$(HEADERS) -I $(LIBFT_DIR) -c $< -o $@
+
 
 %.o:%.c%$(HEADERS)
 	$(CC) $(FLAGS) -o I$(HEADER)  $@ -c $<
@@ -37,12 +45,16 @@ clean:
 	@rm -rf *.o
 	@rm -f $(PARSER_DIR)/*.o
 	@rm -f $(SRCS_DIR)/*.o
+	@rm -f $(COMMANDS_DIR)/*.o
 	@make -C $(LIBFT_DIR) clean
 	@echo Objects files deleted!
 
 fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
+
+start:
+	./minishell
 
 norme:
 	norminette ./engine/*.c ./includes/libft.h includes/cub3d.h includes/parser.h \
