@@ -11,43 +11,61 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-
-void		my_builtin(char *command)
+/*!
+** checks the /bin/ prefix
+** \author fgrisell
+*/
+static int is_prefix_bin(char *line)
 {
-
+	if (ft_strncmp("/bin/", line, 5) == 1)
+		return (1);
+	return (0);
 }
 
-void bin_func(t_all  *all, char **env)
+char *check_bin_func(t_all *all)
 {
-	int status;
 	char *line;
 
-	while (1)
+	if (is_prefix_bin(all->command_argv[0]))
+		return all->command_argv[0];
+	else
 	{
-		pid_t pid = fork();
-		if (pid < 0)
-			perror("fork()\n");
-		if (pid == 0)
-		{
-			printf("bin func: CHILD:\n");
-			status = execve(line,all->command_argv,env);
-			exit(status);
-		}
-		else
-		{
-			wait(&status);
-			printf("Выполнено успешно!\n");
-		}
+		line = ft_strjoin("/bin/", all->command_argv[0]);
+	}
+	printf("command = %s\n", line);
+	return (line);
+}
+
+/*!
+** \author fgrisell
+**
+*/
+void bin_func(t_all *all, char **env)
+{
+	int status;
+	char *command;
+
+	pid_t pid = fork();
+	if (pid < 0)
+		ft_putendl_fd(strerror(errno), 2);
+	if (pid == 0)
+	{
+//		printf("bin func: CHILD:\n");
+		status = execve(all->command_argv[0], all->command_argv, env);
+		exit(status);
+	} else
+	{
+		wait(&status);
+		printf("Выполнено успешно!\n");
 	}
 }
 
-int			execute(t_all *all, char *line, char **argv, char **env)
+int execute(t_all *all, char *line, char **argv, char **env)
 {
-	printf("execute---------------------\n");
-	if (all->bin_command)
+//	printf("execute---------------------\n");
+	if (all->c_bin_command)
 	{
-		printf("BIN_EXEC\n");
+//		printf("BIN_EXEC\n");
 		bin_func(all, argv);
 	}
 	return 0;

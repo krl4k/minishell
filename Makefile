@@ -23,7 +23,7 @@ all:$(NAME)
 $(NAME): $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@gcc $(CFLAGS) -I$(HEADERS) $(OBJS) $(FLAGS) $(LIBFT_DIR)/libft.a -o $(NAME)
-
+	./minishell
 $(OBJ_PARSER): %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -I$(HEADERS) -c $< -o $@
 
@@ -43,6 +43,9 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
+
+start:
+	./minishell
 
 norme:
 	norminette ./engine/*.c ./includes/libft.h includes/cub3d.h includes/parser.h \

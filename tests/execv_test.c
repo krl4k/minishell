@@ -42,7 +42,7 @@ int main(int argc,char *argv[], char **env)
 	if (argc == 0)
 	{
 		printf("Вызван %s\n",argv[0]);
-		execve("/bin/pwd",argv,env);
+		execve("/bin/c_pwd",argv,env);
 	}*/
 
 

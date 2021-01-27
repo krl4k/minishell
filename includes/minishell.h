@@ -27,19 +27,18 @@
 # define EXIT_FAILURE 1
 # define MALLOC_ERROR "malloc error!"
 
-typedef struct  s_all
+typedef struct		s_all
 {
-	unsigned int pwd;
-    unsigned int cd;
-    unsigned int echo;
-    unsigned int export;
-    unsigned int unset;
-    unsigned int env;
-    unsigned int exit;
-    unsigned int bin_command;
+	unsigned int	c_pwd;
+    unsigned int	c_cd;
+    unsigned int	c_echo;
+    unsigned int	c_export;
+    unsigned int	c_unset;
+    unsigned int	c_env;
+    unsigned int	c_exit;
+    unsigned int	c_bin_command;
 	char			**command_argv;
-
-}				t_all;
+}					t_all;
 /*
 ** for init any variables
 */
