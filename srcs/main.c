@@ -86,8 +86,8 @@ void    ft_execution(t_all *all, char **cmd)
 	all->c_bin_command = 1;//set flag
 //    if (!ft_strncmp(cmd[0], "c_pwd", 3))
 //        ft_pwd(cmd);
-//    if (!ft_strncmp(cmd[0], "exit", 4))
-//        ft_exit(cmd);
+    if (!ft_strncmp(cmd[0], "exit", 4))
+        ft_exit(cmd);
 }
 
 void    get_command(t_all *all, char *full_cmd)

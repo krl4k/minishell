@@ -45,6 +45,7 @@ clean:
 	@rm -rf *.o
 	@rm -f $(PARSER_DIR)/*.o
 	@rm -f $(SRCS_DIR)/*.o
+	@rm -f $(COMMANDS_DIR)/*.o
 	@make -C $(LIBFT_DIR) clean
 	@echo Objects files deleted!
 
