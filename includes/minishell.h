@@ -60,7 +60,7 @@ void			print_prompt(void);
 ** execute function
 **
 */
-int				execute(t_all *all, char *line, char **argv, char **env);
+int				execute(t_all *all, char **argv);
 //int				execute(t_all *all, char **argv, char **env);
 void			bin_func(t_all *all, char **env);
 
