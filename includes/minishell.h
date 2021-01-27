@@ -33,6 +33,7 @@
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
 # define MALLOC_ERROR "malloc error!"
+# define
 
 typedef struct		s_all
 {
