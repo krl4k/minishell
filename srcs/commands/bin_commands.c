@@ -42,73 +42,30 @@ char *check_bin_func(t_all *all)
 */
 void bin_func(t_all *all)
 {
-	int status;
-	char *command;
-	char *error;
+	int		status;
+	char	*command;
+	pid_t	pid;
 
-	pid_t pid = fork();
-	if (pid < 0)
+	if ((pid = fork()) < 0)
 		ft_putendl_fd(strerror(errno), 2);
 	if (pid == 0)
 	{
 		command = check_bin_func(all);
 		status = execve(command, all->command_argv, all->env);
-		printf("CHILD : pid = %d\n", getpid());
-		printf("CHILD  : PARENT pid = %d\n", getppid());
-
-/*		if (status == -1)
-		{
-			char *temp = all->command_argv[0];
-			all->command_argv[0] = ft_strjoin(all->command_argv[0], ": ");
-			free(temp);
-			error = ft_strjoin(all->command_argv[0], strerror(errno));
-			ft_putendl_fd(error, 2);
-			free(error);
-		}*/
-		printf("CHILD status : %d\n", status);
 		exit(status);
 	}
 	else
 	{
 		waitpid(pid, &status, 0);// waitpid(-1, &status, 0); == wait(&status);
-		printf("PARENT : pid = %d\n", getpid());
-
-//		printf(RED"WEXITSTATUS = %d\n", WEXITSTATUS(status));
-//		printf(END);
 		if (WIFEXITED(status) != 0)
 		{
-			printf("PARENT : успешно: \n");
-			printf("status = %d\n", WEXITSTATUS(status));
-//
-//			exit(status);
-		}
-		else
-		{
-			printf("status = %d\n", WEXITSTATUS(status));
-			if (WEXITSTATUS(status) == -1)
+			if (WEXITSTATUS(status) != 0)
 			{
-
-				char *temp = all->command_argv[0];
-				all->command_argv[0] = ft_strjoin(all->command_argv[0], ": ");
-				free(temp);
-				error = ft_strjoin(all->command_argv[0], strerror(errno));
-				ft_putendl_fd(error, 2);
-				free(error);
+				ft_putstr_fd(PROMT_ERROR, 2);
+				ft_putstr_fd(all->command_argv[0], 2);
+				ft_putstr_fd(": ", 2);
+				ft_putendl_fd("command not found", 2);
 			}
-
-			printf("PARENT : не успешно: \n");
-			printf("status = %d\n", WEXITSTATUS(status));
-//			exit(status);
 		}
-//		if (WEXITSTATUS(status) == 0)
-//			return;
-/*		else
-		{
-			error = ft_strjoin(all->command_argv[0], strerror(errno));
-			ft_putendl_fd(error, 2);
-			free(error);
-		}*/
-//		if (WIFEXITED(status))
-//		printf("Выполнено успешно!\n");
 	}
 }

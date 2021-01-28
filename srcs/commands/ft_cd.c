@@ -45,8 +45,6 @@ int ft_cd(t_all *all)
 			ft_putstr_fd(PROMT_ERROR, 2);
 			ft_putstr_fd(all->command_argv[0], 2);
 			ft_putstr_fd(": ", 2);
-			ft_putstr_fd(all->command_argv[1], 2);
-			ft_putstr_fd(": ", 2);
 			ft_putendl_fd("HOME not set", 2);
 			return (0);
 		}
