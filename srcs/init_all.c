@@ -24,18 +24,18 @@ static void init_env(t_all *all, char **env)
 	if (!(all->env = (char **) malloc((count + 1) * sizeof(char *))))
 		exit(0);
 	all->env_count = count;
-	printf("count = %d\n", all->env_count);
-	printf("init env = %s\n", env[0]);
+//	printf("count = %d\n", all->env_count);
+//	printf("init env = %s\n", env[0]);
 	i = 0;
 	while (env[i])
 	{
-		printf("env = %s\n", env[i]);
+//		printf("env = %s\n", env[i]);
 		if (ft_strncmp(env[i],"HOME=", 5) == 0)
 			all->old_home = ft_strdup(&env[i][5]);
 		all->env[i] = ft_strdup(env[i]);
 		i++;
 	}
-	printf("env[last] = %s\n", all->env[0]);
+//	printf("env[last] = %s\n", all->env[0]);
 	all->env[i] = NULL;
 }
 

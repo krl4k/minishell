@@ -33,7 +33,6 @@ char *check_bin_func(t_all *all)
 	{
 		command = ft_strjoin("/bin/", all->command_argv[0]);
 	}
-//	printf("command = %s\n", command);
 	return (command);
 }
 

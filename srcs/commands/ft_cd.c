@@ -37,7 +37,7 @@ int ft_cd(t_all *all)
 	char *h;
 
 //	printf("ft-cd----------\n");
-	printf("cmd[1] = %s\n", all->command_argv[1]);
+//	printf("cmd[1] = %s\n", all->command_argv[1]);
 	if (!all->command_argv[1])
 	{
 		if ((ft_strncmp("NULL", h = home(all), 4)) == 0)

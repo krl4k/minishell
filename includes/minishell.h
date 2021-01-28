@@ -73,6 +73,6 @@ void			bin_func(t_all *all);
 int				ft_cd(t_all *all);
 int				ft_env(t_all *all);
 int				ft_export(t_all *all);
-
+int				ft_unset(t_all *all);
 
 #endif

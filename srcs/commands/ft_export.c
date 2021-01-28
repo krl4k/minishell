@@ -35,9 +35,27 @@ static void sort_vars(char **env, int count)
 			i++;
 		}
 	}
-//	return (env[i]);
 }
 
+static int count_env(t_all * all)
+{
+	int i;
+
+	i = 0;
+	while (all->env[i])
+	{
+		i++;
+	}
+	return (i);
+}
+/*!
+** \attention function add env or show all env if export with zero arg
+** \example export x=123
+** \example export x= 123
+** \example export x="     123"
+** \example export x= 123 (env x="", env 123)
+** \todo add env
+*/
 int ft_export(t_all *all)
 {
 	char **temp_env;
@@ -59,5 +77,9 @@ int ft_export(t_all *all)
 		ft_putendl_fd(temp_env[i], 1);
 		i++;
 	}
+	i = 0;
+	while (temp_env[i])
+		free(temp_env[i++]);
+	free(temp_env);
 	return (0);
 }
