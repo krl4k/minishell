@@ -17,9 +17,9 @@ int ft_env(t_all *all)
 	int i;
 
 	i = 0;
-	while (all->env[i])
+	while (all->env_array->str[i])
 	{
-		ft_putendl_fd(all->env[i], 1);
+		ft_putendl_fd(all->env_array->str[i], 1);
 		i++;
 	}
 	return (0);

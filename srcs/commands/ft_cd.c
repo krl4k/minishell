@@ -18,10 +18,10 @@ static char *home(t_all *all)
 	int i;
 
 	i = 0;
-	while (all->env[i])
+	while (all->env_array->str[i])
 	{
-		if (ft_strncmp(all->env[i], "HOME=", 5) == 0)
-			return (&all->env[i][5]);
+		if (ft_strncmp(all->env_array->str[i], "HOME=", 5) == 0)
+			return (&all->env_array->str[i][5]);
 		i++;
 	}
 	return ("NULL");
@@ -36,8 +36,6 @@ int ft_cd(t_all *all)
 {
 	char *h;
 
-//	printf("ft-cd----------\n");
-//	printf("cmd[1] = %s\n", all->command_argv[1]);
 	if (!all->command_argv[1])
 	{
 		if ((ft_strncmp("NULL", h = home(all), 4)) == 0)

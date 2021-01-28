@@ -12,18 +12,6 @@
 
 #include "minishell.h"
 
-static void delete_env(t_all *all, int pos)
-{
-	free(all->env[pos]);
-	while (all->env[pos])
-	{
-		all->env[pos] = all->env[pos + 1];
-		pos++;
-	}
-	all->env[pos] = NULL;
-	all->env_count--;
-}
-
 /*!
 ** \author fgrisell
 ** removes an element from the environment variable by key
@@ -38,12 +26,11 @@ int ft_unset(t_all *all)
 	{
 		printf("cmd = %s\n", all->command_argv[i]);
 		j = 0;
-		while (all->env[j])
+		while (all->env_array->str[j])
 		{
-			if (ft_strncmp(all->env[j], all->command_argv[i], ft_strlen(all->command_argv[i])) == 0)
+			if (ft_strncmp(all->env_array->str[j], all->command_argv[i], ft_strlen(all->command_argv[i])) == 0)
 			{
-
-				delete_env(all, j);
+				all->env_array->delete_one_by_key(&all->env_array, all->command_argv[i]);
 			}
 			j++;
 		}

@@ -34,7 +34,7 @@
 # define EXIT_FAILURE 1
 # define MALLOC_ERROR "malloc error!"
 # define PROMT_ERROR "ヽ(*・ω・)ﾉ: \0"
-
+#include "dynamic_array.h"
 typedef struct		s_all
 {
 	unsigned int	c_pwd;
@@ -50,6 +50,7 @@ typedef struct		s_all
 	char            **env;
 	char			*old_home;
 	int				env_count;
+	t_array			*env_array;
 }					t_all;
 /*
 ** for init any variables

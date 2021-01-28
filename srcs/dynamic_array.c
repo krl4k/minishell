@@ -1,28 +1,7 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include "../srcs/libft/libft.h"
-
-/*!
-** t_array *array;
-** init_array(&array, size);
-**
-*/
 
 
-typedef struct	s_array
-{
-	char		**str;
-	int			current_size;
-	int			allocated_size;
-	void		(*clear)(struct  s_array **array);
-	void		(*resize)(struct s_array **array, int size);
-	void		(*delete_one)(struct s_array **array, int pos);
-	void		(*delete_one_by_key)(struct s_array **array, char *deleted_elem);
-	void		(*push_back)(struct s_array **array, char *new);
-	void		(*copy)(struct s_array **array, char **new_array);
-	void		(*print_array)(struct s_array *array);
-	void		(*print_info)(struct s_array *array);
-}				t_array;
+#include "minishell.h"
+
 
 
 void	delete_one_by_key(struct s_array **array, char *deleted_elem)
@@ -67,7 +46,7 @@ void resize(t_array **array, int size)
 	if (size < 1 || size < (*array)->allocated_size - (*array)->current_size)
 		return;
 	if (!(str = (char **)ft_calloc(((*array)->current_size + size),
-				sizeof(char *))))
+								   sizeof(char *))))
 		return;
 	(*array)->allocated_size = (*array)->current_size + size;
 	while (i < (*array)->current_size)
@@ -97,26 +76,18 @@ void print_array(t_array *array)
 	int i;
 
 	i = 0;
+	ft_putstr_fd("array->current_size = ", 1);
+	ft_putnbr_fd(array->current_size, 1);
+	ft_putendl_fd("", 1);
+	ft_putstr_fd("array->allocated_size = ", 1);
+	ft_putnbr_fd(array->allocated_size, 1);
+	ft_putendl_fd("", 1);
 	while (i < array->current_size)
 	{
 		ft_putendl_fd(array->str[i], 1);
 		i++;
 	}
 }
-
-void print_info(t_array *array)
-{
-	if (array)
-	{
-		ft_putstr_fd("array->current_size = ", 1);
-		ft_putnbr_fd(array->current_size, 1);
-		ft_putendl_fd("", 1);
-		ft_putstr_fd("array->allocated_size = ", 1);
-		ft_putnbr_fd(array->allocated_size, 1);
-		ft_putendl_fd("", 1);
-	}
-}
-
 
 void	clear(struct  s_array **array)
 {
@@ -135,7 +106,6 @@ void	clear(struct  s_array **array)
 	(*array)= NULL;
 }
 
-
 void init_array(t_array **array, int size)
 {
 	if (size < 1)
@@ -151,30 +121,6 @@ void init_array(t_array **array, int size)
 	(*array)->resize = resize;
 	(*array)->delete_one_by_key = delete_one_by_key;
 	(*array)->print_array = print_array;
-	(*array)->print_info = print_info;
 	(*array)->clear = clear;
-
-}
-
-int main(int argc, char **argv, char **env)
-{
-	t_array *array;
-	int size = 5;
-	init_array(&array, size);
-	array->print_info(array);
-
-	array->push_back(&array, "1");
-	array->push_back(&array, "2");
-	array->push_back(&array, "3");
-	array->push_back(&array, "4");
-
-//	array->resize(&array, 4);
-	array->print_array(array);
-	array->print_info(array);
-	array->print_array(array);
-	array->print_info(array);
-
-	array->clear(&array);
-
-	return 0;
+	printf("array inited\n");
 }
