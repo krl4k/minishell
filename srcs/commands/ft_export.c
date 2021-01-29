@@ -109,12 +109,12 @@ int ft_export(t_all *all)
 	i = 0;
 	if ((count = count_command(all)) != 1)
 	{
-		printf("count command = %d\n", count);
+//		printf("count command = %d\n", count);
 		add_env(all);
 		return (0);
 	}
-	printf("count command = %d\n", count);
-	if (!(temp_env = (char **) malloc((all->env_array->current_size) * sizeof(char *))))
+//	printf("count command = %d\n", count);
+	if (!(temp_env = (char **)malloc((all->env_array->current_size) * sizeof(char *))))
 		exit(0);
 	while (all->env_array->str[i])
 	{

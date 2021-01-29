@@ -21,13 +21,13 @@ static void init_env(t_all *all, char **env)
 	i = 0;
 	while (env[i])
 	{
-		all->env_array->push_back(&all->env_array, env[i]);
+		all->env_array->push_back(all->env_array, env[i]);
 		if (ft_strncmp(env[i],"HOME=", 5) == 0)
 			all->old_home = ft_strdup(&env[i][5]);
 		i++;
 	}
-	printf("env inited\n");
-	all->env_array->print_array(all->env_array);
+//	printf("env inited\n");
+//	all->env_array->print_array(all->env_array);
 }
 
 void init_all(t_all **all, char **env)
