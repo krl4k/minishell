@@ -12,9 +12,12 @@
 
 #include "minishell.h"
 
+
+#include "minishell.h"
+
 int g_quotes;
 
-void	print_prompt(int fd)
+void print_prompt(int fd)
 {
 	char *prompt;
 
@@ -22,82 +25,42 @@ void	print_prompt(int fd)
 	ft_putstr_fd(prompt, fd);
 }
 
-void    ft_pwd(char **cmd)
+void ft_pwd(char **cmd)
 {
-   char *pwd;
+	char *pwd;
 
-   pwd = getcwd(NULL, 0);
-   ft_putendl_fd(pwd, 1);
+	pwd = getcwd(NULL, 0);
+	ft_putendl_fd(pwd, 1);
 }
 
-int     is_numeric(char *cmd)
+int is_numeric(char *cmd)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (cmd[i])
-        if (!ft_isdigit(cmd[i++]))
-            return (0);
-    return (1);
+	i = 0;
+	while (cmd[i])
+		if (!ft_isdigit(cmd[i++]))
+			return (0);
+	return (1);
 }
 
-void    ft_exit(char **cmd)
+void ft_exit(char **cmd)
 {
-    int ret;
+	int ret;
 
-    ret = 0;
-    if (cmd[1] && is_numeric(cmd[1]))
-        ret = ft_atoi(cmd[1]);
-    else if (cmd[1] && !is_numeric(cmd[1]))
-    {
-        write(2, PROMT_ERROR, ft_strlen(PROMT_ERROR));
-        write(2, ": ", 2);
-        write(2, cmd[0], ft_strlen(cmd[0]));
-        write(2, ": ", 2);
-        ft_putendl_fd("numeric argument required!", 2);
-    }
-    ft_free_split(cmd);
-    exit(ret);
-}
-
-int     check_n(char *flag)
-{
-    int i;
-
-    i = 1;
-    printf("tut1\n");
-    while (flag[i])
-    {
-        printf("tut2\n");
-        if (flag[i] != 'n')
-            return (1);
-        i++;
-    }
-    return (0);
-}
-
-void    ft_echo(char **cmd)
-{
-    int i;
-
-    if (check_n(cmd [1]))
-    {
-        i = 1;
-        printf("tut\n");
-        while (cmd[i])
-        {
-            write(1, cmd[i], ft_strlen(cmd[i]));
-            write(1, " ", 1);
-            i++;
-        }
-        write(1, "\n", 1);
-    }
-    else
-    {
-        i = 1;
-        while (cmd[i++])
-            write(1, cmd[i], ft_strlen(cmd[i]));
-    }
+	ret = 0;
+	if (cmd[1] && is_numeric(cmd[1]))
+		ret = ft_atoi(cmd[1]);
+	else if (cmd[1] && !is_numeric(cmd[1]))
+	{
+		write(2, PROMT_ERROR, ft_strlen(PROMT_ERROR));
+		write(2, ": ", 2);
+		write(2, cmd[0], ft_strlen(cmd[0]));
+		write(2, ": ", 2);
+		ft_putendl_fd("numeric argument required!", 2);
+	}
+	ft_free_split(cmd);
+	exit(ret);
 }
 
 /*!
@@ -111,28 +74,25 @@ void    ft_echo(char **cmd)
 ** \todo processing commands and putting them in an array
 */
 
-void    ft_execution(t_all *all)
+void ft_execution(t_all *all)
 {
 
-    if (!ft_strncmp(all->command_argv[0], "pwd", 3))
-        ft_pwd(all->command_argv);
-    else if (!ft_strncmp(all->command_argv[0], "exit", 4))
-        ft_exit(all->command_argv);
-    else if (!ft_strncmp(all->command_argv[0], "echo", 4))
-        ft_echo(all->command_argv);
-    else if (!ft_strncmp(all->command_argv[0], "cd", 2))
-        ft_cd(all);
-    else if (!ft_strncmp(all->command_argv[0], "env", 3))
-        ft_env(all);
-    else if (!ft_strncmp(all->command_argv[0], "unset", 5))
-        ft_unset(all);
-    else if (!ft_strncmp(all->command_argv[0], "export", 6))
-        ft_export(all);
-    else
-    {
-        all->c_bin_command = 1;//set flag
-        execute(all);
-    }
+	if (!ft_strncmp(all->command_argv[0], "echo", 4))
+		ft_echo(all->command_argv);
+	else if (!ft_strncmp(all->command_argv[0], "pwd", 3))
+		ft_pwd(all->command_argv);
+	else if (!ft_strncmp(all->command_argv[0], "exit", 4))
+		ft_exit(all->command_argv);
+	else if (!ft_strncmp(all->command_argv[0], "cd", 2))
+		ft_cd(all);
+	else if (!ft_strncmp(all->command_argv[0], "env", 3))
+		ft_env(all);
+	else if (!ft_strncmp(all->command_argv[0], "unset", 5))
+		ft_unset(all);
+	else if (!ft_strncmp(all->command_argv[0], "export", 6))
+		ft_export(all);
+	else
+		execute(all);
 	ft_free_split(all->command_argv);
 }
 
@@ -141,21 +101,21 @@ static int ft_strlen_c(char *str, char *set)
 	int i;
 
 	i = 0;
-	while(!ft_strchr(set, str[i]) && str[i])
+	while (!ft_strchr(set, str[i]) && str[i])
 		i++;
 	return (i);
 }
 
-char	*get_line_set(char *line, int *i, char *set)
+char *get_line_set(char *line, int *i, char *set)
 {
-	int		k;
-	int 	j;
-	char	*res;
+	int k;
+	int j;
+	char *res;
 
 	j = *i;
 	if (ft_strchr(set, line[j]))
 		j++;
-	if (!(res = (char *)malloc(sizeof(char) * (ft_strlen_c(&line[j], set) + 1))))
+	if (!(res = (char *) malloc(sizeof(char) * (ft_strlen_c(&line[j], set) + 1))))
 		return (NULL);
 	k = 0;
 	while (!ft_strchr(set, line[j]) && line[j])
@@ -166,14 +126,14 @@ char	*get_line_set(char *line, int *i, char *set)
 	return (res);
 }
 
-void    get_commands(t_all *all, char *line, int i)
+void get_commands(t_all *all, char *line, int i)
 {
-    char **cmds;
+	char **cmds;
 	int k;
 	int q;
 
-	cmds = (char **)malloc(sizeof(char *) * (ft_wordcount(line, " ")));
-    k = 0;
+	cmds = (char **) malloc(sizeof(char *) * (ft_wordcount(line, " ")));
+	k = 0;
 	while (line[i] && line[i] != ';')
 	{
 		while (IS_SPACE(line[i]))
@@ -183,7 +143,7 @@ void    get_commands(t_all *all, char *line, int i)
 			cmds[k] = get_line_set(line, &i, "\"\'");
 			i++;
 			k++;
-			continue ;
+			continue;
 		}
 		if (line[i] != ' ' && line[i] != '\"' && line[i] != ';')
 		{
@@ -215,12 +175,12 @@ void get_input(t_all *all)
 	get_commands(all, line, 0);
 }
 
-void	no_interrupt(int signal_no)
+void no_interrupt(int signal_no)
 {
 	if (signal_no == SIGINT)
 	{
 		write(1, "\b\b  \b\b", 6);
-	    write(1, "\n", 1);
+		write(1, "\n", 1);
 		print_prompt(1);
 		signal(SIGINT, no_interrupt);
 	}
@@ -239,20 +199,14 @@ int main(int ac, char **av, char **env)
 {
 	t_all *all;
 
-
 	init_all(&all, env);
 	all->av = av;
+	signal(SIGQUIT, no_interrupt);
 	while (1)
 	{
 		print_prompt(1);
-		//make_fork(ac, av, env, pid);
-		//while(1) ?? for a large number of teams
 		signal(SIGINT, no_interrupt);
 		get_input(all);
-		//! todo : get the line, start parsing and sending for execution
-		//may be execute return status and break a proccess
-		// av not main argv
-//		execute(all, line, av, env);
 	}
 	return (EXIT_SUCCESS);
 }
