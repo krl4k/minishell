@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
+#if !defined MINISHELL_H
 # define MINISHELL_H
 
 # include <stdio.h>
@@ -63,7 +63,7 @@ void			print_prompt(int fd);
 
 int             execute(t_all *all);
 void			bin_func(t_all *all);
-void            ft_echo(char *cmd);
+void            ft_echo(char **cmd);
 int				ft_cd(t_all *all);
 int				ft_env(t_all *all);
 int             check_n(char *flag, int *i);

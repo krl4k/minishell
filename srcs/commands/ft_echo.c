@@ -19,29 +19,26 @@ int check_quotes(char *str)
     i = 0;
     while (*str)
     {
-        if (*str == '\"')
+        if (*str == '\"' || *str == '\'')
             i++;
         str++;
     }
     return (i);
 }
 
-int check_flag(char *cmd, int *i)
+int check_flag(char *cmd)
 {
-    int k;
+    int i;
 
-    k = *i;
-    if (cmd[*i] != '-')
+    i = 0;
+    if (cmd[i] != '-')
         return (0);
-    (*i)++;
-    while (cmd[*i] && cmd[*i] != ' ')
+    i++;
+    while (cmd[i])
     {
-        if (cmd[*i] != 'n')
-        {
-            *i = k;
-            return (0);
-        }
-        (*i)++;
+        if (cmd[i] != 'n')
+        	return (0);
+        i++;
     }
     return (1);
 }
@@ -58,46 +55,26 @@ void print_args(char **args)
         i++;
     }
 }
-void    ft_echo(char *cmd)
+void    ft_echo(char **cmd)
 {
-    int i;
-    int flag;
-    int quotes;
-    char *tmp;
-    char **args;
+	int i;
+	int flag;
 
-    i = 1;
-    tmp = cmd;
-    cmd = ft_strchr(cmd, ' ');
-    while (IS_SPACE(cmd[i]))
-        i++;
-    flag = 0;
-    while (cmd[i])
-    {
-        flag = check_flag(cmd, &i);
-        if (!flag)
-            break ;
-        while (IS_SPACE(cmd[i]))
-            i++;
-        if (cmd[i] != '-')
-            break;
-    }
-    quotes = 0;
-    if (cmd[i] == '\"')
-        quotes = check_quotes(&cmd[i]);
-    if (quotes % 2 != 0 && quotes != 0)
-    {
-        write(2, "syntax error\n", 13);
-        return ;
-    }
-    else if (quotes % 2 == 0)
-        args = ft_setsplit(&cmd[i], "\"");
-    else
-        args = ft_setsplit(&cmd[i], " ");
-    print_args(args);
-    ft_free_split(args);
-    if (!flag)
-        write(1, "\n", 1);
-    cmd = tmp;
+	i = 1;
+	if (cmd[i])
+		flag = check_flag(cmd[1]);
+	while(cmd[i])
+	{
+		if (check_flag(cmd[i]) && flag)
+		{
+			i++;
+			continue;
+		}
+		write(1, cmd[i], ft_strlen(cmd[i]));
+		write(1, " ", 1);
+		i++;
+	}
+	if (!flag)
+		write(1, "\n", 1);
 }
 

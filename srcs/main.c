@@ -74,9 +74,9 @@ void    ft_exit(char **cmd)
 void    ft_execution(t_all *all)
 {
 
-	if (!ft_strncmp(all->command_argv[0], "echo ", 4))
-		ft_echo(all->command_argv[0]);
-	if (!ft_strncmp(all->command_argv[0], "pwd", 3))
+	if (!ft_strncmp(all->command_argv[0], "echo", 4))
+		ft_echo(all->command_argv);
+	else if (!ft_strncmp(all->command_argv[0], "pwd", 3))
         ft_pwd(all->command_argv);
     else if (!ft_strncmp(all->command_argv[0], "exit", 4))
         ft_exit(all->command_argv);
@@ -90,43 +90,34 @@ void    ft_execution(t_all *all)
         ft_export(all);*/
     else
         execute(all);
+	ft_free_split(all->command_argv);
 }
 
-void    get_command(t_all *all, char *cmd)
-{
-    if (!ft_strncmp(cmd, "echo ", 4))
-        ft_echo(cmd);
-    else
-    {
-        all->command_argv = ft_setsplit(cmd, " ");
-        ft_execution(all);
-        ft_free_split(all->command_argv);
-    }
-}
-static int ft_strlen_c(char *str, char c)
+static int ft_strlen_c(char *str, char *set)
 {
 	int i;
 
 	i = 0;
-	while(str[i] != c && str[i])
+	while(!ft_strchr(set, str[i]) && str[i])
 		i++;
 	return (i);
 }
 
-char	*get_line_c(char *line, int *i, char c)
+char	*get_line_set(char *line, int *i, char *set)
 {
 	int		k;
 	int 	j;
 	char	*res;
 
 	j = *i;
-	if (c == '\"')
+	if (ft_strchr(set, line[j]))
 		j++;
-	if (!(res = (char *)malloc(sizeof(char) * (ft_strlen_c(&line[j], c) + 1))))
+	if (!(res = (char *)malloc(sizeof(char) * (ft_strlen_c(&line[j], set) + 1))))
 		return (NULL);
 	k = 0;
-	while (line[j] != c && line[j])
+	while (!ft_strchr(set, line[j]) && line[j])
 		res[k++] = line[j++];
+	//printf("%s line\n", &line[j]);
 	res[k] = '\0';
 	*i = j;
 	return (res);
@@ -140,32 +131,27 @@ void    get_commands(t_all *all, char *line, int i)
 
 	cmds = (char **)malloc(sizeof(char *) * (ft_wordcount(line, " ")));
     k = 0;
-	q = check_quotes(line);
-	if (q % 2 != 0 && q != 0)
-	{
-    	write(2, "Syntax error\n", 13);
-    	return ;
-	}
 	while (line[i] && line[i] != ';')
 	{
 		while (IS_SPACE(line[i]))
 			i++;
-		if (line[i] == '\"')
+		if (line[i] == '\"' || line[i] == '\'')
 		{
-			cmds[k] = get_line_c(line, &i, '\"');
+			cmds[k] = get_line_set(line, &i, "\"\'");
 			i++;
-			printf("%s cmds %d k\n", cmds[k], k);
 			k++;
 			continue ;
-		}
+		}echo
 		if (line[i] != ' ' && line[i] != '\"' && line[i] != ';')
 		{
-			cmds[k] = get_line_c(line, &i, ' ');
-			printf("%s cmds %d k\n", cmds[k], k);
+			cmds[k] = get_line_set(line, &i, " ");
 			k++;
 			continue;
 		}
 	}
+	cmds[k] = NULL;
+	all->command_argv = cmds;
+	ft_execution(all);
 	if (line[i] == ';')
 	{
 		i++;
