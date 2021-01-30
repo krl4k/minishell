@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <unistd.h>
+#include "libft.h"
+
 int main(int argc, char *argv[])
 {
-	printf("Будет выполнена программа %s...\n\n", argv[0]);
-	printf("Выполняется %s", argv[0]);
+	//char *res;
 
-	int i = 0;
-	while (argv[++i])
-		printf("argv[%d] = %s\n", i, argv[i]);
-
+	(void)argc;
+	printf("%s\n", ft_strtrim(argv[1], "\""));
 	return 0;
 }

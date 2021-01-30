@@ -12,19 +12,21 @@
 
 #include "minishell.h"
 
+int g_quotes;
+
 void	print_prompt(int fd)
 {
 	char *prompt;
 
-	prompt = "٩(◕‿◕｡)۶$\0";
+	prompt = "▓▒░(°◡°)░▒▓\0";
 	ft_putstr_fd(prompt, fd);
 }
 
 void    ft_pwd(char **cmd)
 {
-   char pwd[1024];
+   char *pwd;
 
-   getcwd(pwd, 1024);
+   pwd = getcwd(NULL, 0);
    ft_putendl_fd(pwd, 1);
 }
 
@@ -72,45 +74,103 @@ void    ft_exit(char **cmd)
 void    ft_execution(t_all *all)
 {
 
-    if (!ft_strncmp(all->command_argv[0], "pwd", 3))
+	if (!ft_strncmp(all->command_argv[0], "echo ", 4))
+		ft_echo(all->command_argv[0]);
+	if (!ft_strncmp(all->command_argv[0], "pwd", 3))
         ft_pwd(all->command_argv);
     else if (!ft_strncmp(all->command_argv[0], "exit", 4))
         ft_exit(all->command_argv);
-    else if (!ft_strncmp(all->command_argv[0], "echo", 4))
-        ft_echo(all->command_argv);
-    else if (!ft_strncmp(all->command_argv[0], "cd", 2))
+    /*else if (!ft_strncmp(all->command_argv[0], "cd", 2))
         ft_cd(all);
-    /*else if (!ft_strncmp(all->command_argv[0], "env", 3))
+    else if (!ft_strncmp(all->command_argv[0], "env", 3))
         ft_env(all);
     else if (!ft_strncmp(all->command_argv[0], "unset", 5))
         ft_unset(all);
     else if (!ft_strncmp(all->command_argv[0], "export", 6))
         ft_export(all);*/
     else
-    {
-        all->c_bin_command = 1;//set flag
         execute(all);
+}
+
+void    get_command(t_all *all, char *cmd)
+{
+    if (!ft_strncmp(cmd, "echo ", 4))
+        ft_echo(cmd);
+    else
+    {
+        all->command_argv = ft_setsplit(cmd, " ");
+        ft_execution(all);
+        ft_free_split(all->command_argv);
     }
 }
-
-void    get_command(t_all *all, char *full_cmd)
+static int ft_strlen_c(char *str, char c)
 {
-    all->command_argv = ft_command(full_cmd);
-    ft_execution(all);
+	int i;
+
+	i = 0;
+	while(str[i] != c && str[i])
+		i++;
+	return (i);
 }
 
-void    get_commands(t_all *all, char *line)
+char	*get_line_c(char *line, int *i, char c)
+{
+	int		k;
+	int 	j;
+	char	*res;
+
+	j = *i;
+	if (c == '\"')
+		j++;
+	if (!(res = (char *)malloc(sizeof(char) * (ft_strlen_c(&line[j], c) + 1))))
+		return (NULL);
+	k = 0;
+	while (line[j] != c && line[j])
+		res[k++] = line[j++];
+	res[k] = '\0';
+	*i = j;
+	return (res);
+}
+
+void    get_commands(t_all *all, char *line, int i)
 {
     char **cmds;
+	int k;
+	int q;
 
-    cmds = ft_setsplit(line, ";");
-    int i = 0;
-    while (cmds[i])
-    {
-        get_command(all, cmds[i]);
-        free(cmds[i]);
-        i++;
-    }
+	cmds = (char **)malloc(sizeof(char *) * (ft_wordcount(line, " ")));
+    k = 0;
+	q = check_quotes(line);
+	if (q % 2 != 0 && q != 0)
+	{
+    	write(2, "Syntax error\n", 13);
+    	return ;
+	}
+	while (line[i] && line[i] != ';')
+	{
+		while (IS_SPACE(line[i]))
+			i++;
+		if (line[i] == '\"')
+		{
+			cmds[k] = get_line_c(line, &i, '\"');
+			i++;
+			printf("%s cmds %d k\n", cmds[k], k);
+			k++;
+			continue ;
+		}
+		if (line[i] != ' ' && line[i] != '\"' && line[i] != ';')
+		{
+			cmds[k] = get_line_c(line, &i, ' ');
+			printf("%s cmds %d k\n", cmds[k], k);
+			k++;
+			continue;
+		}
+	}
+	if (line[i] == ';')
+	{
+		i++;
+		get_commands(all, line, i);
+	}
 }
 
 /*!
@@ -123,15 +183,15 @@ void get_input(t_all *all)
 	char *line;
 
 	get_next_line(0, &line);
-	get_commands(all, line);
-	free(line);
+	get_commands(all, line, 0);
 }
 
 void	no_interrupt(int signal_no)
 {
 	if (signal_no == SIGINT)
 	{
-		write(1, "\n", 1);
+		write(1, "\b\b  \b\b", 6);
+	    write(1, "\n", 1);
 		print_prompt(1);
 		signal(SIGINT, no_interrupt);
 	}
@@ -150,14 +210,12 @@ int main(int ac, char **av, char **env)
 {
 	t_all *all;
 
-
 	init_all(&all, env);
 	all->av = av;
+	signal(SIGQUIT, no_interrupt);
 	while (1)
 	{
 		print_prompt(1);
-		//make_fork(ac, av, env, pid);
-		//while(1) ?? for a large number of teams
 		signal(SIGINT, no_interrupt);
 		get_input(all);
 	}

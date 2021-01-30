@@ -1466,6 +1466,33 @@ srcs/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell_myFork.dir/build.make CMakeFiles/minishell_myFork.dir/srcs/main.c.s
 .PHONY : srcs/main.c.s
 
+srcs/parser/ft_split_echo.o: srcs/parser/ft_split_echo.c.o
+
+.PHONY : srcs/parser/ft_split_echo.o
+
+# target to build an object file
+srcs/parser/ft_split_echo.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell_myFork.dir/build.make CMakeFiles/minishell_myFork.dir/srcs/parser/ft_split_echo.c.o
+.PHONY : srcs/parser/ft_split_echo.c.o
+
+srcs/parser/ft_split_echo.i: srcs/parser/ft_split_echo.c.i
+
+.PHONY : srcs/parser/ft_split_echo.i
+
+# target to preprocess a source file
+srcs/parser/ft_split_echo.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell_myFork.dir/build.make CMakeFiles/minishell_myFork.dir/srcs/parser/ft_split_echo.c.i
+.PHONY : srcs/parser/ft_split_echo.c.i
+
+srcs/parser/ft_split_echo.s: srcs/parser/ft_split_echo.c.s
+
+.PHONY : srcs/parser/ft_split_echo.s
+
+# target to generate assembly for a file
+srcs/parser/ft_split_echo.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell_myFork.dir/build.make CMakeFiles/minishell_myFork.dir/srcs/parser/ft_split_echo.c.s
+.PHONY : srcs/parser/ft_split_echo.c.s
+
 srcs/parser/parser_init.o: srcs/parser/parser_init.c.o
 
 .PHONY : srcs/parser/parser_init.o
@@ -1784,6 +1811,9 @@ help:
 	@echo "... srcs/main.o"
 	@echo "... srcs/main.i"
 	@echo "... srcs/main.s"
+	@echo "... srcs/parser/ft_split_echo.o"
+	@echo "... srcs/parser/ft_split_echo.i"
+	@echo "... srcs/parser/ft_split_echo.s"
 	@echo "... srcs/parser/parser_init.o"
 	@echo "... srcs/parser/parser_init.i"
 	@echo "... srcs/parser/parser_init.s"

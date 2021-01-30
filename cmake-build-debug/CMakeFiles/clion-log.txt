@@ -1,4 +1,16 @@
 /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/mwinter/projects/minishell
 -- Configuring done
--- Generating done
--- Build files have been written to: /Users/mwinter/projects/minishell/cmake-build-debug
+CMake Error at CMakeLists.txt:9 (add_executable):
+  Cannot find source file:
+
+    srcs/parser/ft_split_echo.c
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .m .M .mm .h .hh .h++ .hm
+  .hpp .hxx .in .txx
+
+
+CMake Error at CMakeLists.txt:9 (add_executable):
+  No SOURCES given to target: minishell_myFork
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.

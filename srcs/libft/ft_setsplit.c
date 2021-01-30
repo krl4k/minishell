@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static size_t	ft_wordcount(char const *s, char *set)
+size_t	ft_wordcount(char const *s, char *set)
 {
 	size_t res;
 

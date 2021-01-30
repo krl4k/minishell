@@ -22,7 +22,6 @@
 # include <signal.h>
 # include "libft.h"
 
-
 # define RED "[1;31m"
 # define GREEN "[1;32m"
 # define BLUE "[1;34m"
@@ -34,16 +33,10 @@
 # define EXIT_FAILURE 1
 # define MALLOC_ERROR "malloc error!"
 # define PROMT_ERROR "ヽ(*・ω・)ﾉ: \0"
+# define IS_SPACE(x) (x == ' ' || x == '\t' || x == '\r' || x == '\f' || x == '\v' || x == '\n')
 
 typedef struct		s_all
 {
-	unsigned int	c_pwd;
-    unsigned int	c_cd;
-    unsigned int	c_echo;
-    unsigned int	c_export;
-    unsigned int	c_unset;
-    unsigned int	c_env;
-    unsigned int	c_exit;
     unsigned int	c_bin_command;
 	char			**command_argv;
 	char            **av;
@@ -51,9 +44,11 @@ typedef struct		s_all
 	char			*old_home;
 	int				env_count;
 }					t_all;
-/*
+
+/*!
 ** for init any variables
 */
+
 void			init_all(t_all **all, char **env);
 
 /*!
@@ -71,8 +66,7 @@ void			bin_func(t_all *all);
 void            ft_echo(char *cmd);
 int				ft_cd(t_all *all);
 int				ft_env(t_all *all);
-int             check_n(char *flag);
-
-
+int             check_n(char *flag, int *i);
+int				check_quotes(char *str);
 
 #endif
