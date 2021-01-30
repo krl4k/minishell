@@ -46,6 +46,7 @@ void bin_func(t_all *all)
 	char	*command;
 	pid_t	pid;
 
+	printf("bin command!\n");
 	if ((pid = fork()) < 0)
 		ft_putendl_fd(strerror(errno), 2);
 	if (pid == 0)

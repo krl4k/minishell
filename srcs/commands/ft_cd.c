@@ -14,22 +14,18 @@
 
 static char *home(t_all *all)
 {
-//	printf("home================\n");
 	int i;
 
 	i = 0;
 	while (all->env_array->str[i])
 	{
 		if (ft_strncmp(all->env_array->str[i], "HOME=", 5) == 0)
+		{
 			return (&all->env_array->str[i][5]);
+		}
 		i++;
 	}
 	return ("NULL");
-}
-
-static void find_home(t_all *all)
-{
-
 }
 
 int ft_cd(t_all *all)

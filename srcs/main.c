@@ -79,6 +79,8 @@ void ft_execution(t_all *all)
 
 	if (!ft_strncmp(all->command_argv[0], "echo", 4))
 		ft_echo(all->command_argv);
+//	if (0)
+//		;
 	else if (!ft_strncmp(all->command_argv[0], "pwd", 3))
 		ft_pwd(all->command_argv);
 	else if (!ft_strncmp(all->command_argv[0], "exit", 4))
@@ -93,7 +95,7 @@ void ft_execution(t_all *all)
 		ft_export(all);
 	else
 		execute(all);
-	ft_free_split(all->command_argv);
+//	ft_free_split(all->command_argv);
 }
 
 static int ft_strlen_c(char *str, char *set)

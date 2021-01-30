@@ -58,7 +58,7 @@ void print_args(char **args)
         i++;
     }
 }
-void    ft_echo(char *cmd)
+void    ft_echo(char **cmd)
 {
     int i;
     int flag;
