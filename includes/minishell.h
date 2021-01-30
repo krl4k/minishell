@@ -52,7 +52,6 @@ typedef struct		s_all
 	char            **env;
 	char			*old_home;
 	int				env_count;
-	t_array			*env_array;
 }					t_all;
 /*
 ** for init any variables
@@ -65,14 +64,13 @@ void			init_all(t_all **all, char **env);
 */
 void			print_prompt(int fd);
 
-/*
+/*!
 ** execute function
-**
 */
+
 int             execute(t_all *all);
-//int			execute(t_all *all, char **argv, char **env);
 void			bin_func(t_all *all);
-void            ft_echo(char **cmd);
+void            ft_echo(char *cmd);
 int				ft_cd(t_all *all);
 int				ft_env(t_all *all);
 int             check_n(char *flag, int *i);
