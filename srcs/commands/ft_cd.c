@@ -45,7 +45,7 @@ int ft_cd(t_all *all)
 		else
 			all->command_argv[1] = h;
 	}
-	else if (ft_strncmp(all->command_argv[1], "~", 1) == 0)
+	else if (ft_strncmp(all->command_argv[1], "~", ft_strlen(all->command_argv[1])) == 0)
 		all->command_argv[1] = all->old_home;
 	if ((chdir(all->command_argv[1])) == -1)
 	{

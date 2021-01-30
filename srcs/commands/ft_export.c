@@ -100,7 +100,12 @@ void add_env(t_all *all)
 ** \todo add env
 */
 
-int ft_export(t_all *all)
+void	write_export(char *temp_env)
+{
+//	write;
+}
+
+ int ft_export(t_all *all)
 {
 	char **temp_env;
 	int i;
@@ -126,7 +131,8 @@ int ft_export(t_all *all)
 	i = 0;
 	while (temp_env[i])
 	{
-		ft_putendl_fd(temp_env[i], 1);
+		write_export(temp_env[i]);
+//		ft_putendl_fd(temp_env[i], 1);
 		i++;
 	}
 	i = 0;

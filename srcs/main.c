@@ -77,21 +77,35 @@ void ft_exit(char **cmd)
 void ft_execution(t_all *all)
 {
 
+	printf("commands = \n");
+	int i = 0;
+
+	while (all->command_argv[i])
+	{
+		printf("%s\n", all->command_argv[i]);
+		int len = 0;
+		if ((len = ft_strlen(all->command_argv[i])) > 0)
+			if (ft_strncmp(all->command_argv[i], "|", 1) == 0)
+				pipes(all, i);
+		i++;
+	}
+	printf("after whiole!!\n");
+//		printf("%s\n", all->command_argv[i++]);
 	if (!ft_strncmp(all->command_argv[0], "echo", 4))
 		ft_echo(all->command_argv);
-//	if (0)
-//		;
-	else if (!ft_strncmp(all->command_argv[0], "pwd", 3))
+	else if (!ft_strncmp(all->command_argv[0], "pwd", ft_strlen(all->command_argv[0])))
+	{
 		ft_pwd(all->command_argv);
-	else if (!ft_strncmp(all->command_argv[0], "exit", 4))
+	}
+	else if (!ft_strncmp(all->command_argv[0], "exit", ft_strlen(all->command_argv[0])))
 		ft_exit(all->command_argv);
-	else if (!ft_strncmp(all->command_argv[0], "cd", 2))
+	else if (!ft_strncmp(all->command_argv[0], "cd", ft_strlen(all->command_argv[0])))
 		ft_cd(all);
-	else if (!ft_strncmp(all->command_argv[0], "env", 3))
+	else if (!ft_strncmp(all->command_argv[0], "env", ft_strlen(all->command_argv[0])))
 		ft_env(all);
-	else if (!ft_strncmp(all->command_argv[0], "unset", 5))
+	else if (!ft_strncmp(all->command_argv[0], "unset", ft_strlen(all->command_argv[0])))
 		ft_unset(all);
-	else if (!ft_strncmp(all->command_argv[0], "export", 6))
+	else if (!ft_strncmp(all->command_argv[0], "export", ft_strlen(all->command_argv[0])))
 		ft_export(all);
 	else
 		execute(all);

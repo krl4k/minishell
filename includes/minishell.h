@@ -70,6 +70,7 @@ void			print_prompt(int fd);
 */
 
 int             execute(t_all *all);
+int				pipes(t_all *all, int pos_pipe);
 void			bin_func(t_all *all);
 void            ft_echo(char **cmd);
 int				ft_cd(t_all *all);
