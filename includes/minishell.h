@@ -35,6 +35,8 @@
 # define MALLOC_ERROR "malloc error!"
 # define PROMT_ERROR "ヽ(*・ω・)ﾉ: \0"
 #include "dynamic_array.h"
+# define IS_SPACE(x) (x == ' ' || x == '\t' || x == '\r' || x == '\f' || x == '\v' || x == '\n')
+
 typedef struct		s_all
 {
 	unsigned int	c_pwd;
@@ -58,7 +60,8 @@ typedef struct		s_all
 void			init_all(t_all **all, char **env);
 
 /*!
-** promt kaomoji its cute!!!
+** prompt kaomoji its so cute!!!
+** @param file descriptor
 */
 void			print_prompt(int fd);
 
@@ -69,10 +72,11 @@ void			print_prompt(int fd);
 int             execute(t_all *all);
 //int			execute(t_all *all, char **argv, char **env);
 void			bin_func(t_all *all);
-
-
+void            ft_echo(char **cmd);
 int				ft_cd(t_all *all);
 int				ft_env(t_all *all);
+int             check_n(char *flag, int *i);
+int				check_quotes(char *str);
 int				ft_export(t_all *all);
 int				ft_unset(t_all *all);
 

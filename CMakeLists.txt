@@ -64,4 +64,4 @@ add_executable(minishell_myFork
         tests/start.c
         tests/test2.c
         tests/test_signals.c
-        )
+        srcs/parser/ft_split_echo.c srcs/parser/parser_q.c)

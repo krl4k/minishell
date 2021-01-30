@@ -12,19 +12,21 @@
 
 #include "minishell.h"
 
+int g_quotes;
+
 void	print_prompt(int fd)
 {
 	char *prompt;
 
-	prompt = "٩(◕‿◕｡)۶$\0";
+	prompt = "▓▒░(°◡°)░▒▓\0";
 	ft_putstr_fd(prompt, fd);
 }
 
 void    ft_pwd(char **cmd)
 {
-   char pwd[1024];
+   char *pwd;
 
-   getcwd(pwd, 1024);
+   pwd = getcwd(NULL, 0);
    ft_putendl_fd(pwd, 1);
 }
 
@@ -131,26 +133,73 @@ void    ft_execution(t_all *all)
         all->c_bin_command = 1;//set flag
         execute(all);
     }
+	ft_free_split(all->command_argv);
 }
 
-void    get_command(t_all *all, char *full_cmd)
+static int ft_strlen_c(char *str, char *set)
 {
-    all->command_argv = ft_setsplit(full_cmd, "\" ");
-    ft_execution(all);
+	int i;
+
+	i = 0;
+	while(!ft_strchr(set, str[i]) && str[i])
+		i++;
+	return (i);
 }
 
-void    get_commands(t_all *all, char *line)
+char	*get_line_set(char *line, int *i, char *set)
+{
+	int		k;
+	int 	j;
+	char	*res;
+
+	j = *i;
+	if (ft_strchr(set, line[j]))
+		j++;
+	if (!(res = (char *)malloc(sizeof(char) * (ft_strlen_c(&line[j], set) + 1))))
+		return (NULL);
+	k = 0;
+	while (!ft_strchr(set, line[j]) && line[j])
+		res[k++] = line[j++];
+	//printf("%s line\n", &line[j]);
+	res[k] = '\0';
+	*i = j;
+	return (res);
+}
+
+void    get_commands(t_all *all, char *line, int i)
 {
     char **cmds;
+	int k;
+	int q;
 
-    cmds = ft_setsplit(line, ";");
-    int i = 0;
-    while (cmds[i])
-    {
-        get_command(all, cmds[i]);
-        free(cmds[i]);
-        i++;
-    }
+	cmds = (char **)malloc(sizeof(char *) * (ft_wordcount(line, " ")));
+    k = 0;
+	while (line[i] && line[i] != ';')
+	{
+		while (IS_SPACE(line[i]))
+			i++;
+		if (line[i] == '\"' || line[i] == '\'')
+		{
+			cmds[k] = get_line_set(line, &i, "\"\'");
+			i++;
+			k++;
+			continue ;
+		}
+		if (line[i] != ' ' && line[i] != '\"' && line[i] != ';')
+		{
+			cmds[k] = get_line_set(line, &i, " ");
+			k++;
+			continue;
+		}
+	}
+	cmds[k] = NULL;
+	all->command_argv = cmds;
+	ft_execution(all);
+	if (line[i] == ';')
+	{
+		i++;
+		get_commands(all, line, i);
+	}
 }
 
 /*!
@@ -163,15 +212,15 @@ void get_input(t_all *all)
 	char *line;
 
 	get_next_line(0, &line);
-	get_commands(all, line);
-	free(line);
+	get_commands(all, line, 0);
 }
 
 void	no_interrupt(int signal_no)
 {
 	if (signal_no == SIGINT)
 	{
-		write(1, "\n", 1);
+		write(1, "\b\b  \b\b", 6);
+	    write(1, "\n", 1);
 		print_prompt(1);
 		signal(SIGINT, no_interrupt);
 	}
@@ -189,12 +238,9 @@ void	no_interrupt(int signal_no)
 int main(int ac, char **av, char **env)
 {
 	t_all *all;
-	char *line;
 
-//	printf("env = %s\n", env[1]);
 
 	init_all(&all, env);
-
 	all->av = av;
 	while (1)
 	{

@@ -11,7 +11,7 @@ HEADERS = ./includes/
 
 SRCS_ALL = $(addprefix $(SRCS_DIR), execute.c init_all.c main.c dynamic_array.c)#ADD ALL FILES IN ./srcs/
 SRC_PARSER = $(addprefix $(PARSER_DIR), )#ADD ALL FILES IN ./srcs/parser/
-SRC_COMMANDS = $(addprefix $(COMMANDS_DIR), bin_commands.c ft_cd.c ft_env.c ft_export.c ft_unset.c)#ADD ALL FILES IN ./srcs/parser/
+SRC_COMMANDS = $(addprefix $(COMMANDS_DIR), bin_commands.c ft_cd.c ft_env.c ft_echo.c ft_export.c ft_unset.c)#ADD ALL FILES IN ./srcs/parser/
 
 OBJ_ALL = $(SRCS_ALL:.c=.o)
 OBJ_PARSER = $(SRC_PARSER:.c=.o)
@@ -27,10 +27,10 @@ $(NAME): $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@gcc $(CFLAGS) -I$(HEADERS) $(OBJS) $(FLAGS) $(LIBFT_DIR)/libft.a -o $(NAME)
 $(OBJ_PARSER): %.o: %.c $(HEADERS)
-	$(CC) $(CFLAGS) -I$(HEADERS) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(HEADERS) -I$(LIBFT_DIR) -c $< -o $@
 
 $(OBJ_ALL): %.o: %.c $(HEADERS)
-	$(CC) $(CFLAGS) -I$(HEADERS) -I $(LIBFT_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(HEADERS) -I$(LIBFT_DIR) -c $< -o $@
 
 
 $(OBJ_COMMANDS): %.o: %.c $(HEADERS)
