@@ -102,37 +102,39 @@ void add_env(t_all *all)
 
 void	write_export(char *temp_env)
 {
-//	write;
+	ft_putstr("declare -x ", 1);
+	ft_putstr()
 }
 
- int ft_export(t_all *all)
+int ft_export(t_all *all)
 {
 	char **temp_env;
 	int i;
 	int count;
 
+	int *env_index;
 	i = 0;
 	if ((count = count_command(all)) != 1)
 	{
-//		printf("count command = %d\n", count);
 		add_env(all);
 		return (0);
 	}
-//	printf("count command = %d\n", count);
-	if (!(temp_env = (char **)malloc((all->env_array->current_size) * sizeof(char *))))
-		exit(0);
-	while (all->env_array->str[i])
-	{
-		temp_env[i] = ft_strdup(all->env_array->str[i]);
-		i++;
-	}
-	temp_env[i] = NULL;
+//	if (!(temp_env_keys = (char **)malloc((all->env_array->current_size) * sizeof(char *))))
+//		perror("MALLOC ERROR!\n")
+//		exit(0);
+	if (!(env_index = (int *)ft_calloc(all->env_array->current_size), sizeof(int)))
+		perror("MALLOC ERROR\n");
+//	while (all->env_array->str[i])
+//	{
+//		temp_env[i] = ft_strdup(all->env_array->str[i]);
+//		i++;
+//	}
+//	temp_env[i] = NULL;
 	sort_vars(temp_env, all->env_array->current_size);
 	i = 0;
 	while (temp_env[i])
 	{
 		write_export(temp_env[i]);
-//		ft_putendl_fd(temp_env[i], 1);
 		i++;
 	}
 	i = 0;
