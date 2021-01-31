@@ -3,9 +3,12 @@
 
 typedef struct	s_array
 {
-	char		**str;
+	char		**str;//array of envs
+	char		**key;//array of keys in str
+	char 		**value;//array of values
 	int			current_size;
 	int			allocated_size;
+
 	void		(*clear)(struct  s_array **array);
 	void		(*resize)(struct s_array *array, int size);
 	void		(*delete_one)(struct s_array *array, int pos);

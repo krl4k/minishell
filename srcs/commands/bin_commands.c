@@ -51,8 +51,11 @@ void bin_func(t_all *all)
 		ft_putendl_fd(strerror(errno), 2);
 	if (pid == 0)
 	{
-		command = check_bin_func(all);
-		status = execve(command, all->command_argv, all->env);
+		if (ft_strncmp("./minishell", all->command_argv[0], ft_strlen(all->command_argv[0])) != 0)
+		{
+			command = check_bin_func(all);
+		}
+		status = execve(command, all->command_argv, all->env_array->str);
 		exit(status);
 	}
 	else

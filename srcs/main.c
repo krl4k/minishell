@@ -86,17 +86,21 @@ void ft_execution(t_all *all)
 		int len = 0;
 		if ((len = ft_strlen(all->command_argv[i])) > 0)
 			if (ft_strncmp(all->command_argv[i], "|", 1) == 0)
+			{
 				pipes(all, i);
+				return;
+			}
 		i++;
 	}
+
 	printf("after whiole!!\n");
 //		printf("%s\n", all->command_argv[i++]);
+	if (!all->command_argv[0])
+		return;
 	if (!ft_strncmp(all->command_argv[0], "echo", 4))
 		ft_echo(all->command_argv);
 	else if (!ft_strncmp(all->command_argv[0], "pwd", ft_strlen(all->command_argv[0])))
-	{
 		ft_pwd(all->command_argv);
-	}
 	else if (!ft_strncmp(all->command_argv[0], "exit", ft_strlen(all->command_argv[0])))
 		ft_exit(all->command_argv);
 	else if (!ft_strncmp(all->command_argv[0], "cd", ft_strlen(all->command_argv[0])))
