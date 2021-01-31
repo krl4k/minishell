@@ -58,11 +58,14 @@ typedef struct		s_all
 ** for init any variables
 */
 void			init_all(t_all **all, char **env);
+void			error_handler(int type_error);
+
 
 /*!
 ** prompt kaomoji its so cute!!!
 ** @param file descriptor
 */
+
 void			print_prompt(int fd);
 
 /*!
