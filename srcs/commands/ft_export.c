@@ -78,7 +78,7 @@ static int count_command(t_all *all)
 	return (i);
 }
 
-static void error_mes(char *command, char *new)
+static void error_mes(char *command)
 {
 	ft_putstr_fd(PROMT_ERROR, 2);
 	ft_putstr_fd("'", 2);
@@ -89,34 +89,24 @@ static void error_mes(char *command, char *new)
 }
 
 
-static void add_one(t_all *all, char ***new_array, int pos, char *new)
+void add_env(t_all *all, int count)
 {
 	int i;
 
-	i = 0;
-	printf("add one\n");
-	while (new[i])
+	i = 1;
+	while (all->command_argv[i])
 	{
-		if (new[i] == '=')
-			break;
+		if (all->command_argv[i][0] == '=')
+		{
+			error_mes(all->command_argv[i]);
+		}
+		else
+		{
+			printf("pushback = %s\n", all->command_argv[i]);
+			all->env_array->push_back(all->env_array, all->command_argv[i]);
+		}
 		i++;
 	}
-	if (i > 0)
-	{
-		printf("i > 0 i = %c|\n", new[i]);
-		if (new[i - 1] == ' ')
-		{
-			printf("i - 1\n");
-			error_mes(all->command_argv[1], new);
-		}
-	} else
-		error_mes(all->command_argv[1], new);
-//		(*new_array)[pos];
-	*new_array[pos] = ft_strdup(new);
-}
-
-void add_env(t_all *all)
-{
 
 }
 
@@ -175,7 +165,8 @@ int ft_export(t_all *all)
 	i = 0;
 	if ((count = count_command(all)) != 1)
 	{
-		add_env(all);
+		printf("count env = %d\n", count);
+		add_env(all, count-1);
 		return (0);
 	}
 	else

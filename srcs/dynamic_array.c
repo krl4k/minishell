@@ -87,16 +87,13 @@ void	push_back(t_array *array, char *new)
 	if ((array)->current_size == (array)->allocated_size)
 		resize(array, 5);
 	(array)->str[(array)->current_size] = ft_strdup(new);
-
 	while (new[i] && new[i] != '=')
 		i++;
 	(array)->key[(array)->current_size] = ft_substr(array->str[array->current_size], 0, i);
-//	printf("push back key  = %s\n", (array)->key[(array)->current_size]);
 	char *r;
 	if ((r = ft_strchr(new, '=')) != NULL)
 	{
 		r++;
-//		printf("r = %s\n", r);
 		(array)->value[(array)->current_size] = ft_substr(r, 0, ft_strlen(r));
 	}
 	else
