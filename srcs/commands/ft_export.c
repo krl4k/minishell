@@ -53,25 +53,23 @@ int check_same_key(t_all *all, char *new_env)
 {
 	int i;
 	char *new_key;
+	char *new_value;
 
 	i = 0;
 	while (new_env[i] && new_env[i] != '=')
 		i++;
-	if (new_env[i] == '\0')
-		new_key = ft_strdup(new_env);
-	else
-		new_key = ft_substr(new_env, 0, i);
+	new_key = ft_substr(new_env, 0, i);
+	new_value = ft_substr(new_env, i+ 1, ft_strlen(new_env));
+//	printf("new_env     = |%s|\n", new_env);
+//	printf("new key     = |%s|\n", new_key);
+//	printf("new value   = |%s|\n", new_value);
+//	printf("strlen      =|%zu|\n", ft_strlen(new_env));
+//	printf("i + 1       = |%d|\n", i + 1);
 	if (!check_valid_key(new_key))
-	{
 		return (1);
-	}
-	printf("new_env = %s\n", new_env);
-	printf("new key = %s\n", new_key);
-	printf("new value = %s\n", &new_env[i + 1]);
-	printf("strlen new-env = %zu\n", ft_strlen(new_env));
-	printf("i + 1 = %d\n", i + 1);
-	i = 0;
-	if (i + 1 > ft_strlen(new_env) || new_env[i + 1] == '\0')
+	if (!new_value && new_env[i] != '=')
+		return (2);
+	if (i + 1 > ft_strlen(new_env))
 		return (2);
 	while (i < all->env_array->current_size)
 	{
@@ -82,6 +80,7 @@ int check_same_key(t_all *all, char *new_env)
 		i++;
 	}
 	free(new_key);
+	free(new_value);
 	return (0);
 }
 

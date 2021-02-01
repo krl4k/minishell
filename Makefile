@@ -1,5 +1,6 @@
 NAME = minishell
-CC = /usr/bin/clang-10
+#CC = /usr/bin/clang-10
+CC = gcc
 FLAGS = -Wall -Werror -Wextra -g
 
 SRCS_DIR = ./srcs/
