@@ -29,12 +29,12 @@ char *check_bin_func(t_all *all)
 	int i;
 	int flag;
 
-	char *bin_array[] = {"cp", "df", "hostname", "link", "mv"," rm", "stty", "test", "bash","csh", "echo",
+	char *bin_array[]= {"cp", "df", "hostname", "link", "mv"," rm", "stty", "test", "bash","csh", "echo",
 	"kill","ln","pax","rmdir", "sync","unlink", "cat","date","ed", "ksh","ls","ps","sh","syslog.py",
 	"wait4path", "chmod","dd", "expr","launchctl","mkdir","pwd","sleep", "tcsh","zsh", NULL};
 	flag = 0;
 	i = 0;
-	command = all->command_argv[0];
+	command = ft_strdup(all->command_argv[0]);
 	while (bin_array[i])
 	{
 		if (ft_strncmp(all->command_argv[0], bin_array[i], ft_strlen(all->command_argv[0])) == 0)
@@ -46,7 +46,7 @@ char *check_bin_func(t_all *all)
 	if (flag)
 	{
 		if (is_prefix_bin(all->command_argv[0]))
-			return all->command_argv[0];
+			return command;
 		else
 			command = ft_strjoin("/bin/", all->command_argv[0]);
 	}

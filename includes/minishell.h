@@ -81,6 +81,8 @@ int				ft_env(t_all *all);
 int             check_n(char *flag, int *i);
 int				check_quotes(char *str);
 int				ft_export(t_all *all);
+int             ft_export_print_sort_env(t_all *all);
+
 int				ft_unset(t_all *all);
 
 #endif

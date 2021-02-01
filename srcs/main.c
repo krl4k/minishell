@@ -74,12 +74,12 @@ void ft_exit(char **cmd)
 void ft_execution(t_all *all)
 {
 
-	printf("commands = \n");
+//	printf("commands = \n");
 	int i = 0;
 
 	while (all->command_argv[i])
 	{
-		printf("%s\n", all->command_argv[i]);
+//		printf("%s\n", all->command_argv[i]);
 		int len = 0;
 		if ((len = ft_strlen(all->command_argv[i])) > 0)
 			if (ft_strncmp(all->command_argv[i], "|", 1) == 0)
@@ -90,8 +90,6 @@ void ft_execution(t_all *all)
 		i++;
 	}
 
-	printf("after whiole!!\n");
-//		printf("%s\n", all->command_argv[i++]);
 	if (!all->command_argv[0])
 		return;
 	if (!ft_strncmp(all->command_argv[0], "echo", 4))

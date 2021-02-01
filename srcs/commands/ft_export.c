@@ -11,60 +11,6 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-//
-//static void sort_vars(char **env, int count)
-//{
-//	int i;
-//	int sorted;
-//	char *temp;
-//
-//	sorted = 0;
-//	while (!sorted)
-//	{
-//		i = 0;
-//		sorted = 1;
-//		while (i < count - 1)
-//		{
-//			if (ft_strncmp(env[i], env[i + 1], ft_strlen(env[i])) > 0)
-//			{
-//				temp = env[i];
-//				env[i] = env[i + 1];
-//				env[i + 1] = temp;
-//				sorted = 0;
-//			}
-//			i++;
-//		}
-//	}
-//}
-
-
-static void sort_vars(char **env, int count, int *index)
-{
-	int i;
-	int sorted;
-	int temp;
-	char *tmp;
-	sorted = 0;
-	while (!sorted)
-	{
-		i = 0;
-		sorted = 1;
-		while (i < count - 1)
-		{
-			if(ft_strncmp(env[i], env[i + 1], ft_strlen(env[i])) > 0)
-			{
-				temp = index[i];
-				index[i] = index[i + 1];
-				index[i + 1] = temp;
-				tmp = env[i];
-				env[i] = env[i + 1];
-				env[i + 1] = tmp;
-				sorted = 0;
-			}
-			i++;
-		}
-	}
-}
 
 static int count_command(t_all *all)
 {
@@ -72,10 +18,8 @@ static int count_command(t_all *all)
 
 	i = 0;
 	while (all->command_argv[i])
-	{
 		i++;
-	}
-	printf("count commnd = %d\n", i);
+//	printf("count commnd = %d\n", i);
 	return (i);
 }
 
@@ -89,11 +33,65 @@ static void error_mes(char *command)
 	ft_putendl_fd("not a valid identifier", 2);
 }
 
+int check_valid_key(char *key)
+{
+	int i;
+
+	i = 0;
+	while (key[i])
+	{
+		if (!ft_isalnum(key[i]) || ft_strrchr("!@#$%^&*-+", key[i]) != NULL)
+		{
+//			printf("check valid key[%d] = %c\n", i, key[i]);
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+int check_same_key(t_all *all, char *new_env)
+{
+	int i;
+	char *new_key;
+
+	i = 0;
+	while (new_env[i] && new_env[i] != '=')
+		i++;
+	if (new_env[i] == '\0')
+		new_key = ft_strdup(new_env);
+	else
+		new_key = ft_substr(new_env, 0, i);
+	if (!check_valid_key(new_key))
+	{
+		return (1);
+	}
+	printf("new_env = %s\n", new_env);
+	printf("new key = %s\n", new_key);
+	printf("new value = %s\n", &new_env[i + 1]);
+	printf("strlen new-env = %zu\n", ft_strlen(new_env));
+	printf("i + 1 = %d\n", i + 1);
+	i = 0;
+	if (i + 1 > ft_strlen(new_env) || new_env[i + 1] == '\0')
+		return (2);
+	while (i < all->env_array->current_size)
+	{
+		if (ft_strncmp(all->env_array->key[i], new_key, ft_strlen(all->env_array->key[i])))
+		{
+			all->env_array->delete_one_by_key(all->env_array, new_key);
+		}
+		i++;
+	}
+	free(new_key);
+	return (0);
+}
+
 
 void add_env(t_all *all, int count)
 {
 	int i;
+	int check_same;
 
+	check_same = 0;
 	i = 1;
 	while (all->command_argv[i])
 	{
@@ -101,8 +99,16 @@ void add_env(t_all *all, int count)
 			error_mes(all->command_argv[i]);
 		else
 		{
-			printf("pushback = %s\n", all->command_argv[i]);
-			all->env_array->push_back(all->env_array, all->command_argv[i]);
+//			printf("pushback = %s\n", all->command_argv[i]);
+			check_same = check_same_key(all, all->command_argv[i]);
+			if (check_same == 0)
+			{
+				all->env_array->push_back(all->env_array, all->command_argv[i]);
+			}
+			else if(check_same == 1)
+				error_mes(all->command_argv[i]);
+			else
+				;
 		}
 		i++;
 	}
@@ -117,69 +123,22 @@ void add_env(t_all *all, int count)
 ** \todo add env
 */
 
-void write_export(t_array *array, int i)
-{
-	ft_putstr_fd("declare -x ", 1);
-	ft_putstr_fd(array->key[i], 1);
-	ft_putstr_fd("=\"", 1);
-	ft_putstr_fd(array->value[i], 1);
-	ft_putendl_fd("\"", 1);
-}
-
-
-void print_sort_envs(t_all *all, char **temp_env, int *env_index)
-{
-	int i;
-
-	i = 0;
-	while (i < all->env_array->current_size)
-	{
-		temp_env[i] = ft_strdup(all->env_array->str[i]);
-		i++;
-	}
-	temp_env[i] = NULL;
-	i = 0;
-	while (i < all->env_array->current_size)
-	{
-		env_index[i] = i;
-		i++;
-	}
-	sort_vars(temp_env, all->env_array->current_size, env_index);
-	i = 0;
-	while (i < all->env_array->current_size)
-	{
-		write_export(all->env_array, env_index[i]);
-		i++;
-	}
-}
-
 
 int ft_export(t_all *all)
 {
-	char **temp_env;
-	int *env_index;
-	int i;
+
 	int count;
 
-	i = 0;
-	printf("ft_export start \n");
+//	printf("ft_export start \n");
 	if((count = count_command(all)) != 1)
 	{
-		printf("count env = %d\n", count);
+//		printf("count env = %d\n", count);
 		add_env(all, count - 1);
 		return (0);
 	}
 	else
 	{
-		if(!(temp_env = (char **) ft_calloc(all->env_array->current_size + 1, sizeof(char *))))
-			error_handler(1);
-		if(!(env_index = (int *)ft_calloc((sizeof(int)),  all->env_array->current_size)))
-			error_handler(1);
-		print_sort_envs(all, temp_env, env_index);
-		while (temp_env[i])//i < all->env_array->current_size &&
-			free(temp_env[i++]);
-		free(temp_env);
-		free(env_index);
+		ft_export_print_sort_env(all);
 	}
 	return (0);
 }
