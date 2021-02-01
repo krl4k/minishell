@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrisell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/27 17:50:02 by fgrisell          #+#    #+#             */
-/*   Updated: 2021/01/27 17:50:03 by fgrisell         ###   ########.fr       */
+/*   Created: 2020/10/29 10:06:43 by fgrisell          #+#    #+#             */
+/*   Updated: 2020/11/01 18:45:01 by fgrisell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int ft_env(t_all *all)
+size_t	ft_strlen(const char *s)
 {
-	int i;
+	size_t len;
 
-	i = 0;
-	while (i < all->env_array->current_size)
-	{
-		ft_putendl_fd(all->env_array->str[i], 1);
-		i++;
-	}
-	return (0);
+	len = 0;
+	if (!s)
+		return (0);
+	while (s[len])
+		len++;
+	return (len);
 }

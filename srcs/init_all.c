@@ -30,6 +30,7 @@ static void init_env(t_all *all, char **env)
 //		printf("val[%d] = %s\n",i, all->env_array->value[i]);
 		i++;
 	}
+//	all->env_array->str[all->env_array->current_size] = NULL;
 //	printf("env inited\n");
 //	all->env_array->print_array(all->env_array);
 }

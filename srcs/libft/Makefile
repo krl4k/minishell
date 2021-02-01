@@ -27,19 +27,20 @@ SRC =  ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c\
 	   ft_lennbr.c\
 	   ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c\
 	   ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c\
-	   ft_setsplit.c
-SRC2 = ft_strlen.s ft_strdup.s ft_write.s ft_read.s ft_strcmp.s
-
-NM = nasm
-
-NFLAGS = -f macho64
-
+	   ft_setsplit.c\
+	   ft_strlen.c ft_strdup.c\
+#SRC2 = ft_strlen.s ft_strdup.s ft_write.s ft_read.s ft_strcmp.s
+#
+#NM = nasm
+#
+#NFLAGS = -f macho64
+#
 OBJ = $(SRC:.c=.o)
 
-OBJ2 = $(SRC2:.s=.o)
-
-%.o: %.s
-	$(NM) $(NFLAGS) $< -o $@
+#OBJ2 = $(SRC2:.s=.o)
+#
+#%.o: %.s
+#	$(NM) $(NFLAGS) $< -o $@
 
 
 all: $(NAME)

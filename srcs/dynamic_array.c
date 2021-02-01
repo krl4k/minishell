@@ -29,11 +29,15 @@ void	delete_one_by_key(struct s_array *array, char *deleted_elem)
 	while ((array)->str[i] && i < (array)->current_size - 1)
 	{
 		(array)->str[i] = (array)->str[i + 1];
+		(array)->key[i] = (array)->key[i + 1];
+		(array)->value[i] = (array)->value[i + 1];
 		i++;
 	}
 	if (flag == 1)
 	{
 		(array)->str[(array)->current_size - 1] = NULL;
+		(array)->key[(array)->current_size - 1] = NULL;
+		(array)->value[(array)->current_size - 1] = NULL;
 		(array)->current_size--;
 	}
 }
@@ -91,14 +95,18 @@ void	push_back(t_array *array, char *new)
 		i++;
 	(array)->key[(array)->current_size] = ft_substr(array->str[array->current_size], 0, i);
 	char *r;
-	if ((r = ft_strchr(new, '=')) != NULL)
+	if ((r = (char *)ft_strchr(new, '=')) != NULL)
 	{
 		r++;
 		(array)->value[(array)->current_size] = ft_substr(r, 0, ft_strlen(r));
 	}
 	else
-		(array)->value[(array)->current_size] = NULL;
+		(array)->value[(array)->current_size] = ft_strdup("");
+//	array->str[array->current_size + 1] = NULL;
+//	array->key[array->current_size + 1] = NULL;
+//	array->value[array->current_size + 1] = NULL;
 	(array)->current_size++;
+
 }
 
 void print_array(t_array *array)

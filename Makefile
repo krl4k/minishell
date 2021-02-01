@@ -1,5 +1,5 @@
 NAME = minishell
-CC = gcc
+CC = /usr/bin/clang-10
 FLAGS = -Wall -Werror -Wextra -g
 
 SRCS_DIR = ./srcs/
@@ -26,6 +26,7 @@ all:$(NAME)
 $(NAME): $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@gcc $(CFLAGS) -I$(HEADERS) $(OBJS) $(FLAGS) $(LIBFT_DIR)/libft.a -o $(NAME)
+												#$(LIBFT_DIR)/
 $(OBJ_PARSER): %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -I$(HEADERS) -I$(LIBFT_DIR) -c $< -o $@
 

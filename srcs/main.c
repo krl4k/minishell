@@ -12,9 +12,6 @@
 
 #include "minishell.h"
 
-
-#include "minishell.h"
-
 int g_quotes;
 
 void print_prompt(int fd)
@@ -227,6 +224,14 @@ int main(int ac, char **av, char **env)
 		print_prompt(1);
 		signal(SIGINT, no_interrupt);
 		get_input(all);
+		int i = 0;
+//		while (all->command_argv[i])
+//		{
+//			free(all->command_argv[i]);
+//			all->command_argv[i] = NULL;
+//			i++;
+//		}
+//		free(all->command_argv);
 	}
 	return (EXIT_SUCCESS);
 }

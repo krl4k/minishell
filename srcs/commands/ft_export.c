@@ -51,7 +51,7 @@ static void sort_vars(char **env, int count, int *index)
 		sorted = 1;
 		while (i < count - 1)
 		{
-			if (ft_strncmp(env[i], env[i + 1], ft_strlen(env[i])) > 0)
+			if(ft_strncmp(env[i], env[i + 1], ft_strlen(env[i])) > 0)
 			{
 				temp = index[i];
 				index[i] = index[i + 1];
@@ -75,6 +75,7 @@ static int count_command(t_all *all)
 	{
 		i++;
 	}
+	printf("count commnd = %d\n", i);
 	return (i);
 }
 
@@ -96,10 +97,8 @@ void add_env(t_all *all, int count)
 	i = 1;
 	while (all->command_argv[i])
 	{
-		if (all->command_argv[i][0] == '=')
-		{
+		if(all->command_argv[i][0] == '=')
 			error_mes(all->command_argv[i]);
-		}
 		else
 		{
 			printf("pushback = %s\n", all->command_argv[i]);
@@ -133,7 +132,7 @@ void print_sort_envs(t_all *all, char **temp_env, int *env_index)
 	int i;
 
 	i = 0;
-	while (all->env_array->str[i])
+	while (i < all->env_array->current_size)
 	{
 		temp_env[i] = ft_strdup(all->env_array->str[i]);
 		i++;
@@ -163,22 +162,22 @@ int ft_export(t_all *all)
 	int count;
 
 	i = 0;
-	if ((count = count_command(all)) != 1)
+	printf("ft_export start \n");
+	if((count = count_command(all)) != 1)
 	{
 		printf("count env = %d\n", count);
-		add_env(all, count-1);
+		add_env(all, count - 1);
 		return (0);
 	}
 	else
 	{
-		if (!(temp_env = (char **) malloc((all->env_array->current_size) * sizeof(char *)))
-			|| !(env_index = (int *) ft_calloc(all->env_array->current_size, sizeof(int))))
+		if(!(temp_env = (char **) ft_calloc(all->env_array->current_size + 1, sizeof(char *))))
+			error_handler(1);
+		if(!(env_index = (int *)ft_calloc((sizeof(int)),  all->env_array->current_size)))
 			error_handler(1);
 		print_sort_envs(all, temp_env, env_index);
-		while (i < all->env_array->current_size && temp_env[i])
-		{
+		while (temp_env[i])//i < all->env_array->current_size &&
 			free(temp_env[i++]);
-		}
 		free(temp_env);
 		free(env_index);
 	}
