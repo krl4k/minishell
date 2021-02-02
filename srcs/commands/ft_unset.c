@@ -56,8 +56,9 @@ int ft_unset(t_all *all)
 		}
 		while (all->env_array->str[j])
 		{
-			if (ft_strncmp(all->env_array->str[j], all->command_argv[i], ft_strlen(all->command_argv[i])) == 0)
+			if (ft_strcmp(all->env_array->str[j], all->command_argv[i]) == 0)
 			{
+				printf("deleted %s\n", all->command_argv[i]);
 				all->env_array->delete_one_by_key(all->env_array, all->command_argv[i]);
 			}
 			j++;

@@ -74,6 +74,8 @@ int check_valid_key(t_all *all, char *new_env)
 	char *new_value;
 	int ret_v;
 	i = 0;
+
+	ret_v = 0;
 	while (new_env[i] && new_env[i] != '=')
 		i++;
 	new_key = ft_substr(new_env, 0, i);
@@ -121,13 +123,19 @@ void add_env(t_all *all, int count)
 
 	check = 0;
 	i = 1;
+
+	printf("envs = \n");
+	for (int j = 0; all->command_argv[j]; ++j)
+	{
+		printf("env[%d] = |%s|\n", j, all->command_argv[j]);
+	}
 	while (all->command_argv[i])
 	{
 		if(all->command_argv[i][0] == '=')
 			error_mes(all->command_argv[i]);
 		else
 		{
-//			printf("pushback = %s\n", all->command_argv[i]);
+			printf("pushback = %s\n", all->command_argv[i]);
 			check = check_valid_key(all, all->command_argv[i]);
 			if (check == 0)
 			{

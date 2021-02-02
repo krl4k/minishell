@@ -16,11 +16,10 @@ typedef struct	s_array
 	int			allocated_size;
 	void		(*clear)(struct  s_array **array);
 	void		(*resize)(struct s_array *array, int size);
-	void		(*delete_one)(struct s_array **array, int pos);
+	void		(*delete_one)(struct s_array *array, int pos);
 	void		(*delete_one_by_key)(struct s_array *array, char *deleted_elem);
 	void		(*push_back)(struct s_array *array, char *new);
-//	void		(*push_back)(struct s_array **array, char *new);
-	void		(*copy)(struct s_array **array, char **new_array);
+//	void		(*copy)(struct s_array **array, char **new_array);
 	void		(*print_array)(struct s_array *array);
 	void		(*print_info)(struct s_array *array);
 }				t_array;
@@ -33,9 +32,9 @@ void	delete_one_by_key(struct s_array *array, char *deleted_elem)
 
 	flag = 0;
 	i = 0;
-	while (i < (array)->current_size)
+	while (i <= (array)->current_size)
 	{
-		if (flag == 0 && ft_strncmp((array)->str[i], deleted_elem, ft_strlen(deleted_elem)) == 0)
+		if (flag == 0 && ft_is_equal(array->str[i], deleted_elem) == 0)
 		{
 			flag = 1;
 			free((array)->str[i]);
@@ -53,6 +52,8 @@ void	delete_one_by_key(struct s_array *array, char *deleted_elem)
 		(array)->str[(array)->current_size - 1] = NULL;
 		(array)->current_size--;
 	}
+	if ((array)->current_size < 0)
+		(array)->current_size = 0;
 }
 
 /*!
@@ -192,6 +193,14 @@ int main(int argc, char **argv, char **env)
 	array->delete_one_by_key(array, "7");
 
 //	array->resize(&array, 4);
+	array->push_back(array, "1");
+	array->push_back(array, "2");
+	array->push_back(array, "3");
+	array->push_back(array, "4");
+	array->push_back(array, "5");
+	array->push_back(array, "6");
+	array->push_back(array, "7");
+
 	array->print_array(array);
 	array->print_info(array);
 //	array->print_array(array);

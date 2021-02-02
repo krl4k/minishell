@@ -16,7 +16,7 @@ void	delete_one_by_key(struct s_array *array, char *deleted_elem)
 
 	flag = 0;
 	i = 0;
-	while (i < (array)->current_size)
+	while (i <= (array)->current_size)
 	{
 		if (flag == 0 && ft_strncmp((array)->key[i], deleted_elem, ft_strlen(deleted_elem)) == 0)
 		{
@@ -40,6 +40,8 @@ void	delete_one_by_key(struct s_array *array, char *deleted_elem)
 		(array)->value[(array)->current_size - 1] = NULL;
 		(array)->current_size--;
 	}
+	if ((array)->current_size < 0)
+		(array)->current_size = 0;
 }
 
 /*!
@@ -98,6 +100,7 @@ void	push_back(t_array *array, char *new)
 	if ((r = (char *)ft_strchr(new, '=')) != NULL)
 	{
 		r++;
+//		printf("added value = %s\n", r);
 		(array)->value[(array)->current_size] = ft_substr(r, 0, ft_strlen(r));
 	}
 	else

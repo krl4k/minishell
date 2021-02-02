@@ -4,6 +4,9 @@
 #include <fcntl.h>
 #include <string.h>
 
+
+
+
 int main(int ac, char **av, char **env)
 {
 	int fd[2];
