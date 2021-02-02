@@ -35,7 +35,7 @@ static void init_env(t_all *all, char **env)
 {
 	int i;
 
-	init_array(&all->env_array, 1);
+	init_array(&all->env_array, 40);
 //	init_array(&all->env_array, 1);
 //	printf("start env init\n");
 	i = 0;

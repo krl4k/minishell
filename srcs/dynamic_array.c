@@ -89,7 +89,7 @@ void	push_back(t_array *array, char *new)
 	i = 0;
 //	printf("push_back new = %s\n", new);
 	if ((array)->current_size == (array)->allocated_size)
-		resize(array, 5);
+		resize(array, 20);
 	(array)->str[(array)->current_size] = ft_strdup(new);
 	while (new[i] && new[i] != '=')
 		i++;

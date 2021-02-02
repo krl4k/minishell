@@ -33,7 +33,7 @@ static void error_mes(char *command)
 	ft_putendl_fd("not a valid identifier", 2);
 }
 
-int check_valid_key(char *key)
+int check_valid(char *key)
 {
 	int i;
 
@@ -49,48 +49,77 @@ int check_valid_key(char *key)
 	}
 	return (1);
 }
-int check_same_key(t_all *all, char *new_env)
+
+int is_same_key(t_all *all, char *new_key)
+{
+	int i;
+
+	i = 0;
+	while (i < all->env_array->current_size)
+	{
+		if (ft_is_equal(all->env_array->key[i], new_key))
+		{
+			printf("same key!!\n");
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+int check_valid_key(t_all *all, char *new_env)
 {
 	int i;
 	char *new_key;
 	char *new_value;
-
+	int ret_v;
 	i = 0;
 	while (new_env[i] && new_env[i] != '=')
 		i++;
 	new_key = ft_substr(new_env, 0, i);
-	new_value = ft_substr(new_env, i+ 1, ft_strlen(new_env));
+	new_value = ft_substr(new_env, i + 1, ft_strlen(new_env));
 //	printf("new_env     = |%s|\n", new_env);
 //	printf("new key     = |%s|\n", new_key);
 //	printf("new value   = |%s|\n", new_value);
+//	printf("new_env[%d] = |%c|\n", i, new_env[i]);
 //	printf("strlen      =|%zu|\n", ft_strlen(new_env));
 //	printf("i + 1       = |%d|\n", i + 1);
-	if (!check_valid_key(new_key))
-		return (1);
-	if (!new_value && new_env[i] != '=')
-		return (2);
-	if (i + 1 > ft_strlen(new_env))
-		return (2);
-	while (i < all->env_array->current_size)
+	if (!check_valid(new_key))
+		ret_v = 1;
+	if (new_env[i] == '\0' && !is_same_key(all, new_key))
+		ret_v = 2;
+	if (new_env[i] == '=')
+		ret_v = 0;
+//	if (!is_same_key(new_key))
+//		ret_v = 0;
+//	if (check_same_value)
+//	if (check_same_value(new_key))
+//	if (!new_value)// && new_env[i] != '='
+//		return (2);
+//	if (i + 1 > ft_strlen(new_env))
+//		return (2);
+	while (ret_v == 0 && i < all->env_array->current_size)
 	{
-		if (ft_strncmp(all->env_array->key[i], new_key, ft_strlen(all->env_array->key[i])))
+		if (ft_is_equal(all->env_array->key[i], new_key))
 		{
-			all->env_array->delete_one_by_key(all->env_array, new_key);
+			printf("all->env->key[i] = |%s|\n", all->env_array->key[i]);
+			printf("new key    		 = |%s|\n", new_key);
+			all->env_array->delete_one_by_key(all->env_array, all->env_array->key[i]);
 		}
 		i++;
 	}
 	free(new_key);
 	free(new_value);
-	return (0);
+	return (ret_v);
 }
 
 
 void add_env(t_all *all, int count)
 {
 	int i;
-	int check_same;
+	int check;
 
-	check_same = 0;
+	check = 0;
 	i = 1;
 	while (all->command_argv[i])
 	{
@@ -99,12 +128,12 @@ void add_env(t_all *all, int count)
 		else
 		{
 //			printf("pushback = %s\n", all->command_argv[i]);
-			check_same = check_same_key(all, all->command_argv[i]);
-			if (check_same == 0)
+			check = check_valid_key(all, all->command_argv[i]);
+			if (check == 0)
 			{
 				all->env_array->push_back(all->env_array, all->command_argv[i]);
 			}
-			else if(check_same == 1)
+			else if(check == 1)
 				error_mes(all->command_argv[i]);
 			else
 				;
@@ -128,7 +157,7 @@ int ft_export(t_all *all)
 
 	int count;
 
-//	printf("ft_export start \n");
+	printf("ft_export start \n");
 	if((count = count_command(all)) != 1)
 	{
 //		printf("count env = %d\n", count);
