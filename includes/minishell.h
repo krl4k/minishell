@@ -103,8 +103,10 @@ int				ft_unset(t_all *all);
 
 
 int				pipes_work(t_all *all);
-int 			input_redir(t_all *all, int index);
-
+int 			input_redir_init(t_all *all, int index);
+int 			output_redir_init(t_all *all, int index);
+int 			append_redir_init(t_all *all, int index);
+void			pipes_fd_init(t_all *all, int index);
 
 int				count_command(t_all *all);
 char			*check_bin_func(char *cmd);

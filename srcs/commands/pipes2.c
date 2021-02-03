@@ -48,7 +48,7 @@ int execute_commands(t_all *all)
 
 			if ((index == 0) && (all->input_redir_flag == 1))
 			{
-				input_redir(all, index);
+				input_redir_init(all, index);
 //				if ((all->input_file_descriptor = open(all->in_path, O_RDONLY)) < 0)
 //					perror("open()");
 //				if (all->input_file_descriptor == -1)
@@ -64,59 +64,62 @@ int execute_commands(t_all *all)
 			if ((index == all->pipes) && (all->output_redir_flag == 1))
 			{
 				//printf("DEBUG: here we should be about to create our output file\n");
-//				all->output_file_descriptor = creat(all->out_path, 0700);
-				if ((all->output_file_descriptor = open(all->out_path, O_WRONLY | O_TRUNC | O_CREAT, 0644)) < 0)
-					perror("open()");
-				if (all->output_file_descriptor < 0)
-				{
-					perror("output file failed to open\n");
-					return (EXIT_FAILURE);
-				}
-				close(WRITE);
-				dup(all->output_file_descriptor);
-				close(all->output_file_descriptor);
+				output_redir_init(all, index);
+//				if ((all->output_file_descriptor = open(all->out_path, O_WRONLY | O_TRUNC | O_CREAT, 0644)) < 0)
+//					perror("open()");
+//				if (all->output_file_descriptor < 0)
+//				{
+//					perror("output file failed to open\n");
+//					return (EXIT_FAILURE);
+//				}
+//				close(WRITE);
+//				dup(all->output_file_descriptor);
+//				close(all->output_file_descriptor);
 			}
 			if ((index == all->pipes) && (all->append_redir_flag == 1))
 			{
+				append_redir_init(all, index);
 //				all->output_file_descriptor = creat(all->out_path, 0700);
-				if ((all->output_file_descriptor = open(all->out_path, O_WRONLY | O_APPEND | O_CREAT, 0644)) < 0)
-					perror("open()");
-				if (all->output_file_descriptor < 0)
-				{
-					perror("output file failed to open\n");
-					return (EXIT_FAILURE);
-				}
-				close(WRITE);
-				dup(all->output_file_descriptor);
-				close(all->output_file_descriptor);
+//				if ((all->output_file_descriptor = open(all->out_path, O_WRONLY | O_APPEND | O_CREAT, 0644)) < 0)
+//					perror("open()");
+//				if (all->output_file_descriptor < 0)
+//				{
+//					perror("output file failed to open\n");
+//					return (EXIT_FAILURE);
+//				}
+//				close(WRITE);
+//				dup(all->output_file_descriptor);
+//				close(all->output_file_descriptor);
 			}
 			/* end of output redirection management */
 			if (all->pipes > 0)
 			{
-				if (index == 0)
-				{
-					close(WRITE);
-					dup(all->r_pipe[WRITE]);
-					close(all->r_pipe[WRITE]);
-					close(all->r_pipe[READ]);
-				}
-				else if (index < all->pipes)
-				{
-					close(READ);
-					dup(all->l_pipe[READ]);
-					close(all->l_pipe[READ]);
-					close(all->l_pipe[WRITE]);
-					close(WRITE);
-					dup(all->r_pipe[WRITE]);
-					close(all->r_pipe[READ]);
-					close(all->r_pipe[WRITE]);
-				} else
-				{
-					close(READ);
-					dup(all->l_pipe[READ]);
-					close(all->l_pipe[READ]);
-					close(all->l_pipe[WRITE]);
-				}
+				pipes_fd_init(all, index);
+
+//				if (index == 0)
+//				{
+//					close(WRITE);
+//					dup(all->r_pipe[WRITE]);
+//					close(all->r_pipe[WRITE]);
+//					close(all->r_pipe[READ]);
+//				}
+//				else if (index < all->pipes)
+//				{
+//					close(READ);
+//					dup(all->l_pipe[READ]);
+//					close(all->l_pipe[READ]);
+//					close(all->l_pipe[WRITE]);
+//					close(WRITE);
+//					dup(all->r_pipe[WRITE]);
+//					close(all->r_pipe[READ]);
+//					close(all->r_pipe[WRITE]);
+//				} else
+//				{
+//					close(READ);
+//					dup(all->l_pipe[READ]);
+//					close(all->l_pipe[READ]);
+//					close(all->l_pipe[WRITE]);
+//				}
 			}
 			char *command = check_bin_func(all->command_argv[all->arg_location[index]]);
 			if (!command)
