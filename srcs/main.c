@@ -74,26 +74,34 @@ void ft_exit(char **cmd)
 void ft_execution(t_all *all)
 {
 
-//	printf("commands = \n");
+	printf("commands = \n");
 	int i = 0;
 
+	for (int j = 0; all->command_argv[j]; ++j)
+	{
+		printf("command[%d] = %s\n", j, all->command_argv[j]);
+	}
 	while (all->command_argv[i])
 	{
 //		printf("%s\n", all->command_argv[i]);
 		int len = 0;
 		if ((len = ft_strlen(all->command_argv[i])) > 0)
-			if (ft_strncmp(all->command_argv[i], "|", 1) == 0)
+			if (ft_strcmp(all->command_argv[i], "|") == 0
+			||ft_strcmp(all->command_argv[i], ">") == 0
+			||ft_strcmp(all->command_argv[i], "<") == 0
+			||ft_strcmp(all->command_argv[i], ">>") == 0)
 			{
-				pipes(all, i);
+				pipes_work(all);
+//				pipes(all, i);
 				return;
 			}
 		i++;
 	}
 
-	for (int j = 0; all->command_argv[j]; ++j)
-	{
-		printf("exec cmd[%d] = %s\n", j, all->command_argv[j]);
-	}
+//	for (int j = 0; all->command_argv[j]; ++j)
+//	{
+//		printf("exec cmd[%d] = %s\n", j, all->command_argv[j]);
+//	}
 	if (!all->command_argv[0])
 		return;
 	if (!ft_strncmp(all->command_argv[0], "echo", 4))
@@ -227,13 +235,13 @@ int main(int ac, char **av, char **env)
 		signal(SIGINT, no_interrupt);
 		get_input(all);
 		int i = 0;
-		while (all->command_argv[i])
-		{
-			free(all->command_argv[i]);
-			all->command_argv[i] = NULL;
-			i++;
-		}
-		free(all->command_argv);
+//		while (all->command_argv[i])
+//		{
+//			free(all->command_argv[i]);
+//			all->command_argv[i] = NULL;
+//			i++;
+//		}
+//		free(all->command_argv);
 	}
 	return (EXIT_SUCCESS);
 }

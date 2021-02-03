@@ -12,14 +12,13 @@
 
 #include "minishell.h"
 
-static int count_command(t_all *all)
+int count_command(t_all *all)
 {
 	int i;
 
 	i = 0;
 	while (all->command_argv[i])
 		i++;
-//	printf("count commnd = %d\n", i);
 	return (i);
 }
 

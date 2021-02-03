@@ -34,6 +34,10 @@
 # define EXIT_FAILURE 1
 # define MALLOC_ERROR "malloc error!"
 # define PROMT_ERROR "ヽ(*・ω・)ﾉ: \0"
+#define READ 0
+#define WRITE 1
+
+
 #include "dynamic_array.h"
 # define IS_SPACE(x) (x == ' ' || x == '\t' || x == '\r' || x == '\f' || x == '\v' || x == '\n')
 
@@ -53,6 +57,18 @@ typedef struct		s_all
 	char			*old_home;
 	int				env_count;
 	t_array			*env_array;
+	char			*in_path;
+	char			*out_path;
+	int				input_redir_flag;
+	int				output_redir_flag;
+	int				append_redir_flag;
+	int				l_pipe[2];
+	int				r_pipe[2];
+	int				*arg_location;
+	int				pipes;
+	int				input_file_descriptor;
+	int				output_file_descriptor;
+	int 			status;
 }					t_all;
 /*
 ** for init any variables
@@ -84,5 +100,16 @@ int				ft_export(t_all *all);
 int             ft_export_print_sort_env(t_all *all);
 int             check_valid_key(t_all *all, char *key);
 int				ft_unset(t_all *all);
+
+
+int				pipes_work(t_all *all);
+int 			input_redir(t_all *all, int index);
+
+
+int				count_command(t_all *all);
+char			*check_bin_func(char *cmd);
+
+
+
 
 #endif
