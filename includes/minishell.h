@@ -89,7 +89,6 @@ void			print_prompt(int fd);
 */
 
 int             execute(t_all *all);
-int				pipes(t_all *all, int pos_pipe);
 void			bin_func(t_all *all);
 void            ft_echo(char **cmd);
 int				ft_cd(t_all *all);
@@ -110,6 +109,7 @@ void			pipes_fd_init(t_all *all, int index);
 
 int				count_command(t_all *all);
 char			*check_bin_func(char *cmd);
+int 			execute_commands(t_all *all);
 
 
 

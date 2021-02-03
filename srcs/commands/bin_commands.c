@@ -49,7 +49,7 @@ char *check_bin_func(char *cmd)
 			command = ft_strjoin("/bin/", cmd);
 	}
 	else
-		command = NULL;
+		;
 	return (command);
 }
 /*!
@@ -76,10 +76,9 @@ void bin_func(t_all *all)
 	{
 		all->env_array->str[all->env_array->current_size] = NULL;
 		command = check_bin_func(all->command_argv[0]);
-		if (!command)
-			exit(3);
-//		printf("command = %s\n", command);
 		status = execve(command, all->command_argv, all->env_array->str);
+		if (status == -1)
+			exit(3);
 		free(command);
 		exit(status);
 	}
@@ -91,9 +90,9 @@ void bin_func(t_all *all)
 			if (WEXITSTATUS(status) == 3)
 			{
 				ft_putstr_fd(PROMT_ERROR, 2);
-				ft_putstr_fd(all->command_argv[0], 2);
+				ft_putstr_fd("command not found", 2);
 				ft_putstr_fd(": ", 2);
-				ft_putendl_fd("command not found", 2);
+				ft_putendl_fd(all->command_argv[0], 2);
 			}
 		}
 	}

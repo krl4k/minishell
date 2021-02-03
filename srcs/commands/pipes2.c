@@ -1,4 +1,3 @@
-
 #include "minishell.h"
 
 
@@ -35,7 +34,7 @@ int execute_commands(t_all *all)
 	index = 0;
 	while (index <= all->pipes)
 	{
-		if (pipes > 0 && index != all->pipes)
+		if (all->pipes > 0 && index != all->pipes)
 		{
 			/* if user has entered multiple commands with '|' */
 			if (pipe(all->r_pipe) < 0)
