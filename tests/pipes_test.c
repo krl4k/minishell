@@ -170,11 +170,9 @@ int main(int ac, char **av, char **env) {
 					dup(inputFileDescriptor);
 					close(inputFileDescriptor);
 				}
-				/* end of input redirection management */
 
 				if ((index == pipes) && (outputRedirectFlag == 1))
 				{
-					//printf("DEBUG: here we should be about to create our output file\n");
 					int outputFileDescriptor = creat(out_path, 0700);
 					if (outputFileDescriptor < 0)
 					{

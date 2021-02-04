@@ -106,10 +106,14 @@ int 			input_redir_init(t_all *all, int index);
 int 			output_redir_init(t_all *all, int index);
 int 			append_redir_init(t_all *all, int index);
 void			pipes_fd_init(t_all *all, int index);
+void			set_flags(t_all *all, char **path, int *flag, int count);
+
 
 int				count_command(t_all *all);
 char			*check_bin_func(char *cmd);
 int 			execute_commands(t_all *all);
+void			init_handler_pipes(t_all *all);
+void			free_handler_pipes(t_all *all);
 
 
 

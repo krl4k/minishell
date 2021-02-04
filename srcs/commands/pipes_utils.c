@@ -9,10 +9,10 @@ int input_redir_init(t_all *all, int index)
 	if ((index == 0) && (all->input_redir_flag == 1))
 	{
 		if ((all->input_file_descriptor = open(all->in_path, O_RDONLY)) < 0)
-			perror("open()");
+			ft_perror("open()");
 		if (all->input_file_descriptor == -1)
 		{
-			perror("input file failed to open\n");
+			ft_perror("input file failed to open\n");
 			return (EXIT_FAILURE);
 		}
 		close(READ);
@@ -30,10 +30,10 @@ int input_redir_init(t_all *all, int index)
 int output_redir_init(t_all *all, int index)
 {
 	if ((all->output_file_descriptor = open(all->out_path, O_WRONLY | O_TRUNC | O_CREAT, 0644)) < 0)
-		perror("open()");
+		ft_perror("open()");
 	if (all->output_file_descriptor < 0)
 	{
-		perror("output file failed to open\n");
+		ft_perror("output file failed to open\n");
 		return (EXIT_FAILURE);
 	}
 	close(WRITE);
@@ -46,14 +46,13 @@ int output_redir_init(t_all *all, int index)
 ** ">>" output & append redirect
 */
 
-
 int 			append_redir_init(t_all *all, int index)
 {
 	if ((all->output_file_descriptor = open(all->out_path, O_WRONLY | O_APPEND | O_CREAT, 0644)) < 0)
 		perror("open()");
 	if (all->output_file_descriptor < 0)
 	{
-		perror("output file failed to open\n");
+		ft_perror("output file failed to open");
 		return (EXIT_FAILURE);
 	}
 	close(WRITE);

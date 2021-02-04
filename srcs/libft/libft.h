@@ -19,6 +19,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stddef.h>
+# include <errno.h>
+
 # define BUFFER_SIZE 1
 
 typedef struct	s_list
@@ -85,5 +87,6 @@ int				ft_strcmp(char *s1, char *s2);
 int				ft_is_equal(char *s1, char *s2);
 //int             strcmp (const char *str1, const char *str2);
 size_t			ft_wordcount(char const *s, char *set);
+void			ft_perror(char *s);
 
 #endif
