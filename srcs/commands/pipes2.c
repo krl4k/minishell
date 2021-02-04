@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipes2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fgrisell <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/04 20:55:35 by fgrisell          #+#    #+#             */
+/*   Updated: 2021/02/04 20:55:36 by fgrisell         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-
-void child_proccess(t_all *all, int index)
+void	child_proccess(t_all *all, int index)
 {
-	char *command;
+	char	*command;
 
 	if ((index == 0) && (all->input_redir_flag == 1))
 		input_redir_init(all, index);
@@ -16,13 +27,14 @@ void child_proccess(t_all *all, int index)
 	command = check_bin_func(all->command_argv[all->arg_location[index]]);
 	if (!command)
 		exit(3);
-	execve(command, &all->command_argv[all->arg_location[index]], all->env_array->str);
+	execve(command, &all->command_argv[all->arg_location[index]],
+		all->env_array->str);
 	if (command)
 		free(command);
 	ft_perror("execution of command failed");
 }
 
-void parent_proccess(t_all *all, int index)
+void	parent_proccess(t_all *all, int index)
 {
 	if (index > 0)
 	{
@@ -31,7 +43,6 @@ void parent_proccess(t_all *all, int index)
 	}
 	all->l_pipe[READ] = all->r_pipe[READ];
 	all->l_pipe[WRITE] = all->r_pipe[WRITE];
-	/* parent waits for child process to complete */
 	wait(&all->status);
 	if (WIFEXITED(all->status) != 0)
 	{
@@ -45,10 +56,10 @@ void parent_proccess(t_all *all, int index)
 	}
 }
 
-int execute_commands(t_all *all)
+int		execute_commands(t_all *all)
 {
-	int index;
-	pid_t pid;
+	int		index;
+	pid_t	pid;
 
 	index = 0;
 	while (index <= all->pipes)
@@ -67,17 +78,16 @@ int execute_commands(t_all *all)
 	return (EXIT_SUCCESS);
 }
 
-
-/*!
+/*
 ** redir management
 */
 
-void check_flags(t_all *all)
+void	check_flags(t_all *all)
 {
 	int count;
 
 	count = 0;
-	while (all->command_argv[count])// != 0
+	while (all->command_argv[count])
 	{
 		if (ft_strcmp(all->command_argv[count], "|") == 0)
 		{
@@ -97,23 +107,25 @@ void check_flags(t_all *all)
 	}
 }
 
-int pipes_work(t_all *all)
+int		pipes_work(t_all *all)
 {
-	int count;
-
-	count = 0;
-	for (int i = 0; all->command_argv[i]; ++i)
-	{
-		printf("cmd[%d] = %s\n", i, all->command_argv[i]);
-	}
 	init_handler_pipes(all);
 	check_flags(all);
-
-	printf("count	   pipes = %d\n", all->pipes);
-	printf("flag input redir = %d\n", all->input_redir_flag);
-	printf("flag outputredir = %d\n", all->output_redir_flag);
-	printf("flag appnd redir = %d\n", all->append_redir_flag);
 	execute_commands(all);
 	free_handler_pipes(all);
 	return (0);
 }
+
+/*
+**	for (int i = 0; all->command_argv[i]; ++i)
+**	{
+**		printf("cmd[%d] = %s\n", i, all->command_argv[i]);
+**	}
+*/
+
+/*
+**	printf("count	   pipes = %d\n", all->pipes);
+**	printf("flag input redir = %d\n", all->input_redir_flag);
+**	printf("flag outputredir = %d\n", all->output_redir_flag);
+**	printf("flag appnd redir = %d\n", all->append_redir_flag);
+*/

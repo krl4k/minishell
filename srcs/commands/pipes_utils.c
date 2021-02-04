@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipes_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fgrisell <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/04 20:59:05 by fgrisell          #+#    #+#             */
+/*   Updated: 2021/02/04 20:59:07 by fgrisell         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-/*!
+/*
 ** "<" input redirect
 */
 
-int input_redir_init(t_all *all, int index)
+int		input_redir_init(t_all *all, int index)
 {
 	if ((index == 0) && (all->input_redir_flag == 1))
 	{
@@ -22,14 +34,14 @@ int input_redir_init(t_all *all, int index)
 	return (EXIT_SUCCESS);
 }
 
-
-/*!
+/*
 ** ">" output redirect
 */
 
-int output_redir_init(t_all *all, int index)
+int		output_redir_init(t_all *all, int index)
 {
-	if ((all->output_file_descriptor = open(all->out_path, O_WRONLY | O_TRUNC | O_CREAT, 0644)) < 0)
+	if ((all->output_file_descriptor = open(all->out_path, O_WRONLY
+	| O_TRUNC | O_CREAT, 0644)) < 0)
 		ft_perror("open()");
 	if (all->output_file_descriptor < 0)
 	{
@@ -42,13 +54,14 @@ int output_redir_init(t_all *all, int index)
 	return (EXIT_SUCCESS);
 }
 
-/*!
+/*
 ** ">>" output & append redirect
 */
 
-int 			append_redir_init(t_all *all, int index)
+int		append_redir_init(t_all *all, int index)
 {
-	if ((all->output_file_descriptor = open(all->out_path, O_WRONLY | O_APPEND | O_CREAT, 0644)) < 0)
+	if ((all->output_file_descriptor = open(all->out_path,
+	O_WRONLY | O_APPEND | O_CREAT, 0644)) < 0)
 		perror("open()");
 	if (all->output_file_descriptor < 0)
 	{
@@ -80,7 +93,8 @@ void	pipes_fd_init(t_all *all, int index)
 		dup(all->r_pipe[WRITE]);
 		close(all->r_pipe[READ]);
 		close(all->r_pipe[WRITE]);
-	} else
+	}
+	else
 	{
 		close(READ);
 		dup(all->l_pipe[READ]);
