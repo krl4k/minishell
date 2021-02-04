@@ -209,6 +209,7 @@ void no_interrupt(int signal_no)
 		write(1, "\b\b  \b\b", 6);
 		write(1, "\n", 1);
 		print_prompt(1);
+		printf("c signal!!!\n");
 		signal(SIGINT, no_interrupt);
 	}
 }

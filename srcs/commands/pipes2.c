@@ -3,6 +3,8 @@
 
 void child_proccess(t_all *all, int index)
 {
+	char *command;
+
 	if ((index == 0) && (all->input_redir_flag == 1))
 		input_redir_init(all, index);
 	if ((index == all->pipes) && (all->output_redir_flag == 1))
@@ -11,15 +13,37 @@ void child_proccess(t_all *all, int index)
 		append_redir_init(all, index);
 	if (all->pipes > 0)
 		pipes_fd_init(all, index);
-
-	char *command = check_bin_func(all->command_argv[all->arg_location[index]]);
+	command = check_bin_func(all->command_argv[all->arg_location[index]]);
 	if (!command)
 		exit(3);
 	execve(command, &all->command_argv[all->arg_location[index]], all->env_array->str);
-	free(command);
+	if (command)
+		free(command);
 	ft_perror("execution of command failed");
 }
 
+void parent_proccess(t_all *all, int index)
+{
+	if (index > 0)
+	{
+		close(all->l_pipe[READ]);
+		close(all->l_pipe[WRITE]);
+	}
+	all->l_pipe[READ] = all->r_pipe[READ];
+	all->l_pipe[WRITE] = all->r_pipe[WRITE];
+	/* parent waits for child process to complete */
+	wait(&all->status);
+	if (WIFEXITED(all->status) != 0)
+	{
+		if (WEXITSTATUS(all->status) == 3)
+		{
+			ft_putstr_fd(PROMT_ERROR, 2);
+			ft_putstr_fd(all->command_argv[0], 2);
+			ft_putstr_fd(": ", 2);
+			ft_putendl_fd("command not found", 2);
+		}
+	}
+}
 
 int execute_commands(t_all *all)
 {
@@ -35,31 +59,9 @@ int execute_commands(t_all *all)
 		if ((pid = fork()) < 0)
 			ft_perror("fork() error");
 		if (pid == 0)
-		{
 			child_proccess(all, index);
-		}
 		else
-		{
-			if (index > 0)
-			{
-				close(all->l_pipe[READ]);
-				close(all->l_pipe[WRITE]);
-			}
-			all->l_pipe[READ] = all->r_pipe[READ];
-			all->l_pipe[WRITE] = all->r_pipe[WRITE];
-			/* parent waits for child process to complete */
-			wait(&all->status);
-			if (WIFEXITED(all->status) != 0)
-			{
-				if (WEXITSTATUS(all->status) == 3)
-				{
-					ft_putstr_fd(PROMT_ERROR, 2);
-					ft_putstr_fd(all->command_argv[0], 2);
-					ft_putstr_fd(": ", 2);
-					ft_putendl_fd("command not found", 2);
-				}
-			}
-		}
+			parent_proccess(all, index);
 		index++;
 	}
 	return (EXIT_SUCCESS);
@@ -111,7 +113,6 @@ int pipes_work(t_all *all)
 	printf("flag input redir = %d\n", all->input_redir_flag);
 	printf("flag outputredir = %d\n", all->output_redir_flag);
 	printf("flag appnd redir = %d\n", all->append_redir_flag);
-
 	execute_commands(all);
 	free_handler_pipes(all);
 	return (0);

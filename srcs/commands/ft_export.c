@@ -22,32 +22,22 @@ int count_command(t_all *all)
 	return (i);
 }
 
-static void error_mes(char *command)
-{
-	ft_putstr_fd(PROMT_ERROR, 2);
-	ft_putstr_fd("'", 2);
-	ft_putstr_fd(command, 2);
-	ft_putstr_fd("'", 2);
-	ft_putstr_fd(": ", 2);
-	ft_putendl_fd("not a valid identifier", 2);
-}
-
-int check_valid(char *key)
-{
-	int i;
-
-	i = 0;
-	while (key[i])
-	{
-		if (!ft_isalnum(key[i]) || ft_strrchr("!@#$%^&*-+", key[i]) != NULL)
-		{
-//			printf("check valid key[%d] = %c\n", i, key[i]);
-			return (0);
-		}
-		i++;
-	}
-	return (1);
-}
+//int check_valid(char *key)
+//{
+//	int i;
+//
+//	i = 0;
+//	while (key[i])
+//	{
+//		if (!ft_isalnum(key[i]) || ft_strrchr("!@#$%^&*-+", key[i]) != NULL)
+//		{
+////			printf("check valid key[%d] = %c\n", i, key[i]);
+//			return (0);
+//		}
+//		i++;
+//	}
+//	return (1);
+//}
 
 int is_same_key(t_all *all, char *new_key)
 {
@@ -85,7 +75,7 @@ int check_valid_key(t_all *all, char *new_env)
 //	printf("new_env[%d] = |%c|\n", i, new_env[i]);
 //	printf("strlen      =|%zu|\n", ft_strlen(new_env));
 //	printf("i + 1       = |%d|\n", i + 1);
-	if (!check_valid(new_key))
+	if (!check_valid_argv(new_key))
 		ret_v = 1;
 	if (new_env[i] == '\0' && !is_same_key(all, new_key))
 		ret_v = 2;

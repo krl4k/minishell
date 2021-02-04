@@ -52,6 +52,19 @@ char *check_bin_func(char *cmd)
 		;
 	return (command);
 }
+
+void no_interrupt_exec(int signal_no)
+{
+	if (signal_no == SIGINT)
+	{
+		write(1, "\b\b  \b\b", 6);
+		write(1, "\n", 1);
+		printf("exec signal!!!\n");
+//		print_prompt(1);
+		signal(SIGINT, no_interrupt_exec);
+	}
+}
+
 /*!
 ** \author fgrisell
 **
@@ -70,6 +83,10 @@ void bin_func(t_all *all)
 //	{
 //		printf("cmd_agrv[%d] = %s\n", i, all->command_argv[i]);
 //	}
+
+	signal(SIGQUIT, no_interrupt_exec);
+
+
 	if ((pid = fork()) < 0)
 		ft_putendl_fd(strerror(errno), 2);
 	if (pid == 0)

@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static void error_mes_unset(char *command)
+void error_mes(char *command)
 {
 	ft_putstr_fd(PROMT_ERROR, 2);
 	ft_putstr_fd("'", 2);
@@ -29,7 +29,7 @@ int check_valid_argv(char *key)
 	i = 0;
 	while (key[i])
 	{
-		if (!ft_isalnum(key[i]) || ft_strrchr("!@#$%^&*-+", key[i]) != NULL)
+		if (!ft_isalnum(key[i]) || ft_strrchr("!@#$:%^&*-+={}~`[]/,.", key[i]) != NULL)
 			return (0);
 		i++;
 	}
@@ -48,17 +48,16 @@ int ft_unset(t_all *all)
 	i = 1;
 	while (all->command_argv[i])
 	{
-//		printf("cmd = %s\n", all->command_argv[i]);
 		j = 0;
 		if (!check_valid_argv(all->command_argv[i]))
 		{
-			error_mes_unset(all->command_argv[i]);
+			error_mes(all->command_argv[i]);
 		}
 		while (all->env_array->str[j])
 		{
-			if (ft_strcmp(all->env_array->str[j], all->command_argv[i]) == 0)
+			if (ft_strcmp(all->env_array->key[j], all->command_argv[i]) == 0)
 			{
-				printf("deleted %s\n", all->command_argv[i]);
+//				printf("deleted %s\n", all->command_argv[i]);
 				all->env_array->delete_one_by_key(all->env_array, all->command_argv[i]);
 			}
 			j++;

@@ -97,6 +97,9 @@ int             check_n(char *flag, int *i);
 int				check_quotes(char *str);
 int				ft_export(t_all *all);
 int             ft_export_print_sort_env(t_all *all);
+void			error_mes(char *command);
+
+int				check_valid_argv(char *key);
 int             check_valid_key(t_all *all, char *key);
 int				ft_unset(t_all *all);
 
