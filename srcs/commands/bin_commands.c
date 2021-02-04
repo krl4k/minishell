@@ -59,7 +59,7 @@ void no_interrupt_exec(int signal_no)
 	{
 		write(1, "\b\b  \b\b", 6);
 		write(1, "\n", 1);
-		printf("exec signal!!!\n");
+//		printf("exec signal!!!\n");
 //		print_prompt(1);
 		signal(SIGINT, no_interrupt_exec);
 	}
@@ -83,9 +83,6 @@ void bin_func(t_all *all)
 //	{
 //		printf("cmd_agrv[%d] = %s\n", i, all->command_argv[i]);
 //	}
-
-	signal(SIGQUIT, no_interrupt_exec);
-
 
 	if ((pid = fork()) < 0)
 		ft_putendl_fd(strerror(errno), 2);

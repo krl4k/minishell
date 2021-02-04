@@ -119,6 +119,10 @@ void			init_handler_pipes(t_all *all);
 void			free_handler_pipes(t_all *all);
 
 
+/*
+**  signals
+*/
+void no_interrupt_exec(int signal_no);
 
 
 #endif

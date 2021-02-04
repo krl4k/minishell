@@ -119,7 +119,10 @@ void ft_execution(t_all *all)
 	else if (!ft_strncmp(all->command_argv[0], "export", ft_strlen(all->command_argv[0])))
 		ft_export(all);
 	else
+	{
+		signal(SIGQUIT, no_interrupt_exec);
 		execute(all);
+	}
 //	ft_free_split(all->command_argv);
 }
 
@@ -209,7 +212,7 @@ void no_interrupt(int signal_no)
 		write(1, "\b\b  \b\b", 6);
 		write(1, "\n", 1);
 		print_prompt(1);
-		printf("c signal!!!\n");
+//		printf("c signal!!!\n");
 		signal(SIGINT, no_interrupt);
 	}
 }
