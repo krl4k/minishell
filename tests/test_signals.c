@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
-#include <wait.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 #include "../srcs/libft/libft.h"
 
@@ -48,7 +49,7 @@ void ctrl_slash(int fork)
 void ctrl_slash_cat(int fork)
 {
 	write(1, "\b\b  \b\b", 6);
-	write(1, "^\\Quit : 3\n", 12);
+	write(1, "^\\Quit: 3\n", 10);
 	signal(SIGQUIT, ctrl_slash_cat);
 }
 
@@ -56,12 +57,15 @@ void exec(char **av, char **env)
 {
 	pid_t pid;
 
+	signal(SIGINT, ctrl_c_cat);
+	signal(SIGQUIT, ctrl_slash_cat);
 	int status;
 	if ((pid = fork()) < 0)
 		perror("exec error!");
 	if (pid == 0)
 	{
-		signal(SIGINT, SIG_DFL);
+//		signal(SIGINT, SIG_DFL);
+
 		status = execve("/bin/cat", av, env);
 		exit(status);
 	}
@@ -86,8 +90,8 @@ int main(int ac, char **av, char **env)
 		get_next_line(0, &str);
 		if (strcmp(str, "cat") == 0)
 		{
-			signal(SIGINT, ctrl_c_cat);
-			signal(SIGQUIT, ctrl_slash_cat);
+//			signal(SIGINT, ctrl_c_cat);
+//			signal(SIGQUIT, ctrl_slash_cat);
 			exec(av, env);
 //			signal(SIGINT, ctrl_c);
 		}

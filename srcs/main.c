@@ -120,7 +120,7 @@ void ft_execution(t_all *all)
 		ft_export(all);
 	else
 	{
-		signal(SIGQUIT, no_interrupt_exec);
+
 		execute(all);
 	}
 //	ft_free_split(all->command_argv);
@@ -232,11 +232,13 @@ int main(int ac, char **av, char **env)
 
 	init_all(&all, env);
 	all->av = av;
-	signal(SIGQUIT, no_interrupt);
+//	signal(SIGQUIT, no_interrupt);
 	while (1)
 	{
+		signals_init(1);
 		print_prompt(1);
-		signal(SIGINT, no_interrupt);
+
+//		signal(SIGINT, no_interrupt);
 		get_input(all);
 		int i = 0;
 //		while (all->command_argv[i])

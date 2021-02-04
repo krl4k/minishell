@@ -81,11 +81,10 @@ char			*ft_strcpy(char *dst, const char *src);
 int				ft_lennbr(int nbr);
 char			**ft_setsplit(const char *s, char *set);
 void			*ft_free_split(char **res);
-ssize_t         ft_write(int fd, const void *buf, size_t count);
-ssize_t         ft_read(int fd, const void *buf, size_t count);
+ssize_t			ft_write(int fd, const void *buf, size_t count);
+ssize_t			ft_read(int fd, const void *buf, size_t count);
 int				ft_strcmp(char *s1, char *s2);
 int				ft_is_equal(char *s1, char *s2);
-//int             strcmp (const char *str1, const char *str2);
 size_t			ft_wordcount(char const *s, char *set);
 void			ft_perror(char *s);
 

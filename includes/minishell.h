@@ -88,6 +88,7 @@ void			print_prompt(int fd);
 ** execute function
 */
 
+void			signals_init(int mode);
 int             execute(t_all *all);
 void			bin_func(t_all *all);
 void            ft_echo(char **cmd);
