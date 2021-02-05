@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   signals_handler.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fgrisell <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/05 18:23:33 by fgrisell          #+#    #+#             */
+/*   Updated: 2021/02/05 18:23:34 by fgrisell         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
-void ctrl_c(int sig_num)
+static void	ctrl_c(int sig_num)
 {
 	if (sig_num == SIGINT)
 	{
@@ -10,31 +21,28 @@ void ctrl_c(int sig_num)
 		print_prompt(1);
 		signal(SIGINT, ctrl_c);
 	}
-//	write(1, ">", 1);
-
 }
 
-void ctrl_c_cat(int sig_num)
+static void	ctrl_c_cat(int sig_num)
 {
 	write(1, "\n", 1);
 	signal(SIGINT, ctrl_c_cat);
 }
 
-void ctrl_slash(int fork)
+static void	ctrl_slash(int fork)
 {
 	write(1, "\b\b  \b\b", 6);
 	signal(SIGQUIT, ctrl_slash);
 }
 
-
-void ctrl_slash_cat(int fork)
+static void	ctrl_slash_cat(int fork)
 {
 	write(1, "\b\b  \b\b", 6);
 	write(1, "^\\Quit: 3\n", 10);
 	signal(SIGQUIT, ctrl_slash_cat);
 }
 
-void signals_init(int mode)
+void		signals_init(int mode)
 {
 	if (mode == 1)
 	{

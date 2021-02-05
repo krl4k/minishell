@@ -12,11 +12,11 @@
 
 #include "minishell.h"
 
-static void shell_lvl(char *env_lvl)
+static void		shell_lvl(char *env_lvl)
 {
-	int i;
-	int lvl;
-	char *new_lvl;
+	int		i;
+	int		lvl;
+	char	*new_lvl;
 
 	i = 0;
 	while (env_lvl[i] && env_lvl[i] != '=')
@@ -31,32 +31,24 @@ static void shell_lvl(char *env_lvl)
 	}
 }
 
-static void init_env(t_all *all, char **env)
+static void		init_env(t_all *all, char **env)
 {
 	int i;
 
-	init_array(&all->env_array, 40);
-//	init_array(&all->env_array, 1);
-//	printf("start env init\n");
 	i = 0;
+	init_array(&all->env_array, 40);
 	while (env[i])
 	{
-		if (ft_strncmp(env[i],"SHLVL=", 6) == 0)
+		if (ft_strncmp(env[i], "SHLVL=", 6) == 0)
 			shell_lvl(env[i]);
-		if (ft_strncmp(env[i],"HOME=", 5) == 0)
+		if (ft_strncmp(env[i], "HOME=", 5) == 0)
 			all->old_home = ft_strdup(&env[i][5]);
 		all->env_array->push_back(all->env_array, env[i]);
-//		printf("env[%d] = %s\n", i, env[i]);
-//		printf("key[%d] = %s , ",i, all->env_array->key[i]);
-//		printf("val[%d] = %s\n",i, all->env_array->value[i]);
 		i++;
 	}
-//	all->env_array->str[all->env_array->current_size] = NULL;
-//	printf("env inited\n");
-//	all->env_array->print_array(all->env_array);
 }
 
-void init_all(t_all **all, char **env)
+void			init_all(t_all **all, char **env)
 {
 	if (!(*all = (t_all *)malloc(sizeof(t_all))))
 		perror(MALLOC_ERROR);

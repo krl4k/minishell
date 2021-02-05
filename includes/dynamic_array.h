@@ -17,6 +17,10 @@ typedef struct	s_array
 	void		(*print_array)(struct s_array *array);
 }				t_array;
 
-void init_array(t_array **array, int size);
+void			init_array(t_array **array, int size);
+void			resize(t_array *array, int size);
+void			free_array_strs(t_array *array, int i);
+
+
 
 #endif
