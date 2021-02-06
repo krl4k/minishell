@@ -75,7 +75,9 @@ void 	sep_semicolon(t_all *all)
 			j++;
 			k++;
 		}
+		printf("before\n");
 		ft_execution(all);
+		printf("after\n");
 		ft_free_split(all->command_argv);
 	}
 }

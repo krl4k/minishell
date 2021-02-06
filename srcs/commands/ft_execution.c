@@ -63,5 +63,6 @@ void ft_execution(t_all *all)
 
 		execute(all);
 	}
+	printf("after execution\n");
 //	ft_free_split(all->command_argv);
 }
