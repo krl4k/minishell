@@ -43,84 +43,59 @@ int is_numeric(char *cmd)
 ** \todo processing commands and putting them in an array
 */
 
-void ft_execution(t_all *all)
+int		arr_size(char **arr)
 {
+	int i;
 
-	printf("commands = \n");
-	int i = 0;
-
-	for (int j = 0; all->command_argv[j]; ++j)
-	{
-		printf("command[%d] = %s\n", j, all->command_argv[j]);
-	}
-	while (all->command_argv[i])
-	{
-//		printf("%s\n", all->command_argv[i]);
-		int len = 0;
-		if ((len = ft_strlen(all->command_argv[i])) > 0)
-			if (ft_strcmp(all->command_argv[i], "|") == 0
-			||ft_strcmp(all->command_argv[i], ">") == 0
-			||ft_strcmp(all->command_argv[i], "<") == 0
-			||ft_strcmp(all->command_argv[i], ">>") == 0)
-			{
-				pipes_work(all);
-				return;
-			}
+	i = 0;
+	while (arr[i] && ft_strcmp(arr[i], ";"))
 		i++;
-	}
-
-//	for (int j = 0; all->command_argv[j]; ++j)
-//	{
-//		printf("exec cmd[%d] = %s\n", j, all->command_argv[j]);
-//	}
-	if (!all->command_argv[0])
-		return;
-	if (!ft_strncmp(all->command_argv[0], "echo", 4))
-		ft_echo(all->command_argv);
-	else if (!ft_strncmp(all->command_argv[0], "pwd", ft_strlen(all->command_argv[0])))
-		ft_pwd(all->command_argv);
-	else if (!ft_strncmp(all->command_argv[0], "exit", ft_strlen(all->command_argv[0])))
-		ft_exit(all->command_argv);
-	else if (!ft_strncmp(all->command_argv[0], "cd", ft_strlen(all->command_argv[0])))
-		ft_cd(all);
-	else if (!ft_strncmp(all->command_argv[0], "env", ft_strlen(all->command_argv[0])))
-		ft_env(all);
-	else if (!ft_strncmp(all->command_argv[0], "unset", ft_strlen(all->command_argv[0])))
-		ft_unset(all);
-	else if (!ft_strncmp(all->command_argv[0], "export", ft_strlen(all->command_argv[0])))
-		ft_export(all);
-	else
-	{
-
-		execute(all);
-	}
-//	ft_free_split(all->command_argv);
+	return (i);
 }
 
-void 	ft_recursion(t_all *all)
+void 	sep_semicolon(t_all *all)
 {
-	while (*(all->command_argv))
+	int 	i;
+	int 	j;
+	int 	k;
+
+	i = 0;
+	k = 0;
+	while (all->tmp[k])
 	{
-		if (ft_strcmp(all->command_argv, ";")
-			*(*all->command_argv)
+		if (!(all->command_argv = (char **)ft_calloc(sizeof(char *), arr_size(&all->tmp[k]) + 1)))
+			return ;
+		if (!ft_strncmp(all->tmp[k], ";", ft_strlen(all->tmp[k])))
+			k++;
+		j = 0;
+		while (all->tmp[k] && ft_strncmp(all->tmp[k], ";", ft_strlen(all->tmp[k])))
+		{
+			all->command_argv[j] = ft_strdup(all->tmp[k]);
+			//printf("%s args %s tmp\n", all->command_argv[j], all->tmp[k]);
+			j++;
+			k++;
+		}
+		ft_execution(all);
+		ft_free_split(all->command_argv);
 	}
 }
 
 void    get_commands(t_all *all, char *line)
 {
 	int i = 0;
-	if (!(all->command_argv = (char **)ft_calloc(sizeof(char *), 2)))
+	if (!(all->tmp = (char **)ft_calloc(sizeof(char *), 2)))
 		return ;
-	if (!(all->command_argv = parse_line(line, all->command_argv)))
+	if (!(all->tmp = parse_line(line, all->tmp)))
 	{
 		free(line);
 		return;
 	}
+	printf("%s input\n", line);
 	free(line);
-	ft_execution(all);
+	sep_semicolon(all);
 //	while (cmd[i])
 //		printf("%s\n", cmd[i++]);
-	ft_free_split(all->command_argv);
+	ft_free_split(all->tmp);
 }
 /*!
 ** \brief return command and argument for execute func

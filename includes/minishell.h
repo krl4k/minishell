@@ -46,6 +46,7 @@ typedef struct		s_all
 	char			**command_argv;
 	char            **av;
 	char            **env;
+	char 			**tmp;
 	char			*old_home;
 	int				env_count;
 	t_array			*env_array;
@@ -111,7 +112,7 @@ char			*check_bin_func(char *cmd);
 int 			execute_commands(t_all *all);
 void			init_handler_pipes(t_all *all);
 void			free_handler_pipes(t_all *all);
-
+void			ft_execution(t_all *all);
 char			*get_env_by_key(t_all *all, char *key);
 
 
