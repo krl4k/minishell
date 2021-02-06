@@ -21,6 +21,21 @@ void execute_child_proc(t_all *all, char *command, int status)
 	exit(status);
 }
 
+static void check_error(char *command)
+{
+	int i;
+	int count_slash;
+
+	count_slash = 1;
+	i = 0;
+	if (!command)
+		return;
+	while (command[i])
+	{
+
+	}
+}
+
 void execute_parent_proc(t_all *all, int status, pid_t pid)
 {
 	if (WIFEXITED(status) != 0)
@@ -35,6 +50,8 @@ void execute_parent_proc(t_all *all, int status, pid_t pid)
 	}
 }
 
+
+//!todo stat, check file: file or dir?
 int execute(t_all *all)
 {
 	int		status;

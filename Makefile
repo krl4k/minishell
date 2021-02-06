@@ -10,7 +10,7 @@ COMMANDS_DIR   = $(SRCS_DIR)commands/
 
 HEADERS = ./includes/
 
-SRCS_ALL = $(addprefix $(SRCS_DIR), execute.c init_all.c main.c dynamic_array.c dynamic_array_utils.c)#ADD ALL FILES IN ./srcs/
+SRCS_ALL = $(addprefix $(SRCS_DIR), execute.c init_all.c main.c dynamic_array.c dynamic_array_utils.c get_env_by_key.c)#ADD ALL FILES IN ./srcs/
 SRC_PARSER = $(addprefix $(PARSER_DIR), )#ADD ALL FILES IN ./srcs/parser/
 SRC_COMMANDS = $(addprefix $(COMMANDS_DIR), error_handler.c bin_commands.c\
 				ft_cd.c ft_env.c ft_echo.c ft_export.c ft_export_print_sort_env.c \

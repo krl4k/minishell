@@ -119,6 +119,8 @@ int 			execute_commands(t_all *all);
 void			init_handler_pipes(t_all *all);
 void			free_handler_pipes(t_all *all);
 
+char			*get_env_by_key(t_all *all, char *key);
+
 
 /*
 **  signals
