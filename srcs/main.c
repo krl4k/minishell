@@ -75,9 +75,8 @@ void 	sep_semicolon(t_all *all)
 			j++;
 			k++;
 		}
-		printf("before\n");
+		all->command_argv[j] = NULL;
 		ft_execution(all);
-		printf("after\n");
 		ft_free_split(all->command_argv);
 	}
 }
@@ -92,7 +91,6 @@ void    get_commands(t_all *all, char *line)
 		free(line);
 		return;
 	}
-	printf("%s input\n", line);
 	free(line);
 	sep_semicolon(all);
 //	while (cmd[i])
