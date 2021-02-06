@@ -29,7 +29,7 @@ SRC =  ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c\
 	   ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c\
 	   ft_setsplit.c\
 	   ft_strlen.c ft_strdup.c ft_strcmp.c ft_is_equal.c\
-	   ft_perror.c \
+	   ft_perror.c ft_realloc.c\
 #SRC2 = ft_strlen.s ft_strdup.s ft_write.s ft_read.s ft_strcmp.s
 #
 #NM = nasm

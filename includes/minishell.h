@@ -43,14 +43,6 @@
 
 typedef struct		s_all
 {
-	unsigned int	c_pwd;
-    unsigned int	c_cd;
-    unsigned int	c_echo;
-    unsigned int	c_export;
-    unsigned int	c_unset;
-    unsigned int	c_env;
-    unsigned int	c_exit;
-    unsigned int	c_bin_command;
 	char			**command_argv;
 	char            **av;
 	char            **env;
@@ -93,9 +85,10 @@ int             execute(t_all *all);
 void			bin_func(t_all *all);
 void            ft_echo(char **cmd);
 int				ft_cd(t_all *all);
+void			ft_pwd(char **cmd);
 int				ft_env(t_all *all);
+void			ft_exit(char **cmd);
 int             check_n(char *flag, int *i);
-int				check_quotes(char *str);
 int				ft_export(t_all *all);
 int             ft_export_print_sort_env(t_all *all);
 void			error_mes(char *command);
@@ -125,7 +118,24 @@ char			*get_env_by_key(t_all *all, char *key);
 /*
 **  signals
 */
-void no_interrupt_exec(int signal_no);
+
+
+
+
+/*
+** parser func
+*/
+char **ft_realloc_args(char **p, int new_size);
+int		size_arr(char **cmd);
+int     is_numeric(char *cmd);
+
+char *get_controls(char *line, int *i);
+char	*get_in_quotes(char *line, int *i);
+void *syntax_error(void);
+char *get_word(char *line, int *i);
+char	**parse_line(char *line, char **cmd);
+
+
 
 
 #endif

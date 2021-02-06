@@ -12,7 +12,6 @@
 
 #include "minishell.h"
 
-int g_quotes;
 
 void print_prompt(int fd)
 {
@@ -20,14 +19,6 @@ void print_prompt(int fd)
 
 	prompt = "▓▒░(°◡°)░▒▓\0";
 	ft_putstr_fd(prompt, fd);
-}
-
-void ft_pwd(char **cmd)
-{
-	char *pwd;
-
-	pwd = getcwd(NULL, 0);
-	ft_putendl_fd(pwd, 1);
 }
 
 int is_numeric(char *cmd)
@@ -39,25 +30,6 @@ int is_numeric(char *cmd)
 		if (!ft_isdigit(cmd[i++]))
 			return (0);
 	return (1);
-}
-
-void ft_exit(char **cmd)
-{
-	int ret;
-
-	ret = 0;
-	if (cmd[1] && is_numeric(cmd[1]))
-		ret = ft_atoi(cmd[1]);
-	else if (cmd[1] && !is_numeric(cmd[1]))
-	{
-		write(2, PROMT_ERROR, ft_strlen(PROMT_ERROR));
-		write(2, ": ", 2);
-		write(2, cmd[0], ft_strlen(cmd[0]));
-		write(2, ": ", 2);
-		ft_putendl_fd("numeric argument required!", 2);
-	}
-	ft_free_split(cmd);
-	exit(ret);
 }
 
 /*!
@@ -92,7 +64,6 @@ void ft_execution(t_all *all)
 			||ft_strcmp(all->command_argv[i], ">>") == 0)
 			{
 				pipes_work(all);
-//				pipes(all, i);
 				return;
 			}
 		i++;
@@ -126,70 +97,59 @@ void ft_execution(t_all *all)
 //	ft_free_split(all->command_argv);
 }
 
-static int ft_strlen_c(char *str, char *set)
+void 	ft_recursion(t_all *all)
 {
-	int i;
+	while (*(all->command_argv))
+	{
+		if (ft_strcmp(all->command_argv, ";")
+			*(*all->command_argv)
+	}
+}
+
+void    get_commands(t_all *all, char *line)
+{
+	int i = 0;
+	if (!(all->command_argv = (char **)ft_calloc(sizeof(char *), 2)))
+		return ;
+	if (!(all->command_argv = parse_line(line, all->command_argv)))
+	{
+		free(line);
+		return;
+	}
+	free(line);
+	ft_execution(all);
+//	while (cmd[i])
+//		printf("%s\n", cmd[i++]);
+	ft_free_split(all->command_argv);
+}
+/*!
+** \brief return command and argument for execute func
+** \todo parser and validate
+** \warning you risk make shit
+*/
+
+void get_input(t_all *all)
+{
+	int		ret;
+	int		i;
+	char	c;
+	char	*input;
+
 
 	i = 0;
-	while (!ft_strchr(set, str[i]) && str[i])
-		i++;
-	return (i);
-}
-
-char *get_line_set(char *line, int *i, char *set)
-{
-	int k;
-	int j;
-	char *res;
-
-	j = *i;
-	if (ft_strchr(set, line[j]))
-		j++;
-	if (!(res = (char *) malloc(sizeof(char) * (ft_strlen_c(&line[j], set) + 1))))
-		return (NULL);
-	k = 0;
-	while (!ft_strchr(set, line[j]) && line[j])
-		res[k++] = line[j++];
-	//printf("%s line\n", &line[j]);
-	res[k] = '\0';
-	*i = j;
-	return (res);
-}
-
-void get_commands(t_all *all, char *line, int i)
-{
-	char **cmds;
-	int k;
-	int q;
-
-	cmds = (char **) malloc(sizeof(char *) * (ft_wordcount(line, " ")));
-	k = 0;
-	while (line[i] && line[i] != ';')
+	input = ft_strdup("");
+	while ((ret = read(0, &c, 1)) > 0 && c != '\n')
 	{
-		while (IS_SPACE(line[i]))
-			i++;
-		if (line[i] == '\"' || line[i] == '\'')
-		{
-			cmds[k] = get_line_set(line, &i, "\"\'");
-			i++;
-			k++;
-			continue;
-		}
-		if (line[i] != ' ' && line[i] != '\"' && line[i] != ';')
-		{
-			cmds[k] = get_line_set(line, &i, " ");
-			k++;
-			continue;
-		}
+		input[i++] = c;
+		input = ft_realloc(input, i, i + 1);
 	}
-	cmds[k] = NULL;
-	all->command_argv = cmds;
-	ft_execution(all);
-	if (line[i] == ';')
+	input[i] = '\0';
+	if(!ret)
 	{
-		i++;
-		get_commands(all, line, i);
+		free(input);
+		ft_exit(NULL);
 	}
+	get_commands(all, input);
 }
 
 /*!
@@ -197,25 +157,7 @@ void get_commands(t_all *all, char *line, int i)
 ** \todo parser and validate
 ** \warning you risk make shit
 */
-void get_input(t_all *all)
-{
-	char *line;
 
-	get_next_line(0, &line);
-	get_commands(all, line, 0);
-}
-
-void no_interrupt(int signal_no)
-{
-	if (signal_no == SIGINT)
-	{
-		write(1, "\b\b  \b\b", 6);
-		write(1, "\n", 1);
-		print_prompt(1);
-//		printf("c signal!!!\n");
-		signal(SIGINT, no_interrupt);
-	}
-}
 
 /*!
 ** Entrypoint in minishell
@@ -237,10 +179,8 @@ int main(int ac, char **av, char **env)
 	{
 		signals_init(1);
 		print_prompt(1);
-
 //		signal(SIGINT, no_interrupt);
 		get_input(all);
-		int i = 0;
 //		while (all->command_argv[i])
 //		{
 //			free(all->command_argv[i]);

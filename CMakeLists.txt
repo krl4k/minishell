@@ -55,7 +55,6 @@ add_executable(minishell_myFork
         srcs/libft/ft_toupper.c
         srcs/libft/get_next_line.c
         srcs/libft/libft.h
-        srcs/parser/parser_init.c
         srcs/execute.c
         srcs/init_all.c
         srcs/main.c

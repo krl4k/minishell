@@ -52,6 +52,5 @@ void			init_all(t_all **all, char **env)
 {
 	if (!(*all = (t_all *)malloc(sizeof(t_all))))
 		perror(MALLOC_ERROR);
-	(*all)->c_bin_command = 0;
 	init_env(*all, env);
 }

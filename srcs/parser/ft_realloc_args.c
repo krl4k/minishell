@@ -12,37 +12,37 @@
 
 #include "minishell.h"
 
-int     word_count(char *line)
+int		size_arr(char **cmd)
 {
-    int i;
-    int cnt_q;
+	int i;
 
-    i = 0;
-    cnt_q = 0;
-    while (*line)
-    {
-        if (*line == '\"')
-        {
-            cnt_q++;
-            *line++;
-            while (*line != '\"')
-                line++;
-            if (*line == '\"')
-            {
-                line++;
-                cnt_q++;
-            }
-
-        }
-    }
+	i = 0;
+	while (cmd[i])
+		i++;
+	return (i);
 }
 
-char    *split_q(char *line)
+char **ft_realloc_args(char **p, int new_size)
 {
-    char **res;
+	int i;
+	int size;
+	char **new;
 
-    if (!line)
-        return (NULL);
-    if (!(res = (char **)malloc(sizeof(char *) * (word_count(line) + 1))))
-        return (NULL);
+	if (!(new = (char **)ft_calloc(sizeof(char *), (new_size + 1))))
+		return (NULL);
+	i = 0;
+	size = size_arr(p);
+	while (i < size)
+	{
+		if (!(new[i] = ft_strdup(p[i])))
+		{
+			ft_free_split(p);
+			ft_free_split(new);
+			return (NULL);
+		}
+		i++;
+	}
+	ft_free_split(p);
+	new[i] = NULL;
+	return (new);
 }
