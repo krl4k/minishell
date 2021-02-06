@@ -38,6 +38,7 @@ char *ft_command(char *cmd_line)
         p = '\0';
         cmd[0] = ft_strjoin("", tmp);
         free(tmp);
-        return ()
+        return (NULL);
     }
+	return (NULL);
 }

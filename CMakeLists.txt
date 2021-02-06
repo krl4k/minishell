@@ -4,10 +4,13 @@ project(minishell_myFork C)
 set(CMAKE_C_STANDARD 11)
 
 include_directories(includes)
-include_directories(srcs/libft)
+include_directories(srcs/libft
+                    srcs/parser
+                    srcs/commands)
 
 add_executable(minishell_myFork
         includes/minishell.h
+        includes/dynamic_array.h
         srcs/libft/ft_atoi.c
         srcs/libft/ft_bzero.c
         srcs/libft/ft_calloc.c
@@ -58,9 +61,27 @@ add_executable(minishell_myFork
         srcs/execute.c
         srcs/init_all.c
         srcs/main.c
-        tests/execv_test.c
-        tests/flags.c
-        tests/start.c
-        tests/test2.c
-        tests/test_signals.c
-        srcs/parser/ft_split_echo.c srcs/parser/parser_q.c)
+        srcs/dynamic_array.c
+        srcs/dynamic_array_utils.c
+        srcs/ft_command.c
+        srcs/get_env_by_key.c
+        srcs/parser/ft_realloc_args.c
+        srcs/parser/get_controls.c
+        srcs/parser/get_in_quotes.c
+        srcs/parser/get_word.c
+        srcs/parser/parse_line.c
+        srcs/commands/bin_commands.c
+        srcs/commands/ft_cd.c
+        srcs/commands/ft_env.c
+        srcs/commands/ft_exit.c
+        srcs/commands/ft_export_print_sort_env.c
+        srcs/commands/ft_unset.c
+        srcs/commands/pipes_utils.c
+        srcs/commands/signals_handler.c
+        srcs/commands/error_handler.c
+        srcs/commands/ft_echo.c
+        srcs/commands/ft_execution.c
+        srcs/commands/ft_export.c
+        srcs/commands/ft_pwd.c
+        srcs/commands/pipes2.c
+        srcs/commands/pipes_utils2.c)
