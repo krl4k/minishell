@@ -181,7 +181,7 @@ void 	sep_semicolon(t_all *all)
 void    get_commands(t_all *all, char *line)
 {
 	int i = 0;
-	if (!(all->tmp = (char **)ft_calloc(sizeof(char *), 1)))
+	if (!(all->tmp = (char **)ft_calloc(sizeof(char *), 2)))
 		return ;
 	if (!parse_line(line, all))
 	{
@@ -199,31 +199,6 @@ void    get_commands(t_all *all, char *line)
 ** \todo parser and validate
 ** \warning you risk make shit
 */
-
-char	*get_input(void)
-{
-	int		ret;
-	int		i;
-	char	c;
-	char	*input;
-
-
-	i = 0;
-	input = ft_strdup("");
-	while ((ret = read(0, &c, 1)) > 0 && c != '\n')
-	{
-		input[i++] = c;
-		input = ft_realloc(input, i, i + 1);
-	}
-	input[i] = '\0';
-	if(!ret)
-	{
-		free(input);
-		ft_exit(NULL);
-		return (NULL);
-	}
-	return (input);
-}
 
 /*!
 ** \brief return command and argument for execute func

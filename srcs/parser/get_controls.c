@@ -20,23 +20,16 @@ char *get_controls(char *line, t_all *all)
 
 	if (line[all->i] == '>' && line[all->i + 1] == '>')
 	{
-		if (!(res = (char *)malloc(sizeof(char) * 3)))
+		all->i += 2;
+		if (!(res = ft_strdup(">>\0")))
 			return (NULL);
-		else
-		{	all->i += 2;
-			res = ft_strdup(">>\0");
-		}
 	}
 	else
 	{
 		q[0] = line[all->i];
-		if (!(res = (char *)malloc(sizeof(char) * 2)))
+		all->i++;
+		if  (!(res = ft_strdup(q)))
 			return (NULL);
-		else
-		{
-			all->i++;
-			res = ft_strdup(q);
-		}
 	}
 	return (res);
 }

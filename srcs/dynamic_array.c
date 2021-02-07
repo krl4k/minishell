@@ -70,7 +70,10 @@ void	push_back(t_array *ar, char *new)
 		i++;
 	(ar)->key[(ar)->current_size] = ft_substr(ar->str[ar->current_size], 0, i);
 	if ((r = (char *)ft_strchr(new, '=')) != NULL)
+	{
+		r++;
 		(ar)->value[(ar)->current_size] = ft_substr(r, 0, ft_strlen(r));
+	}
 	else
 		(ar)->value[(ar)->current_size] = ft_strdup("");
 	(ar)->current_size++;

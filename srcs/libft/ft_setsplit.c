@@ -41,7 +41,7 @@ static size_t	ft_strlen_sp(char const *s, char *set)
 	return (len);
 }
 
-void			*ft_free_split(char **res)
+void			ft_free_split(char **res)
 {
 	int i;
 
@@ -53,7 +53,6 @@ void			*ft_free_split(char **res)
 	}
 	free(res);
 	res = NULL;
-	return (res);
 }
 
 char			**ft_setsplit(const char *s, char *set)

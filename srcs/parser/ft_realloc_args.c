@@ -43,6 +43,5 @@ char **ft_realloc_args(char **p, int new_size)
 		i++;
 	}
 	ft_free_split(p);
-	new[i] = NULL;
 	return (new);
 }
