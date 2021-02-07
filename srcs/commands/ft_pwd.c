@@ -16,6 +16,10 @@ void    ft_pwd(char **cmd)
 {
 	char *pwd;
 
-	pwd = getcwd(NULL, 0);
-	ft_putendl_fd(pwd, 1);
+	if (!(pwd = getcwd(NULL, 0)))
+	{
+		ft_perror("pwd");
+	}
+	else
+		ft_putendl_fd(pwd, 1);
 }

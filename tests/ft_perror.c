@@ -22,5 +22,7 @@ int main()
 	int fd;
 
 	if ((fd = open("fjksd", O_RDONLY)))
-		ft_perror("open()");
+		perror("open()");
+
+	printf("lol\n");
 }

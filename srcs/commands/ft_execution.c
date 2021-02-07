@@ -41,10 +41,10 @@ void ft_execution(t_all *all)
 //	printf("commands = \n");
 //	int i = 0;
 //
-//	for (int j = 0; all->command_argv[j]; ++j)
-//	{
-//		printf("command[%d] = %s\n", j, all->command_argv[j]);
-//	}
+	for (int j = 0; all->command_argv[j]; ++j)
+	{
+		printf("command[%d] = %s\n", j, all->command_argv[j]);
+	}
 	if (is_pipes(all))
 		return;
 //	while (all->command_argv[i])

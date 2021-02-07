@@ -28,6 +28,33 @@ static char *home(t_all *all)
 	return ("NULL");
 }
 
+void 	save_oldpwd(t_all *all)
+{
+	int i;
+	char *old_pwd;
+	char *temp;
+
+	i = 0;
+	temp = NULL;
+	if (!(old_pwd = getcwd(NULL, 0)))
+		return;
+	while (i < all->env_array->current_size)
+	{
+		if (ft_is_equal("OLDPWD", all->env_array->key[i]))
+		{
+			all->env_array->delete_one_by_key(all->env_array, "OLDPWD");
+			temp = ft_strjoin("OLDPWD=",old_pwd);
+			all->env_array->push_back(all->env_array, temp);
+			free(temp);
+			free(old_pwd);
+			break;
+		}
+		i++;
+	}
+}
+
+
+
 int ft_cd(t_all *all)
 {
 	char *h;
@@ -47,6 +74,7 @@ int ft_cd(t_all *all)
 	}
 	else if (ft_strncmp(all->command_argv[1], "~", ft_strlen(all->command_argv[1])) == 0)
 		all->command_argv[1] = all->old_home;
+//	save_oldpwd(all);
 	if ((chdir(all->command_argv[1])) == -1)
 	{
 		ft_putstr_fd(PROMT_ERROR, 2);
