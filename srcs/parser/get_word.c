@@ -29,30 +29,27 @@ static int ft_strlen_set(char *str, char *set)
 	}
 	return (i);
 }
-char *get_word(char *line, int *i)
+char *get_word(char *line, t_all *all)
 {
 	char	*res;
 	int		size;
 	int		k;
-	int 	j;
 
-	j = *i;
 	k = 0;
-	if (!(size = ft_strlen_set(&line[j], "\'\" <>|;")))
+	if (!(size = ft_strlen_set(&line[all->i], "\'\" <>|;")))
 		return (NULL);
 	if (!(res = (char *)malloc(sizeof(char) * (size + 1))))
 		return (NULL);
-	while (!ft_strchr("\'\" <>|;", line[j]) && line[j])
+	while (!ft_strchr("\'\" <>|;", line[all->i]) && line[all->i])
 	{
-		if (line[j] == '\\')
+		if (line[all->i] == '\\')
 		{
-			j++;
+			all->i++;
 			continue;
 		}
-		res[k++] = line[j++];
+		res[k++] = line[all->i++];
 	}
 	res[k] = '\0';
-	*i = j;
 	return (res);
 }
 

@@ -13,76 +13,71 @@
 
 #include "minishell.h"
 
-static int check_quotes(char *line, int i, char **cmd, int *k)
+static int check_quotes(char *line, t_all *all)
 {
 	int j;
 	char *tmp;
 	char *tmp2;
 
-	j = *k;
-	if (ft_strchr("\'\"", line[i]))
+	if (ft_strchr("\'\"", line[all->i]))
 	{
-		if (!(*cmd = get_in_quotes(line, &i)))
+		if (!(all->tmp[all->k] = get_in_quotes(line, all)))
 			return (0);
 	}
-	else if (!ft_strchr("\'\"<>|; ", line[i]))
+	else if (!ft_strchr("\'\"<>|; ", line[all->i]))
 	{
-		if (!(*cmd = get_word(line, &i)))
+		if (!(all->tmp[all->k] = get_word(line, all)))
 			return (0);
 	}
-	else if (ft_strchr("<>|;", line[i]))
+	else if (ft_strchr("<>|;", line[all->i]))
 	{
-		if (!(*cmd = get_controls(line, &i)))
+		if (!(all->tmp[all->k] = get_controls(line, all)))
 			return (0);
 	}
-	if (ft_strchr("\'\"", line[i - 1]) && !ft_strchr("\'\"<>|;", line[i]) && !IS_SPACE(line[i]))
+	if (ft_strchr("\'\"", line[all->i - 1]) && !ft_strchr("\'\"<>|;", line[all->i]) && !IS_SPACE(line[all->i]))
 	{
-		tmp = *cmd;
-		tmp2 = get_word(line, &i);
-		if (!(*cmd = ft_strjoin(*cmd, tmp2)))
-			return (0);
-		free(tmp2);
-		free(tmp);
-	}
-	else if (ft_strchr("\'\"", line[i]) && !ft_strchr("\'\"<>|;", line[i - 1]) && !IS_SPACE(line[i - 1]))
-	{
-		tmp = *cmd;
-		tmp2 = get_in_quotes(line, &i);
-		if (!(*cmd = ft_strjoin(*cmd, tmp2)))
+		tmp = all->tmp[all->k];
+		tmp2 = get_word(line, all);
+		if (!(all->tmp[all->k] = ft_strjoin(all->tmp[all->k], tmp2)))
 			return (0);
 		free(tmp2);
 		free(tmp);
 	}
-	j++;
-	*k = j;
-	return (i);
+	else if (ft_strchr("\'\"", line[all->i]) && !ft_strchr("\'\"<>|;", line[all->i - 1]) && !IS_SPACE(line[all->i - 1]))
+	{
+		tmp = all->tmp[all->k];
+		tmp2 = get_in_quotes(line, all);
+		if (!(all->tmp[all->k] = ft_strjoin(all->tmp[all->k], tmp2)))
+			return (0);
+		free(tmp2);
+		free(tmp);
+	}
+	all->k++;
+	return (1);
 }
 
-char	**parse_line(char *line, char **cmd)
+int 		parse_line(char *line, t_all *all)
 {
-	int i;
-	int k;
-
-	i = 0;
-	k = 0;
-	while (line[i])
+	all->i = 0;
+	all->k = 0;
+	while (line[all->i])
 	{
-		while (IS_SPACE(line[i]) && line[i])
-			i++;
-		if (!(i = check_quotes(line, i, &cmd[k], &k)))
+		while (IS_SPACE(line[all->i]) && line[all->i])
+			all->i++;
+		if (!check_quotes(line, all))
 		{
-			ft_free_split(cmd);
-			return (NULL);
+			ft_free_split(all->tmp);
+			return (0);
 		}
 		else
 		{
-			if (!(cmd = ft_realloc_args(cmd,k + 1)))
+			if (!(all->tmp = ft_realloc_args(all->tmp, all->k + 1)))
 			{
-				ft_free_split(cmd);
-				return (NULL);
+				ft_free_split(all->tmp);
+				return (0);
 			}
 			continue;
 		}
 	}
-	return (cmd);
+	return (1);
 }

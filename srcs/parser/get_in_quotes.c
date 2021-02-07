@@ -34,24 +34,23 @@ void *syntax_error(void)
 	return (NULL);
 }
 
-char	*get_in_quotes(char *line, int *i)
+char	*get_in_quotes(char *line, t_all *all)
 {
 	char	*res;
 	char	q;
 	int		size;
 	int		k;
-	int 	j;
 
-	q = line[*i];
-	j = *i + 1;
+	q = line[all->i];
+	all->i++;
 	k = 0;
-	if (!(size = ft_strlen_c(&line[j], q)))
+	if (!(size = ft_strlen_c(&line[all->i], q)))
 		return (syntax_error());
 	if (!(res = (char *)malloc(sizeof(char) * (size + 1))))
 		return (NULL);
-	while (line[j] != q && line[j])
-		res[k++] = line[j++];
+	while (line[all->i] != q && line[all->i])
+		res[k++] = line[all->i++];
 	res[k] = '\0';
-	*i = j + 1;
+	all->i++;
 	return (res);
 }

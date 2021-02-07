@@ -12,30 +12,29 @@
 
 #include "minishell.h"
 
-char *get_controls(char *line, int *i)
+char *get_controls(char *line, t_all *all)
 {
-	int k;
+
 	char *res;
 	char q[2];
 
-	k = *i;
-	if (line[k] == '>' && line[k + 1] == '>')
+	if (line[all->i] == '>' && line[all->i + 1] == '>')
 	{
 		if (!(res = (char *)malloc(sizeof(char) * 3)))
 			return (NULL);
 		else
-		{	*i = k + 2;
+		{	all->i += 2;
 			res = ft_strdup(">>\0");
 		}
 	}
 	else
 	{
-		q[0] = line[k];
+		q[0] = line[all->i];
 		if (!(res = (char *)malloc(sizeof(char) * 2)))
 			return (NULL);
 		else
 		{
-			*i = k + 1;
+			all->i++;
 			res = ft_strdup(q);
 		}
 	}

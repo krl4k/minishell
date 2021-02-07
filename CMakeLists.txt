@@ -5,83 +5,18 @@ set(CMAKE_C_STANDARD 11)
 
 include_directories(includes)
 include_directories(srcs/libft
-                    srcs/parser
-                    srcs/commands)
+        srcs/parser
+        srcs/commands
+        srcs/)
+file(GLOB SOURCE_LIBFT "srcs/libft/*c") #ПРОХОДИТ ПО ПАПКЕ СОБИРАЯ ВСЕ ФАИЛЫ
+file(GLOB SOURCE_SRCS "srcs/*.c") #ПРОХОДИТ ПО ПАПКЕ СОБИРАЯ ВСЕ ФАИЛЫ
+file(GLOB SOURCE_COMMANDS "srcs/commands/*.c") #ПРОХОДИТ ПО ПАПКЕ СОБИРАЯ ВСЕ ФАИЛЫ
+file(GLOB SOURCE_PARSER "srcs/parser/*.c") #ПРОХОДИТ ПО ПАПКЕ СОБИРАЯ ВСЕ ФАИЛЫ
+
 
 add_executable(minishell_myFork
-        includes/minishell.h
-        includes/dynamic_array.h
-        srcs/libft/ft_atoi.c
-        srcs/libft/ft_bzero.c
-        srcs/libft/ft_calloc.c
-        srcs/libft/ft_isalnum.c
-        srcs/libft/ft_isalpha.c
-        srcs/libft/ft_isascii.c
-        srcs/libft/ft_isdigit.c
-        srcs/libft/ft_isprint.c
-        srcs/libft/ft_itoa.c
-        srcs/libft/ft_lennbr.c
-        srcs/libft/ft_lstadd_back.c
-        srcs/libft/ft_lstadd_front.c
-        srcs/libft/ft_lstclear.c
-        srcs/libft/ft_lstdelone.c
-        srcs/libft/ft_lstfree_cont.c
-        srcs/libft/ft_lstiter.c
-        srcs/libft/ft_lstlast.c
-        srcs/libft/ft_lstmap.c
-        srcs/libft/ft_lstnew.c
-        srcs/libft/ft_lstsize.c
-        srcs/libft/ft_memccpy.c
-        srcs/libft/ft_memchr.c
-        srcs/libft/ft_memcmp.c
-        srcs/libft/ft_memcpy.c
-        srcs/libft/ft_memmove.c
-        srcs/libft/ft_memset.c
-        srcs/libft/ft_putchar_fd.c
-        srcs/libft/ft_putendl_fd.c
-        srcs/libft/ft_putnbr_fd.c
-        srcs/libft/ft_putstr_fd.c
-        srcs/libft/ft_setsplit.c
-        srcs/libft/ft_split.c
-        srcs/libft/ft_strchr.c
-        srcs/libft/ft_strcpy.c
-        srcs/libft/ft_strjoin.c
-        srcs/libft/ft_strlcat.c
-        srcs/libft/ft_strlcpy.c
-        srcs/libft/ft_strmapi.c
-        srcs/libft/ft_strncmp.c
-        srcs/libft/ft_strnstr.c
-        srcs/libft/ft_strrchr.c
-        srcs/libft/ft_strtrim.c
-        srcs/libft/ft_substr.c
-        srcs/libft/ft_tolower.c
-        srcs/libft/ft_toupper.c
-        srcs/libft/get_next_line.c
-        srcs/libft/libft.h
-        srcs/execute.c
-        srcs/init_all.c
-        srcs/main.c
-        srcs/dynamic_array.c
-        srcs/dynamic_array_utils.c
-        srcs/ft_command.c
-        srcs/get_env_by_key.c
-        srcs/parser/ft_realloc_args.c
-        srcs/parser/get_controls.c
-        srcs/parser/get_in_quotes.c
-        srcs/parser/get_word.c
-        srcs/parser/parse_line.c
-        srcs/commands/bin_commands.c
-        srcs/commands/ft_cd.c
-        srcs/commands/ft_env.c
-        srcs/commands/ft_exit.c
-        srcs/commands/ft_export_print_sort_env.c
-        srcs/commands/ft_unset.c
-        srcs/commands/pipes_utils.c
-        srcs/commands/signals_handler.c
-        srcs/commands/error_handler.c
-        srcs/commands/ft_echo.c
-        srcs/commands/ft_execution.c
-        srcs/commands/ft_export.c
-        srcs/commands/ft_pwd.c
-        srcs/commands/pipes2.c
-        srcs/commands/pipes_utils2.c)
+        ${SOURCE_PARSER}
+        ${SOURCE_LIBFT}
+        ${SOURCE_COMMANDS}
+        ${SOURCE_SRCS}
+        )

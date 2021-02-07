@@ -183,7 +183,7 @@ void    get_commands(t_all *all, char *line)
 	int i = 0;
 	if (!(all->tmp = (char **)ft_calloc(sizeof(char *), 1)))
 		return ;
-	if (!(all->tmp = parse_line(line, all->tmp)))
+	if (!parse_line(line, all))
 	{
 		free(line);
 		return;
@@ -200,7 +200,7 @@ void    get_commands(t_all *all, char *line)
 ** \warning you risk make shit
 */
 
-void get_input(t_all *all)
+char	*get_input(void)
 {
 	int		ret;
 	int		i;
@@ -220,8 +220,9 @@ void get_input(t_all *all)
 	{
 		free(input);
 		ft_exit(NULL);
+		return (NULL);
 	}
-	get_commands(all, input);
+	return (input);
 }
 
 /*!
@@ -252,7 +253,9 @@ int main(int ac, char **av, char **env)
 		signals_init(1);
 		print_prompt(1);
 //		signal(SIGINT, no_interrupt);
-		get_input(all);
+		//get_input(all);
+		all->input = get_input();
+		get_commands(all, all->input);
 //		while (all->command_argv[i])
 //		{
 //			free(all->command_argv[i]);

@@ -48,6 +48,7 @@ typedef struct		s_all
 	char            **env;
 	char 			**tmp;
 	char			*old_home;
+	char			*input;
 	int				env_count;
 	t_array			*env_array;
 	char			*in_path;
@@ -62,6 +63,8 @@ typedef struct		s_all
 	int				input_file_descriptor;
 	int				output_file_descriptor;
 	int 			status;
+	int 			i;
+	int 			k;
 }					t_all;
 /*
 ** for init any variables
@@ -130,11 +133,11 @@ char **ft_realloc_args(char **p, int new_size);
 int		size_arr(char **cmd);
 int     is_numeric(char *cmd);
 
-char *get_controls(char *line, int *i);
-char	*get_in_quotes(char *line, int *i);
+char *get_controls(char *line, t_all *all);
+char	*get_in_quotes(char *line, t_all *all);
 void *syntax_error(void);
-char *get_word(char *line, int *i);
-char	**parse_line(char *line, char **cmd);
+char *get_word(char *line, t_all *all);
+int 	parse_line(char *line, t_all *all);
 
 
 
