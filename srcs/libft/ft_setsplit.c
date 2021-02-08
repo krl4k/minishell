@@ -51,8 +51,11 @@ void			ft_free_split(char **res)
 		free(res[i]);
 		res[i++] = NULL;
 	}
-	free(res);
-	res = NULL;
+	if (res)
+	{
+		free(res);
+		res = NULL;
+	}
 }
 
 char			**ft_setsplit(const char *s, char *set)
