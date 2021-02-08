@@ -64,17 +64,11 @@ int 		parse_line(char *line, t_all *all)
 		while (IS_SPACE(line[all->i]) && line[all->i])
 			all->i++;
 		if (!check_quotes(line, all))
-		{
-			ft_free_split(all->tmp);
 			return (0);
-		}
 		else
 		{
 			if (!(all->tmp = ft_realloc_args(all->tmp, all->k + 1)))
-			{
-				ft_free_split(all->tmp);
 				return (0);
-			}
 			continue;
 		}
 	}
