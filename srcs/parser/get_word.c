@@ -21,7 +21,6 @@ static int ft_strlen_set(const char *str, const char *set)
 	k = 0;
 	while (!ft_strchr(set, str[k]) && str[k])
 	{
-		printf("%s in len\n", &str[k]);
 		if (str[k] == '\\')
 		{
 			k += 2;
@@ -43,7 +42,6 @@ char *get_word(char *line, t_all *all)
 	k = 0;
 	if (!(size = ft_strlen_set(&line[all->i], "\'\" <>|;")))
 		return (NULL);
-	printf("%d size\n", size);
 	if (!(res = (char *)malloc(sizeof(char) * size + 1)))
 		return (NULL);
 	while (k < size)
@@ -51,14 +49,13 @@ char *get_word(char *line, t_all *all)
 		if (line[all->i] == '\\')
 		{
 			all->i++;
-			res[k] = 1;
+			res[k] = line[all->i++];
 			k++;
 			continue;
 		}
 		res[k++] = line[all->i++];
 	}
 	res[k] = '\0';
-	printf("%s res\n", res);
 	return (res);
 }
 

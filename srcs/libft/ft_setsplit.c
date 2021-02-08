@@ -50,8 +50,7 @@ void			ft_free_split(char **res)
 		return;
 	while (res[i])
 	{
-		if (res[i])
-			free(res[i]);
+		free(res[i]);
 		res[i++] = NULL;
 	}
 	if (res)

@@ -44,24 +44,13 @@ int check_flag(char *cmd)
 	return (1);
 }
 
-void print_args(char **args)
-{
-	int i;
-
-	i = 0;
-	while (args[i])
-	{
-		write(1, args[i], ft_strlen(args[i]));
-		write(1, " ", 1);
-		i++;
-	}
-}
 void    ft_echo(char **cmd)
 {
 	int i;
 	int flag;
 
 	i = 1;
+	flag = 0;
 	if (cmd[i])
 		flag = check_flag(cmd[1]);
 	while(cmd[i])
