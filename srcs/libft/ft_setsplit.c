@@ -48,10 +48,6 @@ void			ft_free_split(char **res)
 	i = 0;
 	if (!res)
 		return;
-	for (int j = 0; res[j]; j++)
-	{
-		printf("ft_free_split = %s\n", res[j]);
-	}
 	while (res[i])
 	{
 		if (res[i])
