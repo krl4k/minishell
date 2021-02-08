@@ -40,7 +40,6 @@ int is_numeric(char *cmd)
 ** \example FLAGS	(n > 0 && n < argc) - argv[n] = "-la" (flag)(optional)
 ** \example LAST ARGUMENT: argv[argc] = NULL;
 ** \warning The last argument should always be NULL!
-** \todo processing commands and putting them in an array
 */
 
 int		arr_size(char **arr)

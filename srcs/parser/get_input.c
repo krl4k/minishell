@@ -35,7 +35,6 @@ int is_numeric(char *cmd)
 
 /*!
 ** \brief return command and argument for execute func
-** \todo parser and validate
 ** \warning you risk make shit
 */
 char	*get_input(void)

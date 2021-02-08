@@ -27,10 +27,10 @@ static void		shell_lvl(char *env_lvl)
 		lvl = ft_atoi(&env_lvl[i]);
 		lvl++;
 		new_lvl = ft_itoa(lvl);
-		printf("new lvl   = %s\n", new_lvl);
-		printf("new env[i]= %s\n", &env_lvl[i]);
+//		printf("new lvl   = %s\n", new_lvl);
+//		printf("new env[i]= %s\n", &env_lvl[i]);
 		ft_memcpy(&env_lvl[i], new_lvl, ft_strlen(new_lvl));
-		printf("env lvl = %s\n", env_lvl);
+//		printf("env lvl = %s\n", env_lvl);
 //		free(new_lvl);
 	}
 }
@@ -57,8 +57,8 @@ void			init_all(t_all **all, char **env)
 	if (!(*all = (t_all *)malloc(sizeof(t_all))))
 		perror(MALLOC_ERROR);
 	init_env(*all, env);
-	for (int i = 0; (*all)->env_array->value[i]; i++)
-	{
-		printf("envarray[%d] = %s\n",i, (*all)->env_array->value[i]);
-	}
+//	for (int i = 0; (*all)->env_array->value[i]; i++)
+//	{
+//		printf("envarray[%d] = %s\n",i, (*all)->env_array->value[i]);
+//	}
 }
