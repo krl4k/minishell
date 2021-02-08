@@ -57,39 +57,22 @@ int		arr_size(char **arr)
 ** return index of sep, or index of end elem
 */
 
-int found_sep_pos(char **array)
-{
-	int i;
-
-	i = 0;
-	while (array[i])
-	{
-		if (ft_strcmp(array[i], ";") == 0)
-		{
-			printf("array[%d] = %s\n" ,i,array[i]);
-			return (i);
-		}
-		i++;
-	}
-	return (i);
-}
-
-int count_sep(char **array)
-{
-	int i;
-	int count;
-
-	count = 0;
-	i = 0;
-	while (array[i])
-	{
-		if (ft_strcmp(array[i], ";") == 0)
-			count++;
-		i++;
-	}
-	return (count + 1);
-
-}
+//int found_sep_pos(char **array)
+//{
+//	int i;
+//
+//	i = 0;
+//	while (array[i])
+//	{
+//		if (ft_strcmp(array[i], ";") == 0)
+//		{
+//			printf("array[%d] = %s\n" ,i,array[i]);
+//			return (i);
+//		}
+//		i++;
+//	}
+//	return (i);
+//}
 
 void 	sep_semicolon(t_all *all)
 {
@@ -98,84 +81,31 @@ void 	sep_semicolon(t_all *all)
 	int j;
 	int k;
 
-	i = 0;
 	k = 0;
-
-	for (int l = 0; all->tmp[l]; l++)
+	while (all->tmp[k])
 	{
-		printf("tmp[%d] = %s\n", l, all->tmp[l]);
+		printf("tmp[%d] = %s\n", k, all->tmp[k]);
+		k++;
 	}
-
-	int c_sep = count_sep(all->tmp);
-//	printf("c_sep = %d\n", c_sep);
-	j = 0;
-	while (j < c_sep && all->tmp[k])
+	k = 0;
+	while (all->tmp[k])
 	{
-//		printf("-------------------------------------------------------------\n");
-		i = 0;
-		int pos_sep = found_sep_pos(&all->tmp[k]);
-//		printf("pos ; = %d\n", pos_sep);
-		if (!(all->command_argv = (char **) ft_calloc(pos_sep + 1, sizeof(char *))))
-			return;
-		while (all->tmp[k] && (ft_strcmp(all->tmp[k], ";") !=0) && i < pos_sep)
-		{
-			all->command_argv[i] = ft_strdup(all->tmp[k]);
-//			free(all->tmp[k]);
+		if (!(all->command_argv = (char **)ft_calloc(sizeof(char *), arr_size(&all->tmp[k]) + 1)))
+			return ;
+		if (!ft_strncmp(all->tmp[k], ";", ft_strlen(all->tmp[k])))
 			k++;
-			i++;
-		}
-		if (all->tmp[k] && ft_strcmp(all->tmp[k], ";") == 0)
+		j = 0;
+		while (all->tmp[k] && ft_strcmp(all->tmp[k], ";"))
 		{
-//			printf("is sep!!!\n");
+			all->command_argv[j] = ft_strdup(all->tmp[k]);
+			j++;
 			k++;
 		}
-		all->command_argv[i] = NULL;
-//		for (int l = 0; all->command_argv[l]; l++)
-//		{
-//			printf("cmd_argv[%d] = %s\n", l, all->command_argv[l]);
-//		}
+		all->command_argv[j] = NULL;
 		ft_execution(all);
-//		printf("-------------------------------------------------------------\n");
-
-		for (int l = 0; all->command_argv[l]; l++)
-		{
-			free(all->command_argv[l]);
-			all->command_argv[l] = NULL;
-		}
-		free(all->command_argv);
+		ft_free_split(all->command_argv);
 	}
-
-	int m = 0;
-	while (all->tmp[m])
-	{
-		if (all->tmp[m])
-		{
-			free(all->tmp[m]);
-			all->tmp[m] = NULL;
-		}
-		m++;
-	}
-	if (all->tmp)
-		free(all->tmp);
-
-//	while (all->tmp[k])
-//	{
-//		if (!(all->command_argv = (char **)ft_calloc(sizeof(char *), arr_size(&all->tmp[k]) + 1)))
-//			return ;
-//		if (!ft_strncmp(all->tmp[k], ";", ft_strlen(all->tmp[k])))
-//			k++;
-//		j = 0;
-//		while (all->tmp[k] && ft_strcmp(all->tmp[k], ";"))
-//		{
-//			all->command_argv[j] = ft_strdup(all->tmp[k]);
-//			printf("%s args %s tmp\n", all->command_argv[j], all->tmp[k]);
-//			j++;
-//			k++;
-//		}
-//		all->command_argv[j] = NULL;
-//		ft_execution(all);
-//		ft_free_split(all->command_argv);
-//	}
+	ft_free_split(all->tmp);
 }
 
 void    get_commands(t_all *all, char *line)
@@ -185,6 +115,7 @@ void    get_commands(t_all *all, char *line)
 		return ;
 	if (!parse_line(line, all))
 	{
+		ft_free_split(all->tmp);
 		free(line);
 		return;
 	}

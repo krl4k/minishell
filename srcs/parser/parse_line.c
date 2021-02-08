@@ -42,7 +42,7 @@ static int check_quotes(char *line, t_all *all)
 		free(tmp2);
 		free(tmp);
 	}
-	else if (ft_strchr("\'\"", line[all->i]) && !ft_strchr("\'\"<>|;", line[all->i - 1]) && !IS_SPACE(line[all->i - 1]))
+	else if (line[all->i] && ft_strchr("\'\"", line[all->i]) && !ft_strchr("<>|;", line[all->i - 1]) && !IS_SPACE(line[all->i - 1]))
 	{
 		tmp = all->tmp[all->k];
 		tmp2 = get_in_quotes(line, all);

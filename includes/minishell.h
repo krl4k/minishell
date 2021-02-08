@@ -136,7 +136,7 @@ int     is_numeric(char *cmd);
 char *get_controls(char *line, t_all *all);
 char	*get_in_quotes(char *line, t_all *all);
 void *syntax_error(void);
-char *get_word(char *line, t_all *all);
+char	*get_word(char *line, t_all *all);
 int 	parse_line(char *line, t_all *all);
 char	*get_input(void);
 

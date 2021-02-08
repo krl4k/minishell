@@ -41,9 +41,9 @@ char *get_word(char *line, t_all *all)
 	k = 0;
 	if (!(size = ft_strlen_set(&line[all->i], "\'\" <>|;")))
 		return (NULL);
-	if (!(res = (char *)malloc(sizeof(char) * size)))
+	if (!(res = (char *)malloc(sizeof(char) * size + 1)))
 		return (NULL);
-	while (!ft_strchr("\'\" <>|;", line[all->i]) && line[all->i])
+	while (k < size)
 	{
 		if (ft_strchr("\\", line[all->i]))
 		{

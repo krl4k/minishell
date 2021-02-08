@@ -11,48 +11,65 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int ft_strlen_c(char *str, char q)
+/*
+int		size_arr(char **cmd)
 {
 	int i;
 
-	i = 1;
-	while (str[i])
-	{
-		if (str[i] == q && str[i - 1] != '\\')
-			return (i);
-		i++;
-	}
-	if (str[i] != q)
-		return (0);
-	else
+	i = 0;
+	while (cmd[i])
 		i++;
 	return (i);
 }
 
-void *syntax_error(void)
+int is_numeric(char *cmd)
 {
-	write(1, "Syntax error\n", 13);
-	return (NULL);
-}
+	int i;
 
-char	*get_in_quotes(char *line, t_all *all)
+	i = 0;
+	while (cmd[i])
+		if (!ft_isdigit(cmd[i++]))
+			return (0);
+	return (1);
+}*/
+
+/*!
+** \brief return command and argument for execute func
+** \todo parser and validate
+** \warning you risk make shit
+*/
+char	*get_input(void)
 {
-	char	*res;
-	char	q;
-	int		size;
-	int		k;
+	int		ret;
+	int		i;
+	char	c;
+	char	*input;
 
-	q = line[all->i];
-	line[all->i] = 1;
-	k = 0;
-	if (!(size = ft_strlen_c(&line[all->i], q)))
-		return (syntax_error());
-	if (!(res = (char *)malloc(sizeof(char) * (size + 1))))
+
+	i = 0;
+	input = (char *)malloc(sizeof(char));
+	while ((ret = read(0, &c, 1)) > 0 && c != '\n')
+	{
+
+		input[i++] = c;
+		input = ft_realloc(input, i, i + 1);
+	}
+	input[i] = '\0';
+	if(!ret)
+	{
+		free(input);
+		ft_exit(NULL);
 		return (NULL);
-	while (line[all->i] != q && line[all->i])
-		res[k++] = line[all->i++];
-	res[k] = '\0';
-	all->i++;
-	return (res);
+	}
+	return (input);
 }
+/*
+int main()
+{
+	char *line;
+
+		line = get_input();
+		printf("%s\n", line);
+		free(line);
+}*/
+
