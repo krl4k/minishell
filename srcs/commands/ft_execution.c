@@ -83,5 +83,4 @@ void ft_execution(t_all *all)
 		ft_export(all);
 	else
 		execute(all);
-	//printf("end commands\n");
 }

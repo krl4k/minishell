@@ -11,25 +11,65 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-char *get_controls(char *line, t_all *all)
+/*
+int		size_arr(char **cmd)
 {
+	int i;
 
-	char *res;
-	char q[2];
-
-	if (line[all->i] == '>' && line[all->i + 1] == '>')
-	{
-		all->i += 2;
-		if (!(res = ft_strdup(">>\0")))
-			return (NULL);
-	}
-	else
-	{
-		q[0] = line[all->i];
-		all->i++;
-		if  (!(res = ft_strdup(q)))
-			return (NULL);
-	}
-	return (res);
+	i = 0;
+	while (cmd[i])
+		i++;
+	return (i);
 }
+
+int is_numeric(char *cmd)
+{
+	int i;
+
+	i = 0;
+	while (cmd[i])
+		if (!ft_isdigit(cmd[i++]))
+			return (0);
+	return (1);
+}*/
+
+/*!
+** \brief return command and argument for execute func
+** \todo parser and validate
+** \warning you risk make shit
+*/
+char	*get_input(void)
+{
+	int		ret;
+	int		i;
+	char	c;
+	char	*input;
+
+
+	i = 0;
+	input = (char *)malloc(sizeof(char));
+	while ((ret = read(0, &c, 1)) > 0 && c != '\n')
+	{
+
+		input[i++] = c;
+		input = ft_realloc(input, i, i + 1);
+	}
+	input[i] = '\0';
+	if(!ret)
+	{
+		free(input);
+		ft_exit(NULL);
+		return (NULL);
+	}
+	return (input);
+}
+/*
+int main()
+{
+	char *line;
+
+		line = get_input();
+		printf("%s\n", line);
+		free(line);
+}*/
+

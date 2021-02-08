@@ -12,47 +12,47 @@
 
 #include "minishell.h"
 
-static int ft_strlen_set(char *str, char *set)
+static int ft_strlen_set(const char *str, const char *set)
 {
 	int i;
+	int k;
 
 	i = 0;
-	while (!ft_strchr(set, *str) && *str)
+	k = 0;
+	while (!ft_strchr(set, str[k]) && str[k])
 	{
-		if (*str == '\\')
+		if (str[k] == '\\')
 		{
-			str++;
+			k++;
 			continue;
 		}
-		str++;
+		k++;
 		i++;
 	}
 	return (i);
 }
-char *get_word(char *line, int *i)
+
+char *get_word(char *line, t_all *all)
 {
 	char	*res;
 	int		size;
 	int		k;
-	int 	j;
 
-	j = *i;
 	k = 0;
-	if (!(size = ft_strlen_set(&line[j], "\'\" <>|;")))
+	if (!(size = ft_strlen_set(&line[all->i], "\'\" <>|;")))
 		return (NULL);
-	if (!(res = (char *)malloc(sizeof(char) * (size + 1))))
+	if (!(res = (char *)malloc(sizeof(char) * size + 1)))
 		return (NULL);
-	while (!ft_strchr("\'\" <>|;", line[j]) && line[j])
+	while (k < size)
 	{
-		if (line[j] == '\\')
+		if (ft_strchr("\\", line[all->i]))
 		{
-			j++;
+			all->i++;
 			continue;
 		}
-		res[k++] = line[j++];
+		res[k++] = line[all->i++];
 	}
 	res[k] = '\0';
-	*i = j;
 	return (res);
 }
 

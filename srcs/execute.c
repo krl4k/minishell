@@ -69,6 +69,7 @@ int execute(t_all *all)
 	{
 		waitpid(pid, &status, 0);
 		execute_parent_proc(all, status, 0);
+		free(command);
 	}
 //	bin_func(all);
 	return (EXIT_SUCCESS);
