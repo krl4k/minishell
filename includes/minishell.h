@@ -117,6 +117,7 @@ void			init_handler_pipes(t_all *all);
 void			free_handler_pipes(t_all *all);
 void			ft_execution(t_all *all);
 char			*get_env_by_key(t_all *all, char *key);
+void			print_error(t_all *all);
 
 
 /*

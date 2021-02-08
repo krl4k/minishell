@@ -27,11 +27,12 @@ void	child_proccess(t_all *all, int index)
 	command = check_bin_func(all->command_argv[all->arg_location[index]]);
 	if (!command)
 		exit(3);
-	execve(command, &all->command_argv[all->arg_location[index]],
+	all->status = execve(command, &all->command_argv[all->arg_location[index]],
 		all->env_array->str);
 	if (command)
 		free(command);
-	ft_perror("execution of command failed");
+//	ft_perror("command not found");
+	exit(all->status);
 }
 
 void	parent_proccess(t_all *all, int index)
@@ -48,10 +49,7 @@ void	parent_proccess(t_all *all, int index)
 	{
 		if (WEXITSTATUS(all->status) == 3)
 		{
-			ft_putstr_fd(PROMT_ERROR, 2);
-			ft_putstr_fd(all->command_argv[0], 2);
-			ft_putstr_fd(": ", 2);
-			ft_putendl_fd("command not found", 2);
+			print_error(all);
 		}
 	}
 }
@@ -115,17 +113,3 @@ int		pipes_work(t_all *all)
 	free_handler_pipes(all);
 	return (0);
 }
-
-/*
-**	for (int i = 0; all->command_argv[i]; ++i)
-**	{
-**		printf("cmd[%d] = %s\n", i, all->command_argv[i]);
-**	}
-*/
-
-/*
-**	printf("count	   pipes = %d\n", all->pipes);
-**	printf("flag input redir = %d\n", all->input_redir_flag);
-**	printf("flag outputredir = %d\n", all->output_redir_flag);
-**	printf("flag appnd redir = %d\n", all->append_redir_flag);
-*/

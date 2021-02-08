@@ -36,16 +36,21 @@ static void check_error(char *command)
 	}
 }
 
+void print_error(t_all *all)
+{
+	ft_putstr_fd(PROMT_ERROR, 2);
+	ft_putstr_fd(all->command_argv[0], 2);
+	ft_putstr_fd(": ", 2);
+	ft_putendl_fd("command not found", 2);
+}
+
 void execute_parent_proc(t_all *all, int status, pid_t pid)
 {
 	if (WIFEXITED(status) != 0)
 	{
 		if (WEXITSTATUS(status) == 3)
 		{
-			ft_putstr_fd(PROMT_ERROR, 2);
-			ft_putstr_fd("command not found", 2);
-			ft_putstr_fd(": ", 2);
-			ft_putendl_fd(all->command_argv[0], 2);
+			print_error(all);
 		}
 	}
 }
