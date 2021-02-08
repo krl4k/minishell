@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void	copy_after_deleted(t_array *array, int i, int flag)
+static void	copy_after_deleted(t_array *array, int i, int flag)
 {
 	while ((array)->str[i] && i < (array)->current_size - 1)
 	{

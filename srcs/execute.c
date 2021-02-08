@@ -49,12 +49,9 @@ void execute_parent_proc(t_all *all, int status, pid_t pid)
 	if (WIFEXITED(status) != 0)
 	{
 		if (WEXITSTATUS(status) == 3)
-		{
 			print_error(all);
-		}
 	}
 }
-
 
 //!todo stat, check file: file or dir?
 int execute(t_all *all)
@@ -74,8 +71,11 @@ int execute(t_all *all)
 	{
 		waitpid(pid, &status, 0);
 		execute_parent_proc(all, status, 0);
-		free(command);
+		if (command)
+			free(command);
 	}
+//	if (command)
+//		free(command);
 //	bin_func(all);
 	return (EXIT_SUCCESS);
 }

@@ -22,4 +22,6 @@ void    ft_pwd(char **cmd)
 	}
 	else
 		ft_putendl_fd(pwd, 1);
+	if (pwd)
+		free(pwd);
 }

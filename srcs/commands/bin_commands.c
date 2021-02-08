@@ -29,6 +29,7 @@ char		*check_bin_func(char *cmd)
 	char		*command;
 	int			i;
 	int			flag;
+	char		*temp;
 	static char	*bin_array[] = {"cp", "df", "hostname", "link", "mv", "rm",
 	"stty", "test", "bash", "csh", "echo", "kill", "ln", "pax", "rmdir", "sync",
 	"unlink", "cat", "date", "ed", "ksh", "ls", "ps", "sh", "syslog.py", "zsh",
@@ -48,7 +49,10 @@ char		*check_bin_func(char *cmd)
 		if (is_prefix_bin(cmd))
 			return (command);
 		else
+		{
+			free(command);
 			command = ft_strjoin("/bin/", cmd);
+		}
 	}
 	return (command);
 }

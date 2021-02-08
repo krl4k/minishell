@@ -31,7 +31,7 @@ void	child_proccess(t_all *all, int index)
 		all->env_array->str);
 	if (command)
 		free(command);
-//	ft_perror("command not found");
+	ft_perror(command);
 	exit(all->status);
 }
 
@@ -49,7 +49,10 @@ void	parent_proccess(t_all *all, int index)
 	{
 		if (WEXITSTATUS(all->status) == 3)
 		{
-			print_error(all);
+			ft_putstr_fd(PROMT_ERROR, 2);
+			ft_putstr_fd(all->command_argv[0], 2);
+			ft_putstr_fd(": ", 2);
+			ft_putendl_fd("command not found", 2);
 		}
 	}
 }
