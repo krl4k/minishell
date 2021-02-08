@@ -82,10 +82,7 @@ int found_sep_pos(char **array)
 	while (array[i])
 	{
 		if (ft_strcmp(array[i], ";") == 0)
-		{
-			printf("array[%d] = %s\n" ,i,array[i]);
 			return (i);
-		}
 		i++;
 	}
 	return (i);
@@ -113,14 +110,16 @@ void 	sep_semicolon(t_all *all)
 	int i;
 	int j;
 	int k;
+	int c_sep;
+	int pos_sep;
 
 	k = 0;
-	int c_sep = count_sep(all->tmp);
+	c_sep = count_sep(all->tmp);
 	j = 0;
 	while (j < c_sep && all->tmp[k])
 	{
 		i = 0;
-		int pos_sep = found_sep_pos(&all->tmp[k]);
+		pos_sep = found_sep_pos(&all->tmp[k]);
 		if (!(all->command_argv = (char **) ft_calloc(pos_sep + 1, sizeof(char *))))
 			return;
 		while (all->tmp[k] && (ft_strcmp(all->tmp[k], ";") !=0) && i < pos_sep)
@@ -139,7 +138,6 @@ void 	sep_semicolon(t_all *all)
 
 void    get_commands(t_all *all, char *line)
 {
-	int i = 0;
 	if (!(all->tmp = (char **)ft_calloc(sizeof(char *), 2)))
 		return ;
 	if (!parse_line(line, all))
@@ -150,9 +148,6 @@ void    get_commands(t_all *all, char *line)
 	}
 	free(line);
 	sep_semicolon(all);
-//	while (cmd[i])
-//		printf("%s\n", cmd[i++]);
-//	ft_free_split(all->tmp);
 }
 /*!
 ** \brief return command and argument for execute func
@@ -182,22 +177,14 @@ int main(int ac, char **av, char **env)
 
 	init_all(&all, env);
 	all->av = av;
-//	signal(SIGQUIT, no_interrupt);
 	while (1)
 	{
 		signals_init(1);
 		print_prompt(1);
-//		signal(SIGINT, no_interrupt);
-		//get_input(all);
+
 		all->input = get_input();
 		get_commands(all, all->input);
-//		while (all->command_argv[i])
-//		{
-//			free(all->command_argv[i]);
-//			all->command_argv[i] = NULL;
-//			i++;
-//		}
-//		free(all->command_argv);
+
 	}
 	return (EXIT_SUCCESS);
 }

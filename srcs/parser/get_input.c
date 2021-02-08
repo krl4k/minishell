@@ -11,27 +11,6 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-/*
-int		size_arr(char **cmd)
-{
-	int i;
-
-	i = 0;
-	while (cmd[i])
-		i++;
-	return (i);
-}
-
-int is_numeric(char *cmd)
-{
-	int i;
-
-	i = 0;
-	while (cmd[i])
-		if (!ft_isdigit(cmd[i++]))
-			return (0);
-	return (1);
-}*/
 
 /*!
 ** \brief return command and argument for execute func
@@ -49,7 +28,6 @@ char	*get_input(void)
 	input = (char *)malloc(sizeof(char));
 	while ((ret = read(0, &c, 1)) > 0 && c != '\n')
 	{
-
 		input[i++] = c;
 		input = ft_realloc(input, i, i + 1);
 	}
