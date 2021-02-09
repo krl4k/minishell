@@ -62,7 +62,10 @@ int		append_redir_init(t_all *all, int index)
 {
 	if ((all->output_file_descriptor = open(all->out_path,
 	O_WRONLY | O_APPEND | O_CREAT, 0644)) < 0)
-		perror("open()");
+	{
+		ft_perror("open()");
+		return (EXIT_FAILURE);
+	}
 	if (all->output_file_descriptor < 0)
 	{
 		ft_perror("output file failed to open");

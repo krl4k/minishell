@@ -52,28 +52,6 @@ int		arr_size(char **arr)
 	return (i);
 }
 
-/*
-** return index of sep, or index of end elem
-*/
-
-//int found_sep_pos(char **array)
-//{
-//	int i;
-//
-//	i = 0;
-//	while (array[i])
-//	{
-//		if (ft_strcmp(array[i], ";") == 0)
-//		{
-//			printf("array[%d] = %s\n" ,i,array[i]);
-//			return (i);
-//		}
-//		i++;
-//	}
-//	return (i);
-//}
-
-
 int found_sep_pos(char **array)
 {
 	int i;
@@ -107,7 +85,6 @@ int count_sep(char **array)
 	return (count + 1);
 
 }
-
 void 	sep_semicolon(t_all *all)
 {
 	int i;
@@ -132,7 +109,12 @@ void 	sep_semicolon(t_all *all)
 		if (all->tmp[k] && !ft_strcmp(all->tmp[k], ";"))
 			k++;
 		ft_execution(all);
-		ft_free_split(all->command_argv);
+		for (int l = 0; l < pos_sep; l++)
+		{
+			free(all->command_argv[l]);
+//			printf("l = %d\n", l);
+		}
+		free(all->command_argv);
 	}
 	ft_free_split(all->tmp);
 }

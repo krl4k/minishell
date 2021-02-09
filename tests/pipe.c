@@ -18,10 +18,8 @@ int main(int ac, char **av, char **env)
 
 	char **ls_cmd = (char **)malloc(sizeof(char *)*3);
 	ls_cmd[0] = strdup("/bin/ls");
-//	ls_cmd[1] = strdup("-la");
 	ls_cmd[1] = NULL;
 	ls_cmd[2] = NULL;
-
 	char **cat_cmd = (char **)malloc(sizeof(char *)*3);
 	cat_cmd[0] = strdup("/bin/cat");
 	cat_cmd[1] = strdup("-e");

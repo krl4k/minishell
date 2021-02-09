@@ -14,6 +14,7 @@
 
 void	set_flags(t_all *all, char **path, int *flag, int count)
 {
+	free(all->command_argv[count]);
 	all->command_argv[count] = 0;
 	*path = ft_strdup(all->command_argv[count + 1]);
 	*flag = 1;

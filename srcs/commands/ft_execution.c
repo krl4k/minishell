@@ -28,7 +28,15 @@ static int is_pipes(t_all *all)
 				||ft_strcmp(all->command_argv[i], ">>") == 0)
 			{
 				pipes_work(all);
-				return (1);
+				i++;
+//				printf("alcmd[i] = %s\n", all->command_argv[i]);
+//				while (all->command_argv[i])
+//				{
+//					free(all->command_argv[])
+//					i++;
+//				}
+//				ft_free_split(&all->command_argv[++i]);
+				return (i);
 			}
 		i++;
 	}
@@ -41,30 +49,15 @@ void ft_execution(t_all *all)
 //	printf("commands = \n");
 //	int i = 0;
 //
-	for (int j = 0; all->command_argv[j]; ++j)
-	{
-		printf("command[%d] = %s\n", j, all->command_argv[j]);
-	}
-	if (is_pipes(all))
-		return;
-//	while (all->command_argv[i])
-//	{
-//		int len = 0;
-//		if ((len = ft_strlen(all->command_argv[i])) > 0)
-//			if (ft_strcmp(all->command_argv[i], "|") == 0
-//				||ft_strcmp(all->command_argv[i], ">") == 0
-//				||ft_strcmp(all->command_argv[i], "<") == 0
-//				||ft_strcmp(all->command_argv[i], ">>") == 0)
-//			{
-//				pipes_work(all);
-//				return;
-//			}
-//		i++;
-//	}
 //	for (int j = 0; all->command_argv[j]; ++j)
 //	{
-//		printf("exec cmd[%d] = %s\n", j, all->command_argv[j]);
+//		printf("command[%d] = %s\n", j, all->command_argv[j]);
 //	}
+//	int i;
+	if (is_pipes(all))
+	{
+		return;
+	}
 	if (!all->command_argv[0])
 		return;
 	if (!ft_strcmp(all->command_argv[0], "echo"))

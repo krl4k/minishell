@@ -92,6 +92,7 @@ void	check_flags(t_all *all)
 	{
 		if (ft_strcmp(all->command_argv[count], "|") == 0)
 		{
+			free(all->command_argv[count]);
 			all->command_argv[count] = 0;
 			all->arg_location[all->pipes + 1] = count + 1;
 			++(all->pipes);
