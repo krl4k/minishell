@@ -131,20 +131,8 @@ void    get_commands(t_all *all, char *line)
 	free(line);
 	sep_semicolon(all);
 }
-/*!
-** \brief return command and argument for execute func
-** \todo parser and validate
-** \warning you risk make shit
-*/
 
-/*!
-** \brief return command and argument for execute func
-** \todo parser and validate
-** \warning you risk make shit
-*/
-
-
-/*!
+/*
 ** Entrypoint in minishell
 ** 
 ** @param	ac	arguments count
@@ -166,7 +154,6 @@ int main(int ac, char **av, char **env)
 
 		all->input = get_input();
 		get_commands(all, all->input);
-
 	}
 	return (EXIT_SUCCESS);
 }

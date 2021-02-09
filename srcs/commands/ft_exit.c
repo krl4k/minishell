@@ -26,6 +26,7 @@ void    ft_exit(char **cmd)
 		ft_putendl_fd("numeric argument required", 2);
 		ret = 255;
 	}
+	write(1, "exit\n", 5);
 	ret = ret > 255 ? 255 : ret;
 	ft_free_split(cmd);
 	exit(ret);

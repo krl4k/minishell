@@ -45,7 +45,6 @@ static int is_pipes(t_all *all)
 
 void ft_execution(t_all *all)
 {
-
 //	printf("commands = \n");
 //	int i = 0;
 //
@@ -55,9 +54,7 @@ void ft_execution(t_all *all)
 //	}
 //	int i;
 	if (is_pipes(all))
-	{
 		return;
-	}
 	if (!all->command_argv[0])
 		return;
 	if (!ft_strcmp(all->command_argv[0], "echo"))
