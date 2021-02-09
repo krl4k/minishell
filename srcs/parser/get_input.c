@@ -22,16 +22,22 @@ int get_str(char **input, int *i)
 	int ret;
 	char c;
 
-	while ((ret = read(0, &c, 1)) > 0 && c != '\n')
+	while (((ret = read(0, &c, 1)) != -1) && c != '\n')
 	{
-		*(*input + *i) = c;
-		(*i)++;
-//		input[(*i)++] = c;
-		*input = ft_realloc(*input, (*i), (*i) + 1);
+		if (ret == 0)
+		{
+			if (*i == 0)
+				return (0);
+			write(1, "  \b\b", 4);
+		}
+		else
+		{
+			*(*input + *i) = c;
+			(*i)++;
+			*input = ft_realloc(*input, (*i), (*i) + 1);
+		}
 	}
 	*(*input + *i) = '\0';
-
-//	printf("input = %s\n", *input);
 	return ret;
 }
 
@@ -42,10 +48,8 @@ char	*get_input(void)
 	char	c;
 	char	*input;
 
-//	signal(SIGQUIT, SIG_IGN);
 	i = 0;
 	input = (char *)malloc(sizeof(char));
-
 //	while ((ret = read(0, &c, 1)) > 0 && c != '\n')
 //	{
 //		input[i++] = c;
@@ -53,8 +57,24 @@ char	*get_input(void)
 //	}
 //	input[i] = '\0';
 	ret = get_str(&input, &i);
-	printf("line = %s\n", input);
-	printf("ret = %d\n", ret);
+//	printf("line = %s\n", input);
+//	printf("ret = %d\n", ret);
+
+//	while (1)
+//	{
+//		ret = get_str(&input, &i);
+//		if (ret == 0)
+//		{
+//			if (i == 0)
+//			{
+//				write(1, "  \b\b", 4);
+//				write(1, " exit\n", 6);
+//				exit(0);
+//			}
+//		}
+//	}
+
+
 
 	if (ret == 0)
 	{
@@ -63,7 +83,8 @@ char	*get_input(void)
 			write(1, "  \b\b", 4);
 			write(1, " exit\n", 6);
 			exit(0);
-		} else
+		}
+		else
 		{
 			get_str(&input, &i);
 		}
