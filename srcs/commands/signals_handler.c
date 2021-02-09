@@ -26,6 +26,7 @@ static void	ctrl_c(int sig_num)
 static void	ctrl_c_cat(int sig_num)
 {
 	write(1, "\n", 1);
+	g_exit_code = 130;
 	signal(SIGINT, ctrl_c_cat);
 }
 
@@ -39,6 +40,7 @@ static void	ctrl_slash_cat(int fork)
 {
 	write(1, "\b\b  \b\b", 6);
 	write(1, "^\\Quit: 3\n", 10);
+	g_exit_code = 131;
 	signal(SIGQUIT, ctrl_slash_cat);
 }
 

@@ -40,7 +40,7 @@
 
 #include "dynamic_array.h"
 # define IS_SPACE(x) (x == ' ' || x == '\t' || x == '\r' || x == '\f' || x == '\v' || x == '\n')
-
+int g_exit_code;
 typedef struct		s_all
 {
 	char			**command_argv;

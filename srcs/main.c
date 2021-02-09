@@ -12,6 +12,8 @@
 
 #include "minishell.h"
 
+g_exit_code = 0;
+//int	 g_signals = 0;
 
 void print_prompt(int fd)
 {
