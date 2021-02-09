@@ -12,65 +12,28 @@
 
 #include "minishell.h"
 
-/*!
-** \brief return command and argument for execute func
-** \warning you risk make shit
-*/
-
-int get_str(char **input, int *i)
+void check_env(t_all *all)
 {
-	int ret;
-	char c;
-
-	while (((ret = read(0, &c, 1)) != -1) && c != '\n')
-	{
-		if (!ret)
-		{
-			if (!(*i))
-				return (0);
-			write(1, "  \b\b", 4);
-		}
-		else
-		{
-			*(*input + *i) = c;
-			(*i)++;
-			*input = ft_realloc(*input, (*i), (*i) + 1);
-		}
-	}
-	*(*input + *i) = '\0';
-	return ret;
-}
-
-char	*get_input(void)
-{
-	int		ret;
-	int		i;
-	char	c;
-	char	*input;
+	int i;
+	int j;
+	char *tmp;
 
 	i = 0;
-	input = (char *)malloc(sizeof(char));
-	ret = get_str(&input, &i);
-	if (!ret)
+	while (all->tmp[i])
 	{
-		if (i == 0)
+		j = 0;
+		while (all->tmp[i][j])
 		{
-			write(1, "  \b\b", 4);
-			write(1, " exit\n", 6);
-			exit(0);
+			if (all->tmp[i][j] == '$')
+			{
+				tmp = all->tmp[i];
+				all->tmp[i][j++] = '\0';
+				all->tmp[i] = ft_strjoin(all->tmp[i], get_env_by_key(all, &all->tmp[i][j]));
+				free(tmp);
+			}
+			j++;
 		}
-		else
-		{
-			get_str(&input, &i);
-		}
+		i++;
 	}
-//	if(!ret)
-//	{
-//		free(input);
-//		ft_exit(NULL);
-//		return (NULL);
-//	}
-	return (input);
 }
-
 

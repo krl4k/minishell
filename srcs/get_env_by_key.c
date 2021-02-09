@@ -23,5 +23,5 @@ char	*get_env_by_key(t_all *all, char *key)
 			return (all->env_array->value[i]);
 		i++;
 	}
-	return (NULL);
+	return (ft_strdup(""));
 }

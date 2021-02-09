@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-g_exit_code = 0;
+int g_exit_code = 0;
 //int	 g_signals = 0;
 
 void print_prompt(int fd)
@@ -131,6 +131,7 @@ void    get_commands(t_all *all, char *line)
 		return;
 	}
 	free(line);
+	check_env(all);
 	sep_semicolon(all);
 }
 

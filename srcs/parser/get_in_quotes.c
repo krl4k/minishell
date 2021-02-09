@@ -44,7 +44,7 @@ char	*get_in_quotes(char *line, t_all *all)
 	int		k;
 
 	q = line[all->i];
-	line[all->i] = 1;
+	all->i++;
 	k = 0;
 	if (!(size = ft_strlen_c(&line[all->i], q)))
 		return (syntax_error());

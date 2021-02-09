@@ -31,7 +31,7 @@ static void		shell_lvl(char *env_lvl)
 //		printf("new env[i]= %s\n", &env_lvl[i]);
 		ft_memcpy(&env_lvl[i], new_lvl, ft_strlen(new_lvl));
 //		printf("env lvl = %s\n", env_lvl);
-//		free(new_lvl);
+		free(new_lvl);
 	}
 }
 

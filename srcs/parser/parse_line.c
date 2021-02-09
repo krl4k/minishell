@@ -12,11 +12,37 @@
 
 #include "minishell.h"
 
-static int check_quotes(char *line, t_all *all)
+static int check_queotes2(char *line, t_all *all)
 {
-	int j;
 	char *tmp;
 	char *tmp2;
+
+	if (ft_strchr("\'\"", line[all->i - 1]) && !ft_strchr("\'\"<>|;",
+						   line[all->i]) && !IS_SPACE(line[all->i]))
+	{
+		tmp = all->tmp[all->k];
+		tmp2 = get_word(line, all);
+		if (!(all->tmp[all->k] = ft_strjoin(all->tmp[all->k], tmp2)))
+			return (0);
+		free(tmp2);
+		free(tmp);
+	}
+	else if (line[all->i] && ft_strchr("\'\"", line[all->i]) &&
+		!ft_strchr("<>|;", line[all->i - 1]) &&
+			!IS_SPACE(line[all->i - 1]))
+	{
+		tmp = all->tmp[all->k];
+		tmp2 = get_in_quotes(line, all);
+		if (!(all->tmp[all->k] = ft_strjoin(all->tmp[all->k], tmp2)))
+			return (0);
+		free(tmp2);
+		free(tmp);
+	}
+	return (1);
+}
+
+static int check_quotes(char *line, t_all *all)
+{
 
 	if (ft_strchr("\'\"", line[all->i]))
 	{
@@ -33,24 +59,8 @@ static int check_quotes(char *line, t_all *all)
 		if (!(all->tmp[all->k] = get_controls(line, all)))
 			return (0);
 	}
-	if (ft_strchr("\'\"", line[all->i - 1]) && !ft_strchr("\'\"<>|;", line[all->i]) && !IS_SPACE(line[all->i]))
-	{
-		tmp = all->tmp[all->k];
-		tmp2 = get_word(line, all);
-		if (!(all->tmp[all->k] = ft_strjoin(all->tmp[all->k], tmp2)))
-			return (0);
-		free(tmp2);
-		free(tmp);
-	}
-	else if (line[all->i] && ft_strchr("\'\"", line[all->i]) && !ft_strchr("<>|;", line[all->i - 1]) && !IS_SPACE(line[all->i - 1]))
-	{
-		tmp = all->tmp[all->k];
-		tmp2 = get_in_quotes(line, all);
-		if (!(all->tmp[all->k] = ft_strjoin(all->tmp[all->k], tmp2)))
-			return (0);
-		free(tmp2);
-		free(tmp);
-	}
+	if (!check_queotes2(line, all))
+		return (0);
 	all->k++;
 	return (1);
 }
