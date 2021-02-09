@@ -61,7 +61,8 @@ void    ft_echo(char **cmd)
 			continue;
 		}
 		write(1, cmd[i], ft_strlen(cmd[i]));
-		write(1, " ", 1);
+		if (cmd[i + 1])
+			write(1, " ", 1);
 		i++;
 	}
 	if (!flag)
