@@ -38,7 +38,7 @@ int		input_redir_init(t_all *all, int index)
 ** ">" output redirect
 */
 
-int		output_redir_init(t_all *all, int index)
+int		output_redir_init(t_all *all)
 {
 	if ((all->output_file_descriptor = open(all->out_path, O_WRONLY
 	| O_TRUNC | O_CREAT, 0644)) < 0)
@@ -58,7 +58,7 @@ int		output_redir_init(t_all *all, int index)
 ** ">>" output & append redirect
 */
 
-int		append_redir_init(t_all *all, int index)
+int		append_redir_init(t_all *all)
 {
 	if ((all->output_file_descriptor = open(all->out_path,
 	O_WRONLY | O_APPEND | O_CREAT, 0644)) < 0)

@@ -84,12 +84,11 @@ int check_valid_key(t_all *all, char *new_env)
 **	}
 */
 
-void	add_env(t_all *all, int count)
+void	add_env(t_all *all)
 {
 	int	i;
 	int	check;
 
-	check = 0;
 	i = 1;
 	while (all->command_argv[i])
 	{
@@ -99,7 +98,20 @@ void	add_env(t_all *all, int count)
 		{
 			check = check_valid_key(all, all->command_argv[i]);
 			if (check == 0)
+			{
 				all->env_array->push_back(all->env_array, all->command_argv[i]);
+				if (ft_strncmp(all->command_argv[i], "HOME=", 5) == 0)
+				{
+					free(all->old_home);
+					all->old_home = ft_strdup(&all->command_argv[i][5]);
+				}
+				if (ft_strncmp(all->command_argv[i], "OLDPWD=", 7) == 0)
+				{
+					if (all->old_pwd)
+						free(all->old_pwd);
+					all->old_pwd = ft_strdup(&all->command_argv[i][7]);
+				}
+			}
 			else if (check == 1)
 				error_mes(all->command_argv[i]);
 			else
@@ -123,7 +135,7 @@ int		ft_export(t_all *all)
 	count = 0;
 	if ((count = count_command(all)) != 1)
 	{
-		add_env(all, count - 1);
+		add_env(all);
 		return (0);
 	}
 	else

@@ -48,6 +48,7 @@ typedef struct		s_all
 	char            **env;
 	char 			**tmp;
 	char			*old_home;
+	char			*old_pwd;
 	char			*input;
 	char			**old_path;
 	t_array			*env_array;
@@ -89,7 +90,19 @@ int             execute(t_all *all);
 char		*check_bin_func(t_all *all, char *cmd);
 void			bin_func(t_all *all);
 void            ft_echo(char **cmd);
+/*
+** cd command
+*/
 int				ft_cd(t_all *all);
+void 		chdir_error(t_all *all);
+char *home(t_all *all);
+void home_not_set(t_all *all, char **h);
+void oldpwd_not_set(t_all *all);
+int not_path_cd(t_all *all, char **h);
+
+
+
+
 void			ft_pwd(char **cmd);
 int				ft_env(t_all *all);
 void			ft_exit(char **cmd);
@@ -105,8 +118,8 @@ int				ft_unset(t_all *all);
 
 int				pipes_work(t_all *all);
 int 			input_redir_init(t_all *all, int index);
-int 			output_redir_init(t_all *all, int index);
-int 			append_redir_init(t_all *all, int index);
+int 			output_redir_init(t_all *all);
+int 			append_redir_init(t_all *all);
 void			pipes_fd_init(t_all *all, int index);
 void			set_flags(t_all *all, char **path, int *flag, int count);
 

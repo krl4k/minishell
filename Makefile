@@ -1,7 +1,7 @@
 NAME = minishell
 #CC = /usr/bin/clang-10
 CC = gcc
-FLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
 SRCS_DIR = ./srcs/
 LIBFT_DIR   = $(SRCS_DIR)libft/
@@ -14,7 +14,7 @@ SRCS_ALL = $(addprefix $(SRCS_DIR), execute.c init_all.c main.c dynamic_array.c 
 SRC_PARSER = $(addprefix $(PARSER_DIR), ft_realloc_args.c get_input.c get_controls.c get_in_quotes.c get_word.c parse_line.c\
 				check_env.c)#ADD ALL FILES IN ./srcs/parser/
 SRC_COMMANDS = $(addprefix $(COMMANDS_DIR), error_handler.c bin_commands.c\
-				ft_cd.c ft_env.c ft_pwd.c ft_exit.c ft_echo.c ft_export.c ft_export_print_sort_env.c \
+				ft_cd.c ft_cd_utils.c ft_env.c ft_pwd.c ft_exit.c ft_echo.c ft_export.c ft_export_print_sort_env.c \
 				ft_unset.c pipes2.c pipes_utils.c pipes_utils2.c signals_handler.c ft_execution.c)#ADD ALL FILES IN ./srcs/parser/
 
 OBJ_ALL = $(SRCS_ALL:.c=.o)

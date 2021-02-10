@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+
 int ft_env(t_all *all)
 {
 	int i;
@@ -19,7 +20,10 @@ int ft_env(t_all *all)
 	i = 0;
 	while (i < all->env_array->current_size)
 	{
-		ft_putendl_fd(all->env_array->str[i], 1);
+		if (!ft_is_equal(all->env_array->value[i], ""))
+		{
+			ft_putendl_fd(all->env_array->str[i], 1);
+		}
 		i++;
 	}
 	return (0);

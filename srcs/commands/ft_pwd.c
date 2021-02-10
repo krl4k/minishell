@@ -14,6 +14,7 @@
 
 void    ft_pwd(char **cmd)
 {
+	(void)cmd;
 	char *pwd;
 
 	if (!(pwd = getcwd(NULL, 0)))

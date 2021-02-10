@@ -22,11 +22,15 @@ void	error_mes(char *command)
 	ft_putendl_fd("not a valid identifier", 2);
 }
 
+
+//\todocheck first arg
 int		check_valid_argv(char *key)
 {
 	int i;
 
 	i = 0;
+	if (ft_isdigit(key[i]) != 0)
+		return (0);
 	while (key[i])
 	{
 		if (!ft_isalnum(key[i]) || ft_strrchr("!@#$:%^&*-+?={}~`[]/,.",
@@ -55,6 +59,11 @@ int		ft_unset(t_all *all)
 			error_mes(all->command_argv[i]);
 		while (all->env_array->str[j])
 		{
+			if (ft_strcmp(all->env_array->key[j], "OLDPWD") == 0)
+			{
+				free(all->old_pwd);
+				all->old_pwd = NULL;
+			}
 			if (ft_strcmp(all->env_array->key[j], all->command_argv[i]) == 0)
 				all->env_array->delete_one_by_key(all->env_array,
 				all->command_argv[i]);

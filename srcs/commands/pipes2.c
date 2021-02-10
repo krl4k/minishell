@@ -19,9 +19,9 @@ void	child_proccess(t_all *all, int index)
 	if ((index == 0) && (all->input_redir_flag == 1))
 		input_redir_init(all, index);
 	if ((index == all->pipes) && (all->output_redir_flag == 1))
-		output_redir_init(all, index);
+		output_redir_init(all);
 	if ((index == all->pipes) && (all->append_redir_flag == 1))
-		append_redir_init(all, index);
+		append_redir_init(all);
 	if (all->pipes > 0)
 		pipes_fd_init(all, index);
 	command = check_bin_func(all, all->command_argv[all->arg_location[index]]);
