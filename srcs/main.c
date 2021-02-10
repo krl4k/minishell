@@ -145,6 +145,7 @@ void    get_commands(t_all *all, char *line)
 
 int main(int ac, char **av, char **env)
 {
+	(void)ac;
 	t_all *all;
 
 	init_all(&all, env);

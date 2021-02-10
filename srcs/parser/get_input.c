@@ -45,7 +45,6 @@ char	*get_input(void)
 {
 	int		ret;
 	int		i;
-	char	c;
 	char	*input;
 
 	i = 0;

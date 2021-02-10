@@ -17,14 +17,27 @@
 ** \author fgrisell
 */
 
-static int	is_prefix_bin(char *line)
+//static int	is_prefix_bin(char **path, char *line)
+//{
+//	int fd;
+//
+//	if ((fd = open(line, O_RDONLY)) > 0)
+//	{
+//		close(fd);
+//		return (1);
+//	}
+//	return (0);
+//}
+static int	is_prefix_bin(char **path, char *line)
 {
-	if (ft_strncmp("/bin/", line, 5) == 0)
-		return (1);
+	if ((open(line, O_RDONLY)) > 0)
+		return 1;
+//	if (ft_strncmp("/bin/", line, 5) == 0)
+//		return (1);
 	return (0);
 }
 
-char *check_cmd(char **path, char *cmd)
+char *check_cmd(t_all *all, char **path, char *cmd)
 {
 	int i;
 	char *temp;
@@ -32,8 +45,11 @@ char *check_cmd(char **path, char *cmd)
 	int fd;
 
 	i = 0;
-	if (is_prefix_bin(cmd))
+	if (is_prefix_bin(all->old_path, cmd))
+	{
+		printf("111111\n");
 		return ft_strdup(cmd);
+	}
 	temp_cmd = ft_strjoin("/", cmd);
 	while (path[i])
 	{
@@ -56,10 +72,10 @@ char *check_cmd(char **path, char *cmd)
 char *get_path(t_all *all, char *cmd)
 {
 	char **path;
-
+	char *command;
 	int i;
-	i = 0;
 
+	i = 0;
 	while (i < all->env_array->current_size)
 	{
 		if (ft_strcmp("PATH", all->env_array->key[i]) == 0)
@@ -67,14 +83,20 @@ char *get_path(t_all *all, char *cmd)
 		i++;
 	}
 	if (i == all->env_array->current_size)
-		return (0);
+	{
+		if (is_prefix_bin(all->old_path, cmd))
+		{
+			printf("2222222\n");
+			return (ft_strdup(cmd));
+		}
+	}
 	if (!(path = ft_split(all->env_array->value[i], ':')))
-		return (0);
-	char *command = check_cmd(path, cmd);
-//	printf("com = %s\n", command);
+	{
+		return (NULL);
+	}
+	command = check_cmd(all, path, cmd);
 	ft_free_split(path);
-	return command;
-//	return 0;
+	return (command);
 }
 
 

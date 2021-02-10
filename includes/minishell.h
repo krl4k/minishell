@@ -49,7 +49,7 @@ typedef struct		s_all
 	char 			**tmp;
 	char			*old_home;
 	char			*input;
-	int				env_count;
+	char			**old_path;
 	t_array			*env_array;
 	char			*in_path;
 	char			*out_path;

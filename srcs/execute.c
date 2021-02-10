@@ -25,20 +25,20 @@ void execute_child_proc(t_all *all, char *command, int status)
 	exit(status);
 }
 
-static void check_error(char *command)
-{
-	int i;
-	int count_slash;
-
-	count_slash = 1;
-	i = 0;
-	if (!command)
-		return;
-	while (command[i])
-	{
-
-	}
-}
+//static void check_error(char *command)
+//{
+//	int i;
+//	int count_slash;
+//
+//	count_slash = 1;
+//	i = 0;
+//	if (!command)
+//		return;
+//	while (command[i])
+//	{
+//
+//	}
+//}
 
 void print_error(t_all *all)
 {
@@ -48,7 +48,7 @@ void print_error(t_all *all)
 	ft_putendl_fd("command not found", 2);
 }
 
-void execute_parent_proc(t_all *all, int status, pid_t pid)
+void execute_parent_proc(t_all *all, int status)
 {
 	g_exit_code = 1;
 	if (WIFEXITED(status) != 0)
@@ -69,6 +69,7 @@ int execute(t_all *all)
 	char	*command;
 	pid_t	pid;
 
+	status = 0;
 	signals_init(2);
 	all->env_array->str[all->env_array->current_size] = NULL;
 	command = check_bin_func(all, all->command_argv[0]);
@@ -79,7 +80,7 @@ int execute(t_all *all)
 	else
 	{
 		waitpid(pid, &status, 0);
-		execute_parent_proc(all, status, 0);
+		execute_parent_proc(all, status);
 		if (command)
 			free(command);
 	}

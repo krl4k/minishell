@@ -1,7 +1,7 @@
 NAME = minishell
 #CC = /usr/bin/clang-10
 CC = gcc
-FLAGS = -Wall -Werror -Wextra -g
+FLAGS = -Wall -Werror -Wextra
 
 SRCS_DIR = ./srcs/
 LIBFT_DIR   = $(SRCS_DIR)libft/
