@@ -28,12 +28,26 @@
 //	}
 //	return (0);
 //}
-static int	is_prefix_bin(char **path, char *line)
+static int is_prefix_bin(char **path, char *line)
 {
-	if ((open(line, O_RDONLY)) > 0)
-		return 1;
-//	if (ft_strncmp("/bin/", line, 5) == 0)
-//		return (1);
+	int i;
+
+	i = 0;
+	while (*line && *line == '/')
+		line++;
+	line--;
+	while (path[i])
+	{
+		if (ft_strncmp(path[i], line, ft_strlen(path[i])) == 0)
+		{
+			if (line[ft_strlen(path[i])])
+			{
+				if (line[ft_strlen(path[i])] == '/')
+					return 1;
+			}
+		}
+			i++;
+	}
 	return (0);
 }
 
@@ -45,9 +59,9 @@ char *check_cmd(t_all *all, char **path, char *cmd)
 	int fd;
 
 	i = 0;
+//	printf("cmd = %s\n", cmd);
 	if (is_prefix_bin(all->old_path, cmd))
 	{
-		printf("111111\n");
 		return ft_strdup(cmd);
 	}
 	temp_cmd = ft_strjoin("/", cmd);
@@ -66,8 +80,14 @@ char *check_cmd(t_all *all, char **path, char *cmd)
 		i++;
 	}
 	free(temp_cmd);
-	return NULL;
+	return (ft_strdup(cmd));
 }
+
+
+/*
+** if 	PATH not exist
+** else PATH 	 exist
+*/
 
 char *get_path(t_all *all, char *cmd)
 {
@@ -83,50 +103,26 @@ char *get_path(t_all *all, char *cmd)
 		i++;
 	}
 	if (i == all->env_array->current_size)
-	{
 		if (is_prefix_bin(all->old_path, cmd))
-		{
-			printf("2222222\n");
 			return (ft_strdup(cmd));
-		}
-	}
-	if (!(path = ft_split(all->env_array->value[i], ':')))
+		else
+			return (ft_strdup(cmd));
+	else
 	{
-		return (NULL);
+		if (!(path = ft_split(all->env_array->value[i], ':')))
+			return (NULL);
+		command = check_cmd(all, path, cmd);
+		ft_free_split(path);
 	}
-	command = check_cmd(all, path, cmd);
-	ft_free_split(path);
 	return (command);
 }
 
 
-char		*check_bin_func(t_all *all, char *cmd)
+char *check_bin_func(t_all *all, char *cmd)
 {
-	char		*command;
-	int			i;
-	int			flag;
-	char		*temp;
+	char *command;
 
 	command = get_path(all, cmd);
-	printf("command = %s\n", command);
-//	exit(1000);
-//	flag = 0;
-//	i = -1;
-//	command = ft_strdup(cmd);
-//	while (bin_array[++i])
-//	{
-//		if (ft_strcmp(cmd, bin_array[i]) == 0)
-//			flag = 1;
-//	}
-//	if (flag)
-//	{
-//		if (is_prefix_bin(cmd))
-//			return (command);
-//		else
-//		{
-//			free(command);
-//			command = ft_strjoin("/bin/", cmd);
-//		}
-//	}
+//	printf("command = %s\n", command);
 	return (command);
 }

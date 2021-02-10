@@ -48,7 +48,9 @@ static void		init_env(t_all *all, char **env)
 		if (ft_strcmp("PATH", all->env_array->key[i]) == 0)
 		{
 			if (!(all->old_path = ft_split(all->env_array->value[i], ':')))
+			{
 				exit(12);
+			}
 		}
 		i++;
 	}
