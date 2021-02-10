@@ -12,15 +12,23 @@
 
 #include "minishell.h"
 
+//\todo echo $a , if a=1  ==> echo $a === 11   why???
+
+
 char	*get_env_by_key(t_all *all, char *key)
 {
 	int i;
 
 	i = 0;
+	if (ft_strcmp(key, "?") == 0)
+		return (ft_itoa(g_exit_code));
 	while (i < all->env_array->current_size)
 	{
 		if (ft_strcmp(key, all->env_array->key[i]) == 0)
+		{
+			printf("env value = |%s|\n", all->env_array->value[i]);
 			return (all->env_array->value[i]);
+		}
 		i++;
 	}
 	return (ft_strdup(""));

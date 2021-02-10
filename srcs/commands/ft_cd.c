@@ -77,6 +77,7 @@ int ft_cd(t_all *all)
 //	save_oldpwd(all);
 	if ((chdir(all->command_argv[1])) == -1)
 	{
+		g_exit_code = 1;
 		ft_putstr_fd(PROMT_ERROR, 2);
 		ft_putstr_fd(all->command_argv[0], 2);
 		ft_putstr_fd(": ", 2);

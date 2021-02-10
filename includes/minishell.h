@@ -86,6 +86,7 @@ void			print_prompt(int fd);
 
 void			signals_init(int mode);
 int             execute(t_all *all);
+char		*check_bin_func(t_all *all, char *cmd);
 void			bin_func(t_all *all);
 void            ft_echo(char **cmd);
 int				ft_cd(t_all *all);
@@ -111,7 +112,6 @@ void			set_flags(t_all *all, char **path, int *flag, int count);
 
 
 int				count_command(t_all *all);
-char			*check_bin_func(char *cmd);
 int 			execute_commands(t_all *all);
 void			init_handler_pipes(t_all *all);
 void			free_handler_pipes(t_all *all);

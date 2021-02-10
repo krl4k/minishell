@@ -24,7 +24,7 @@ void	child_proccess(t_all *all, int index)
 		append_redir_init(all, index);
 	if (all->pipes > 0)
 		pipes_fd_init(all, index);
-	command = check_bin_func(all->command_argv[all->arg_location[index]]);
+	command = check_bin_func(all, all->command_argv[all->arg_location[index]]);
 	if (!command)
 		exit(3);
 	all->status = execve(command, &all->command_argv[all->arg_location[index]],

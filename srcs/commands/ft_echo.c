@@ -67,4 +67,5 @@ void    ft_echo(char **cmd)
 	}
 	if (!flag)
 		write(1, "\n", 1);
+	g_exit_code = 0;
 }

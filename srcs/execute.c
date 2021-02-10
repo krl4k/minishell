@@ -14,9 +14,13 @@
 
 void execute_child_proc(t_all *all, char *command, int status)
 {
+	g_exit_code = 1;
 	status = execve(command, all->command_argv, all->env_array->str);
 	if (status == -1)
-		exit(3);
+	{
+//		printf("govna poel\n");
+		exit(127);
+	}
 	free(command);
 	exit(status);
 }
@@ -46,10 +50,15 @@ void print_error(t_all *all)
 
 void execute_parent_proc(t_all *all, int status, pid_t pid)
 {
+	g_exit_code = 1;
 	if (WIFEXITED(status) != 0)
 	{
-		if (WEXITSTATUS(status) == 3)
+		g_exit_code = 0;
+		if (WEXITSTATUS(status) == 127)
+		{
+			g_exit_code = 127;
 			print_error(all);
+		}
 	}
 }
 
@@ -62,7 +71,7 @@ int execute(t_all *all)
 
 	signals_init(2);
 	all->env_array->str[all->env_array->current_size] = NULL;
-	command = check_bin_func(all->command_argv[0]);
+	command = check_bin_func(all, all->command_argv[0]);
 	if ((pid = fork()) < 0)
 		ft_perror("fork()");
 	if (pid == 0)

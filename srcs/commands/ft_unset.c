@@ -29,7 +29,7 @@ int		check_valid_argv(char *key)
 	i = 0;
 	while (key[i])
 	{
-		if (!ft_isalnum(key[i]) || ft_strrchr("!@#$:%^&*-+={}~`[]/,.",
+		if (!ft_isalnum(key[i]) || ft_strrchr("!@#$:%^&*-+?={}~`[]/,.",
 		key[i]) != NULL)
 			return (0);
 		i++;
