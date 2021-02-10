@@ -24,7 +24,7 @@ void check_env(t_all *all)
 		j = 0;
 		while (all->tmp[i][j])
 		{
-			if (all->tmp[i][j] == '$')
+			if (all->tmp[i][j] == '$' && all->tmp[i][j - 1] != '\\')
 			{
 				tmp = all->tmp[i];
 				all->tmp[i][j++] = '\0';
