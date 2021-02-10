@@ -14,6 +14,7 @@
 
 static int ft_strlen_set(char *str, const char *set, t_all *all)
 {
+	(void)set;
 	int i;
 	int k;
 	int j;
