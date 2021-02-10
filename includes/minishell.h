@@ -132,6 +132,8 @@ void			ft_execution(t_all *all);
 char			*get_env_by_key(t_all *all, char *key);
 void			print_error(t_all *all);
 void			check_env(t_all *all);
+char			*get_env(char *line, t_all *all);
+int				key_len(char *line);
 
 
 /*

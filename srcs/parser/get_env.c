@@ -12,28 +12,39 @@
 
 #include "minishell.h"
 
-void check_env(t_all *all)
+int key_len(char *line)
 {
 	int i;
-	int j;
-	char *tmp;
 
 	i = 0;
-	while (all->tmp[i])
-	{
-		j = 0;
-		while (all->tmp[i][j])
-		{
-			if (all->tmp[i][j] == '$' && all->tmp[i][j - 1] != '\\')
-			{
-				tmp = all->tmp[i];
-				all->tmp[i][j++] = '\0';
-				all->tmp[i] = ft_strjoin(all->tmp[i], get_env_by_key(all, &all->tmp[i][j]));
-				free(tmp);
-			}
-			j++;
-		}
+	while (line[i] && !ft_strchr("\'\" <>|;", line[i]))
 		i++;
-	}
+	return (i);
+}
+static char *get_key(char *line, t_all *all)
+{
+	char	*key;
+	int		k;
+
+	all->i++;
+	if (!(key = (char *)malloc(sizeof(char) * (key_len(&line[all->i]) + 1))))
+		return (NULL);
+	k = 0;
+	while (line[all->i] && !ft_strchr("\'\" <>|;$", line[all->i]))
+		key[k++] = line[all->i++];
+	key[k] = '\0';
+	return (key);
 }
 
+char *get_env(char *line, t_all *all)
+{
+	char	*key;
+	char	*env;
+
+	if (!(key = get_key(line, all)))
+		return (NULL);
+	env = get_env_by_key(all, key);
+	free(key);
+	return(env);
+
+}

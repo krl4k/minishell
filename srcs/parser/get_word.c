@@ -12,20 +12,25 @@
 
 #include "minishell.h"
 
-static int ft_strlen_set(const char *str, const char *set)
+static int ft_strlen_set(char *str, const char *set, t_all *all)
 {
 	int i;
 	int k;
+	int j;
 
 	i = 0;
 	k = 0;
-	while (!ft_strchr(set, str[k]) && str[k])
+	while (str[i])
 	{
-		if (str[k] == '\\')
+		if (ft_strchr("\'\" <>|;", str[k]) && str[i - 1] != '\\')
+			return (k);
+		if (str[i] == '\\' && ft_strchr("\'\"\\$<>;|", str[i + 1]))
+			i++;
+		if (str[i] == '$' && str[i - 1] != '\\')
 		{
-			k += 2;
-			i += 2;
-			continue;
+			j = all->i;
+			k += ft_strlen(get_env(str, all));
+			all->i = j;
 		}
 		k++;
 		i++;
@@ -38,21 +43,26 @@ char *get_word(char *line, t_all *all)
 	char	*res;
 	int		size;
 	int		k;
+	char	*env;
 
 	k = 0;
-	if (!(size = ft_strlen_set(&line[all->i], "\'\" <>|;")))
+	if (!(size = ft_strlen_set(&line[all->i], "\'\" <>|;", all)))
 		return (NULL);
 	if (!(res = (char *)malloc(sizeof(char) * size + 1)))
 		return (NULL);
 	while (k < size)
 	{
-		if (line[all->i] == '\\')
+		if (ft_strchr("\'\" <>|;", line[all->i]) && line[all->i - 1] !='\\')
+			break;
+		if (line[all->i] == '$' && line[all->i - 1] != '\\')
 		{
-			all->i++;
-			res[k] = line[all->i++];
-			k++;
+			env = get_env(line, all);
+			while(*env)
+				res[k++] = *env++;
 			continue;
 		}
+		if (line[all->i] == '\\' && ft_strchr("\'\"\\$<>|;", line[all->i + 1]))
+			all->i++;
 		res[k++] = line[all->i++];
 	}
 	res[k] = '\0';

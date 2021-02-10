@@ -130,7 +130,6 @@ void    get_commands(t_all *all, char *line)
 		return;
 	}
 	free(line);
-	check_env(all);
 	sep_semicolon(all);
 }
 
