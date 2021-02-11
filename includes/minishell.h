@@ -22,6 +22,7 @@
 # include <signal.h>
 # include "libft.h"
 # include "dirent.h"
+# include "sys/stat.h"
 
 # define RED "[1;31m"
 # define GREEN "[1;32m"

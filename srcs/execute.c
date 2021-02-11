@@ -14,64 +14,77 @@
 
 void execute_child_proc(t_all *all, char *command, int status)
 {
-//	g_exit_code = 1;
 	status = execve(command, all->command_argv, all->env_array->str);
 	if (status == -1)
 	{
-		printf("govna poel\n");
 		exit(127);
 	}
 	free(command);
 	exit(status);
 }
 
-//static void check_error(char *command)
-//{
-//	int i;
-//	int count_slash;
-//
-//	count_slash = 1;
-//	i = 0;
-//	if (!command)
-//		return;
-//	while (command[i])
-//	{
-//
-//	}
-//}
+static int is_directory_or_file(char *command)
+{
+	int i;
+	int flag;
+
+	flag = 0;
+	i = 0;
+	if (!command)
+		return (0);
+	if (command[i] == '/')
+	{
+		flag = 1;
+		i++;
+	}
+	while (command[i] && command[i] == '/' && command[i] == '.')
+		i++;
+	if (i == 1)
+		return 1;
+	if (flag == 0)
+		return (0);
+	return 1;
+}
 
 void print_error(t_all *all)
 {
-//	int fd;
-	DIR *dir;
+	struct stat s;
 
 	ft_putstr_fd(PROMT_ERROR, 2);
 	ft_putstr_fd(all->command_argv[0], 2);
 	ft_putstr_fd(": ", 2);
-
-//	if ((fd = open(all->command_argv[0], O_RDONLY)) > 0)
-//	{
-//		ft_putendl_fd("its file", 2);
-//		close(fd);
-//	}
-	if ((dir = opendir(all->command_argv[0])))
+	stat(all->command_argv[0], &s);
+	if (S_ISDIR(s.st_mode))
 	{
+		g_exit_code = 126;
 		ft_putendl_fd("is a directory", 2);
-		closedir(dir);
+	}
+	else if (S_ISREG(s.st_mode))
+	{
+		g_exit_code = 126;
+		ft_putendl_fd("Permission denied", 2);
+	}
+	else if (is_directory_or_file(all->command_argv[0]))
+	{
+		g_exit_code = 127;
+		ft_putendl_fd("No such file or directory", 2);
 	}
 	else
+	{
+		g_exit_code = 127;
 		ft_putendl_fd("command not found", 2);
+	}
 }
 
 void execute_parent_proc(t_all *all, int status)
 {
-//	g_exit_code = 1;
+	g_exit_code = 1;
 	if (WIFEXITED(status) != 0)
 	{
-		g_exit_code = 0;
+//		g_exit_code = 0;
 		if (WEXITSTATUS(status) == 127)
 		{
-			g_exit_code = 127;
+			g_exit_code = 1;
 			print_error(all);
 		}
 	}

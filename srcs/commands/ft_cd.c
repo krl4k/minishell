@@ -41,15 +41,19 @@ void 	save_oldpwd(t_all *all)
 	while (i < all->env_array->current_size)
 	{
 		if (ft_is_equal("OLDPWD", all->env_array->key[i]))
+		{
 			all->env_array->delete_one_by_key(all->env_array, "OLDPWD");
-		temp = ft_strjoin("OLDPWD=",old_pwd);
-		if (all->old_pwd)
-			free(all->old_pwd);
-		all->old_pwd = ft_strdup(old_pwd);
-		all->env_array->push_back(all->env_array, temp);
-		free(temp);
+			break;
+		}
 		i++;
 	}
+	temp = ft_strjoin("OLDPWD=",old_pwd);
+	if (all->old_pwd)
+		free(all->old_pwd);
+	all->old_pwd = ft_strdup(old_pwd);
+	all->env_array->push_back(all->env_array, temp);
+	free(temp);
+	i++;
 	free(old_pwd);
 }
 
