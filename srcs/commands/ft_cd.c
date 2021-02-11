@@ -53,8 +53,32 @@ void 	save_oldpwd(t_all *all)
 	all->old_pwd = ft_strdup(old_pwd);
 	all->env_array->push_back(all->env_array, temp);
 	free(temp);
-	i++;
 	free(old_pwd);
+}
+
+void 	new_pwd(t_all *all)
+{
+	int i;
+	char *pwd;
+	char *temp;
+
+	i = 0;
+	temp = NULL;
+	if (!(pwd = getcwd(NULL, 0)))
+		return;
+	while (i < all->env_array->current_size)
+	{
+		if (ft_is_equal("PWD", all->env_array->key[i]))
+		{
+			all->env_array->delete_one_by_key(all->env_array, "PWD");
+			break;
+		}
+		i++;
+	}
+	temp = ft_strjoin("PWD=",pwd);
+	all->env_array->push_back(all->env_array, temp);
+	free(temp);
+	free(pwd);
 }
 
 int ft_cd(t_all *all)
@@ -86,7 +110,7 @@ int ft_cd(t_all *all)
 	save_oldpwd(all);
 	if ((chdir(all->command_argv[1])) == -1)
 		chdir_error(all);
-//	new_oldpwd(all);
+	new_pwd(all);
 	free(h);
 	return (0);
 }

@@ -23,13 +23,13 @@ void	error_mes(char *command)
 }
 
 
-//\todocheck first arg
+//!\todocheck first arg
 int		check_valid_argv(char *key)
 {
 	int i;
 
 	i = 0;
-	if (ft_isdigit(key[i]))
+	if (ft_isdigit(key[0]) != 0)
 		return (0);
 	while (key[i])
 	{
