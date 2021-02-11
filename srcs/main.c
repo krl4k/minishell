@@ -110,10 +110,7 @@ void 	sep_semicolon(t_all *all)
 			k++;
 		ft_execution(all);
 		for (int l = 0; l < pos_sep; l++)
-		{
 			free(all->command_argv[l]);
-//			printf("l = %d\n", l);
-		}
 		free(all->command_argv);
 	}
 	ft_free_split(all->tmp);
@@ -133,7 +130,7 @@ void    get_commands(t_all *all, char *line)
 	sep_semicolon(all);
 }
 
-/*
+/*!
 ** Entrypoint in minishell
 ** 
 ** @param	ac	arguments count
@@ -152,7 +149,7 @@ int main(int ac, char **av, char **env)
 	while (1)
 	{
 		signals_init(1);
-		print_prompt(1);
+		print_prompt(2);
 
 		all->input = get_input();
 		get_commands(all, all->input);

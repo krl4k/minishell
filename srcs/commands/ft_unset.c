@@ -29,7 +29,7 @@ int		check_valid_argv(char *key)
 	int i;
 
 	i = 0;
-	if (ft_isdigit(key[i]) != 0)
+	if (ft_isdigit(key[i]))
 		return (0);
 	while (key[i])
 	{
