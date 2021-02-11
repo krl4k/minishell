@@ -16,9 +16,7 @@ void execute_child_proc(t_all *all, char *command, int status)
 {
 	status = execve(command, all->command_argv, all->env_array->str);
 	if (status == -1)
-	{
 		exit(127);
-	}
 	free(command);
 	exit(status);
 }
@@ -78,10 +76,14 @@ void print_error(t_all *all)
 
 void execute_parent_proc(t_all *all, int status)
 {
-	g_exit_code = 1;
+	if (status == 0)
+	{
+		g_exit_code = 0;
+		return;
+	}
 	if (WIFEXITED(status) != 0)
 	{
-//		g_exit_code = 0;
+		g_exit_code = 1;
 		if (WEXITSTATUS(status) == 127)
 		{
 			g_exit_code = 1;
@@ -99,6 +101,7 @@ int execute(t_all *all)
 
 	status = 0;
 	signals_init(2);
+	g_exit_code = 0;
 	all->env_array->str[all->env_array->current_size] = NULL;
 	command = check_bin_func(all, all->command_argv[0]);
 	if ((pid = fork()) < 0)
@@ -112,6 +115,5 @@ int execute(t_all *all)
 		if (command)
 			free(command);
 	}
-
 	return (EXIT_SUCCESS);
 }

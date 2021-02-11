@@ -14,6 +14,7 @@
 
 void	error_mes(char *command)
 {
+	g_exit_code = 1;
 	ft_putstr_fd(PROMT_ERROR, 2);
 	ft_putstr_fd("'", 2);
 	ft_putstr_fd(command, 2);

@@ -11,6 +11,7 @@ void    ft_exit(char **cmd)
 		write(2, cmd[0], ft_strlen(cmd[0]));
 		write(2, ": ", 2);
 		ft_putendl_fd("too many arguments", 2);
+		g_exit_code = 1;
 		return ;
 	}
 	if (cmd[1] && is_numeric(cmd[1]))
