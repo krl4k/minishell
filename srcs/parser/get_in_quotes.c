@@ -23,7 +23,11 @@ static int ft_strlen_c(char *str, char q, t_all *all)
 	while (str[i])
 	{
 		if (str[i] == q && str[i - 1] != '\\')
+		{
+			if (str[0] == q)
+				k++;
 			return (k);
+		}
 		if (str[i] == '\\' && ft_strchr("\'\"$<>;|", str[i + 1]))
 			i++;
 		if (str[i] == '$' && str[i - 1] != '\\')
