@@ -77,12 +77,12 @@ int 		parse_line(char *line, t_all *all)
 		{
 			if (!check_quotes(line, all))
 				return (0);
-		}
-		else
-		{
-			if (!(all->tmp = ft_realloc_args(all->tmp, all->k + 1)))
-				return (0);
-			continue;
+			else
+			{
+				if (!(all->tmp = ft_realloc_args(all->tmp, all->k + 1)))
+					return (0);
+				continue;
+			}
 		}
 	}
 	return (1);

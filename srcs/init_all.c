@@ -43,7 +43,7 @@ static void		init_env(t_all *all, char **env)
 		all->env_array->push_back(all->env_array, env[i]);
 		if (ft_strcmp(all->env_array->key[i], "HOME") == 0)
 		{
-			printf("add end oldhome = %s\n", all->env_array->value[i]);
+//			printf("add end oldhome = %s\n", all->env_array->value[i]);
 			all->old_home = ft_strdup(all->env_array->value[i]);
 		}
 		if (ft_strncmp(env[i], "SHLVL=", 6) == 0)

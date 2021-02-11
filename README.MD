@@ -12,3 +12,11 @@
 
 #### Videos
   * [name](link)
+\TODO
+    export 1TEST= ; env | sort | grep -v SHLVL | grep -v _=
+    echo "$1TEST"
+    echo "$?TEST"
+    echo test "" test "" test
+    echo    $TEST lol $TEST
+    export TEST ; export | sort | grep -v SHLVL | grep -v _= | grep -v OLDPWD
+    export ""="" ;  env | sort | grep -v SHLVL | grep -v _=
