@@ -42,10 +42,25 @@ void execute_child_proc(t_all *all, char *command, int status)
 
 void print_error(t_all *all)
 {
+//	int fd;
+	DIR *dir;
+
 	ft_putstr_fd(PROMT_ERROR, 2);
 	ft_putstr_fd(all->command_argv[0], 2);
 	ft_putstr_fd(": ", 2);
-	ft_putendl_fd("command not found", 2);
+
+//	if ((fd = open(all->command_argv[0], O_RDONLY)) > 0)
+//	{
+//		ft_putendl_fd("its file", 2);
+//		close(fd);
+//	}
+	if ((dir = opendir(all->command_argv[0])))
+	{
+		ft_putendl_fd("is a directory", 2);
+		closedir(dir);
+	}
+	else
+		ft_putendl_fd("command not found", 2);
 }
 
 void execute_parent_proc(t_all *all, int status)

@@ -40,20 +40,17 @@ static void		init_env(t_all *all, char **env)
 	init_array(&all->env_array, 40);
 	while (env[i])
 	{
+		if (ft_strncmp(env[i], "SHLVL=", 6) == 0)
+			shell_lvl(env[i]);
 		all->env_array->push_back(all->env_array, env[i]);
 		if (ft_strcmp(all->env_array->key[i], "HOME") == 0)
 		{
-			printf("add end oldhome = %s\n", all->env_array->value[i]);
 			all->old_home = ft_strdup(all->env_array->value[i]);
 		}
-		if (ft_strncmp(env[i], "SHLVL=", 6) == 0)
-			shell_lvl(env[i]);
 		if (ft_strcmp("PATH", all->env_array->key[i]) == 0)
 		{
 			if (!(all->old_path = ft_split(all->env_array->value[i], ':')))
-			{
 				exit(12);
-			}
 		}
 		if (ft_strcmp("OLDPWD", all->env_array->key[i]) == 0)
 		{

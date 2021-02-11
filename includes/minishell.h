@@ -21,7 +21,7 @@
 # include <sys/wait.h>
 # include <signal.h>
 # include "libft.h"
-
+# include "dirent.h"
 
 # define RED "[1;31m"
 # define GREEN "[1;32m"
