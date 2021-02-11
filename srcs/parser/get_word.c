@@ -58,6 +58,8 @@ char *get_word(char *line, t_all *all)
 		if (line[all->i] == '$' && line[all->i - 1] != '\\')
 		{
 			env = get_env(line, all);
+			if (!*env)
+				return (NULL);
 			while (*env)
 				res[k++] = *env++;
 			continue;

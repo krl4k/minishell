@@ -76,7 +76,7 @@ int 		parse_line(char *line, t_all *all)
 		if (line[all->i])
 		{
 			if (!check_quotes(line, all))
-				return (0);
+				continue;
 			else
 			{
 				if (!(all->tmp = ft_realloc_args(all->tmp, all->k + 1)))
