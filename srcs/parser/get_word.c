@@ -32,7 +32,7 @@ char *get_word(char *line, t_all *all)
 //			char *new_line;
 
 //			printf("env = %s\n", env);
-			if (!*env)
+//			if (!*env)
 
 			res = ft_strjoin_free(res, env);
 			continue;

@@ -43,6 +43,8 @@ static void	sort_vars(char **env, int count, int *index)
 
 void		write_export(t_array *array, int i)
 {
+	if (ft_strncmp(array->str[i], "_=", 2) == 0)
+		return;
 	ft_putstr_fd("declare -x ", 1);
 	ft_putstr_fd(array->key[i], 1);
 	if (ft_strchr(array->str[i], '=') == NULL)
