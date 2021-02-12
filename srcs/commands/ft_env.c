@@ -12,10 +12,9 @@
 
 #include "minishell.h"
 
-
-int ft_env(t_all *all)
+int	ft_env(t_all *all)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < all->env_array->current_size)

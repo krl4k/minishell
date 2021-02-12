@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static int is_pipes(t_all *all)
+static int	is_pipes(t_all *all)
 {
 	int i;
 	int len;
@@ -22,20 +22,13 @@ static int is_pipes(t_all *all)
 	while (all->command_argv[i])
 	{
 		if ((len = ft_strlen(all->command_argv[i])) > 0)
-			if (ft_strcmp(all->command_argv[i], "|") == 0
-				||ft_strcmp(all->command_argv[i], ">") == 0
-				||ft_strcmp(all->command_argv[i], "<") == 0
-				||ft_strcmp(all->command_argv[i], ">>") == 0)
+			if ((ft_strcmp(all->command_argv[i], "|") == 0)
+			|| (ft_strcmp(all->command_argv[i], ">") == 0)
+			|| (ft_strcmp(all->command_argv[i], "<") == 0)
+			|| ft_strcmp(all->command_argv[i], ">>") == 0)
 			{
 				pipes_work(all);
 				i++;
-//				printf("alcmd[i] = %s\n", all->command_argv[i]);
-//				while (all->command_argv[i])
-//				{
-//					free(all->command_argv[])
-//					i++;
-//				}
-//				ft_free_split(&all->command_argv[++i]);
 				return (i);
 			}
 		i++;
@@ -43,20 +36,12 @@ static int is_pipes(t_all *all)
 	return (0);
 }
 
-void ft_execution(t_all *all)
+void		ft_execution(t_all *all)
 {
-//	printf("commands = \n");
-//	int i = 0;
-//
-//	for (int j = 0; all->command_argv[j]; ++j)
-//	{
-//		printf("command[%d] = %s\n", j, all->command_argv[j]);
-//	}
-//	int i;
 	if (is_pipes(all))
-		return;
+		return ;
 	if (!all->command_argv[0])
-		return;
+		return ;
 	if (!ft_strcmp(all->command_argv[0], "echo"))
 		ft_echo(all->command_argv);
 	else if (!ft_strcmp(all->command_argv[0], "pwd"))

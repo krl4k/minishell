@@ -12,8 +12,7 @@
 
 #include "minishell.h"
 
-
-int check_quotes(char *str)
+int		check_quotes(char *str)
 {
 	int i;
 
@@ -27,7 +26,7 @@ int check_quotes(char *str)
 	return (i);
 }
 
-int check_flag(char *cmd)
+int		check_flag(char *cmd)
 {
 	int i;
 
@@ -44,16 +43,16 @@ int check_flag(char *cmd)
 	return (1);
 }
 
-void    ft_echo(char **cmd)
+void	ft_echo(char **cmd)
 {
-	int i;
-	int flag;
+	int	i;
+	int	flag;
 
 	i = 1;
 	flag = 0;
 	if (cmd[i])
 		flag = check_flag(cmd[1]);
-	while(cmd[i])
+	while (cmd[i])
 	{
 		if (check_flag(cmd[i]) && flag)
 		{

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fgrisell <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/12 20:59:44 by fgrisell          #+#    #+#             */
+/*   Updated: 2021/02/12 20:59:45 by fgrisell         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int is_numeric_neg(char *cmd)
+int			is_numeric_neg(char *cmd)
 {
 	int i;
 
@@ -13,7 +25,7 @@ int is_numeric_neg(char *cmd)
 	return (1);
 }
 
-static void wrong_numeric(char **cmd, int ret)
+static void	wrong_numeric(char **cmd, int ret)
 {
 	write(1, "exit\n", 5);
 	write(2, PROMT_ERROR, ft_strlen(PROMT_ERROR));
@@ -27,7 +39,7 @@ static void wrong_numeric(char **cmd, int ret)
 	exit(ret);
 }
 
-void    ft_exit(char **cmd)
+void		ft_exit(char **cmd)
 {
 	int ret;
 
@@ -46,9 +58,7 @@ void    ft_exit(char **cmd)
 	if (cmd[1] && is_numeric_neg(cmd[1]))
 		ret = ft_atoi(cmd[1]);
 	else if (cmd[1] && !is_numeric_neg(cmd[1]))
-	{
 		wrong_numeric(cmd, ret);
-	}
 	write(1, "exit\n", 5);
 	if (ret < 0)
 		exit(ret);

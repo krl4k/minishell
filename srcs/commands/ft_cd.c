@@ -112,10 +112,8 @@ int		ft_cd(t_all *all)
 	}
 	else if (ft_strncmp(all->command_argv[1], "-",
 	ft_strlen(all->command_argv[1])) == 0)
-	{
 		if (cd_minus(all) == 1)
 			return (0);
-	}
 	save_oldpwd(all);
 	if ((chdir(all->command_argv[1])) == -1)
 		chdir_error(all);
