@@ -45,6 +45,11 @@ void		write_export(t_array *array, int i)
 {
 	ft_putstr_fd("declare -x ", 1);
 	ft_putstr_fd(array->key[i], 1);
+	if (ft_strchr(array->str[i], '=') == NULL)
+	{
+		write(1, "\n", 1);
+		return;
+	}
 	ft_putstr_fd("=\"", 1);
 	ft_putstr_fd(array->value[i], 1);
 	ft_putendl_fd("\"", 1);

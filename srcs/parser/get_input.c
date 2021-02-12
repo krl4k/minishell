@@ -59,9 +59,7 @@ char	*get_input(void)
 			exit(0);
 		}
 		else
-		{
 			get_str(&input, &i);
-		}
 	}
 //	if(!ret)
 //	{

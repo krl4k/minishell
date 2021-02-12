@@ -20,10 +20,8 @@ int ft_env(t_all *all)
 	i = 0;
 	while (i < all->env_array->current_size)
 	{
-		if (!ft_is_equal(all->env_array->value[i], ""))
-		{
+		if (ft_strchr(all->env_array->str[i], '='))
 			ft_putendl_fd(all->env_array->str[i], 1);
-		}
 		i++;
 	}
 	return (0);
