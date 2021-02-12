@@ -12,36 +12,18 @@
 
 #include "minishell.h"
 
-char *get_word(char *line, t_all *all)
+char *ft_strjoin_free(char *s1, char *s2)
 {
-	char	*res;
-	char	*env;
+	char *res;
 
-	if (!(res = (char *)ft_calloc(sizeof(char), 2)))
+	if (!s1 || !s2)
 		return (NULL);
-	while (line[all->i])
-	{
-		if (ft_strchr("\'\" <>|;", line[all->i]) && line[all->i - 1] !='\\')
-			break;
-		if (line[all->i] == '$' && line[all->i - 1] != '\\')
-		{
-//			char *temp;
-			env = get_env(line, all);
-//			temp = ft_substr(line, 0, all->i);
-
-//			char *new_line;
-
-//			printf("env = %s\n", env);
-			if (!*env)
-
-			res = ft_strjoin_free(res, env);
-			continue;
-		}
-		if (line[all->i] == '\\' && ft_strchr("\'\"\\ $<>|;", line[all->i + 1]))
-			all->i++;
-		res = ft_strjoinchar(res, line[all->i]);
-		all->i++;
-	}
+	res = ft_strjoin(s1, s2);
+	if (s1)
+		free(s1);
+	if (s2)
+		free(s2);
+	if (!res)
+		return (NULL);
 	return (res);
 }
-

@@ -12,40 +12,6 @@
 
 #include "minishell.h"
 
-static int ft_strlen_c(char *str, char q, t_all *all)
-{
-	int k;
-	int i;
-	int j;
-
-	k = 0;
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == q && str[i - 1] != '\\')
-		{
-			if (str[0] == q)
-				k++;
-			return (k);
-		}
-		if (str[i] == '\\' && ft_strchr("\'\"$<>;|", str[i + 1]))
-			i++;
-		if (str[i] == '$' && str[i - 1] != '\\')
-		{
-			j = all->i;
-			k += ft_strlen(get_env(str, all));
-			all->i = j;
-		}
-		k++;
-		i++;
-	}
-	if (str[i] != q)
-		return (0);
-	else
-		k++;
-	return (k);
-}
-
 void *syntax_error(void)
 {
 	write(1, "Syntax error\n", 13);
@@ -57,15 +23,10 @@ char	*get_in_quotes(char *line, t_all *all)
 	char	*res;
 	char	q;
 	char	*env;
-	int		size;
-	int		k;
 
 	q = line[all->i];
 	all->i++;
-	k = 0;
-	if (!(size = ft_strlen_c(&line[all->i], q, all)))
-		return (syntax_error());
-	if (!(res = (char *)malloc(sizeof(char) * (size + 1))))
+	if (!(res = (char *)ft_calloc(sizeof(char), 2)))
 		return (NULL);
 	while (line[all->i])
 	{
@@ -74,15 +35,16 @@ char	*get_in_quotes(char *line, t_all *all)
 		if (line[all->i] == '$' && line[all->i - 1] != '\\')
 		{
 			env = get_env(line, all);
-			while(*env)
-				res[k++] = *env++;
+			res = ft_strjoin_free(res, env);
 			continue;
 		}
 		if (line[all->i] == '\\' && ft_strchr("\'\"\\$<>|;", line[all->i + 1]))
 			all->i++;
-		res[k++] = line[all->i++];
+		res = ft_strjoinchar(res, line[all->i]);
+		all->i++;
 	}
-	res[k] = '\0';
+	if (line[all->i] != q)
+		return (syntax_error());
 	all->i++;
 	return (res);
 }

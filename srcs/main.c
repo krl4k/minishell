@@ -150,7 +150,6 @@ int main(int ac, char **av, char **env)
 	{
 		signals_init(1);
 		print_prompt(2);
-
 		all->input = get_input();
 		get_commands(all, all->input);
 	}
