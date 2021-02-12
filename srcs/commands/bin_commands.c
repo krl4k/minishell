@@ -17,18 +17,7 @@
 ** \author fgrisell
 */
 
-//static int	is_prefix_bin(char **path, char *line)
-//{
-//	int fd;
-//
-//	if ((fd = open(line, O_RDONLY)) > 0)
-//	{
-//		close(fd);
-//		return (1);
-//	}
-//	return (0);
-//}
-static int is_prefix_bin(char **path, char *line)
+static int	is_prefix_bin(char **path, char *line)
 {
 	int i;
 
@@ -43,27 +32,24 @@ static int is_prefix_bin(char **path, char *line)
 			if (line[ft_strlen(path[i])])
 			{
 				if (line[ft_strlen(path[i])] == '/')
-					return 1;
+					return (1);
 			}
 		}
-			i++;
+		i++;
 	}
 	return (0);
 }
 
-char *check_cmd(t_all *all, char **path, char *cmd)
+char		*check_cmd(t_all *all, char **path, char *cmd)
 {
-	int i;
-	char *temp;
-	char *temp_cmd;
-	int fd;
+	int		i;
+	char	*temp;
+	char	*temp_cmd;
+	int		fd;
 
 	i = 0;
-//	printf("cmd = %s\n", cmd);
 	if (is_prefix_bin(all->old_path, cmd))
-	{
-		return ft_strdup(cmd);
-	}
+		return (ft_strdup(cmd));
 	temp_cmd = ft_strjoin("/", cmd);
 	while (path[i])
 	{
@@ -83,23 +69,22 @@ char *check_cmd(t_all *all, char **path, char *cmd)
 	return (ft_strdup(cmd));
 }
 
-
 /*
 ** if 	PATH not exist
 ** else PATH 	 exist
 */
 
-char *get_path(t_all *all, char *cmd)
+char		*get_path(t_all *all, char *cmd)
 {
-	char **path;
-	char *command;
-	int i;
+	char	**path;
+	char	*command;
+	int		i;
 
 	i = 0;
 	while (i < all->env_array->current_size)
 	{
 		if (ft_strcmp("PATH", all->env_array->key[i]) == 0)
-			break;
+			break ;
 		i++;
 	}
 	if (i == all->env_array->current_size)
@@ -117,12 +102,10 @@ char *get_path(t_all *all, char *cmd)
 	return (command);
 }
 
-
-char *check_bin_func(t_all *all, char *cmd)
+char		*check_bin_func(t_all *all, char *cmd)
 {
 	char *command;
 
 	command = get_path(all, cmd);
-//	printf("command = %s\n", command);
 	return (command);
 }
