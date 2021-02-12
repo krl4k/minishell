@@ -12,12 +12,12 @@
 
 #include "minishell.h"
 
-int key_len(char *line)
+int key_len(char *line, t_all *all)
 {
 	int i;
 
 	i = 0;
-	while (line[i] && !ft_strchr("\'\" <>|;", line[i]))
+	while (line[all->i + i] && !ft_strchr("\'\" <>|;", line[all->i + i]))
 		i++;
 	return (i);
 }
@@ -27,7 +27,7 @@ static char *get_key(char *line, t_all *all)
 	int		k;
 
 	all->i++;
-	if (!(key = (char *)malloc(sizeof(char) * (key_len(&line[all->i]) + 1))))
+	if (!(key = (char *)malloc(sizeof(char) * (key_len(line, all) + 1))))
 		return (NULL);
 	k = 0;
 	while (line[all->i] && !ft_strchr("\'\" <>|;$", line[all->i]))

@@ -134,8 +134,8 @@ char			*get_env_by_key(t_all *all, char *key);
 void			print_error(t_all *all);
 void			check_env(t_all *all);
 char			*get_env(char *line, t_all *all);
-int				key_len(char *line);
-
+//int				key_len(char *line);
+int key_len(char *line, t_all *all);
 
 /*
 **  signals
@@ -157,7 +157,8 @@ void *syntax_error(void);
 char	*get_word(char *line, t_all *all);
 int 	parse_line(char *line, t_all *all);
 char	*get_input(void);
-
+char *ft_strjoin_free(char *s1, char *s2);
+char	*ft_strjoinchar(char *str, char c);
 
 
 
