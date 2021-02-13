@@ -14,9 +14,21 @@
 
 void	set_flags(t_all *all, char **path, int *flag, int count)
 {
+	int fd;
+
+	*path = ft_strdup(all->command_argv[count + 1]);
+	if (ft_is_equal(all->command_argv[count], ">")
+	|| (ft_is_equal(all->command_argv[count], ">>")))
+	{
+		if ((fd = open(*path,  O_WRONLY | O_APPEND | O_CREAT, 0644)) < 0)
+			exit(EXIT_FAILURE);
+		close(fd);
+		all->count_redir--;
+	}
+	if (all->count_redir > 0)
+		free(all->out_path);
 	free(all->command_argv[count]);
 	all->command_argv[count] = 0;
-	*path = ft_strdup(all->command_argv[count + 1]);
 	*flag = 1;
 }
 
@@ -29,7 +41,7 @@ void	init_handler_pipes(t_all *all)
 	all->append_redir_flag = 0;
 	all->pipes = 0;
 	if (!(all->arg_location = (int *)malloc(sizeof(int) * count_command(all))))
-		exit(2);
+		exit(12);
 }
 
 void	free_handler_pipes(t_all *all)
@@ -40,4 +52,19 @@ void	free_handler_pipes(t_all *all)
 		free(all->out_path);
 	if (all->arg_location)
 		free(all->arg_location);
+}
+
+void count_redir(t_all *all)
+{
+	int i;
+
+	i = 0;
+	all->count_redir = 0;
+	while (all->command_argv[i])
+	{
+		if (ft_is_equal(all->command_argv[i], ">")
+		||ft_is_equal(all->command_argv[i], ">>"))
+			all->count_redir++;
+		i++;
+	}
 }

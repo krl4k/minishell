@@ -98,7 +98,7 @@ int		ft_cd(t_all *all)
 {
 	char *h;
 
-	h = NULL;
+	h = home(all);
 	if (!all->command_argv[1])
 	{
 		if (not_path_cd(all, &h) == 0)

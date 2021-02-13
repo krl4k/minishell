@@ -56,6 +56,7 @@ typedef struct		s_all
 	t_array			*env_array;
 	char			*in_path;
 	char			*out_path;
+	int				count_redir;
 	int				input_redir_flag;
 	int				output_redir_flag;
 	int				append_redir_flag;
@@ -123,6 +124,7 @@ int 			input_redir_init(t_all *all, int index);
 int 			output_redir_init(t_all *all);
 int 			append_redir_init(t_all *all);
 void			pipes_fd_init(t_all *all, int index);
+void			count_redir(t_all *all);
 void			set_flags(t_all *all, char **path, int *flag, int count);
 
 

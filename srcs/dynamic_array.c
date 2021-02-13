@@ -30,7 +30,7 @@ static void	copy_after_deleted(t_array *array, int i, int flag)
 	}
 }
 
-void	delete_one_by_key(struct s_array *array, char *deleted_elem)
+void		delete_one_by_key(struct s_array *array, char *deleted_elem)
 {
 	int i;
 	int flag;
@@ -57,7 +57,7 @@ void	delete_one_by_key(struct s_array *array, char *deleted_elem)
 ** \param size - number by how much to increase
 */
 
-void	push_back(t_array *ar, char *new)
+void		push_back(t_array *ar, char *new)
 {
 	int		i;
 	char	*r;
@@ -79,7 +79,7 @@ void	push_back(t_array *ar, char *new)
 	(ar)->current_size++;
 }
 
-void	clear(struct s_array **array)
+void		clear(struct s_array **array)
 {
 	int i;
 
@@ -100,7 +100,7 @@ void	clear(struct s_array **array)
 	(*array) = NULL;
 }
 
-void	init_array(t_array **array, int size)
+void		init_array(t_array **array, int size)
 {
 	int aloc_size;
 

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-size_t	ft_wordcount(char const *s, char *set)
+size_t			ft_wordcount(char const *s, char *set)
 {
 	size_t res;
 
@@ -47,7 +47,7 @@ void			ft_free_split(char **res)
 
 	i = 0;
 	if (!res)
-		return;
+		return ;
 	while (res[i])
 	{
 		free(res[i]);
