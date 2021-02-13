@@ -84,51 +84,59 @@ int		count_sep(char **array)
 	return (count + 1);
 }
 
-void	sep_semicolon(t_all *all)
-{
-	int i;
-	int j;
-	int k;
-	int c_sep;
-	int pos_sep;
-
-	k = 0;
-	c_sep = count_sep(all->tmp);
-	j = 0;
-	while (j < c_sep && all->tmp[k])
-	{
-		i = 0;
-		pos_sep = found_sep_pos(&all->tmp[k]);
-		if (!(all->command_argv = (char **) ft_calloc(pos_sep + 1, sizeof(char *))))
-			return;
-		while (all->tmp[k] && (ft_strcmp(all->tmp[k], ";") !=0) && i < pos_sep)
-		{
-			all->command_argv[i] = ft_strdup(all->tmp[k]);
-			k++;
-			i++;
-		}
-		if (all->tmp[k] && !ft_strcmp(all->tmp[k], ";"))
-			k++;
-		ft_execution(all);
-		ft_free_split(all->command_argv);
-	}
-	ft_free_split(all->tmp);
-}
+//void	sep_semicolon(t_all *all)
+//{
+//	int i;
+//	int j;
+//	int k;
+//	int c_sep;
+//	int pos_sep;
+//
+//	k = 0;
+//	c_sep = count_sep(all->tmp);
+//	j = 0;
+//	while (j < c_sep && all->tmp[k])
+//	{
+//		i = 0;
+//		pos_sep = found_sep_pos(&all->tmp[k]);
+//		if (!(all->command_argv = (char **) ft_calloc(pos_sep + 1, sizeof(char *))))
+//			return;
+//		while (all->tmp[k] && (ft_strcmp(all->tmp[k], ";") !=0) && i < pos_sep)
+//		{
+//			all->command_argv[i] = ft_strdup(all->tmp[k]);
+//			k++;
+//			i++;
+//		}
+//		if (all->tmp[k] && !ft_strcmp(all->tmp[k], ";"))
+//			k++;
+//		ft_execution(all);
+//		ft_free_split(all->command_argv);
+//	}
+//	ft_free_split(all->tmp);
+//}
 
 void    get_commands(t_all *all, char *line)
 {
-	if (!(all->tmp = (char **)ft_calloc(sizeof(char *), 2)))
-		return ;
-	if (!parse_line(line, all))
+	all->i = 0;
+	while(line[all->i])
 	{
-		ft_free_split(all->tmp);
-		free(line);
-		return;
+		if (!(all->command_argv = (char **)ft_calloc(sizeof(char *), 2)))
+			return ;
+		if (!parse_line(line, all))
+		{
+			ft_free_split(all->command_argv);
+			free(line);
+			return;
+		}
+		if (check_controls(all))
+			return ;
+		ft_execution(all);
+		ft_free_split(all->command_argv);
 	}
 	free(line);
-	if (check_controls(all))
-		return ;
-	sep_semicolon(all);
+//	if (check_controls(all))
+//		return ;
+//	sep_semicolon(all);
 }
 
 /*!

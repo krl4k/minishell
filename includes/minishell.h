@@ -48,7 +48,6 @@ typedef struct		s_all
 	char			**command_argv;
 	char            **av;
 	char            **env;
-	char 			**tmp;
 	char			*old_home;
 	char			*old_pwd;
 	char			*input;

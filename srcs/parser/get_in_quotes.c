@@ -14,6 +14,7 @@
 
 void	*syntax_error(char *error)
 {
+	g_exit_code = 258;
 	if (!error)
 		write(2, "Syntax error\n", 13);
 	else
