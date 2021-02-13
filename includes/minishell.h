@@ -135,8 +135,8 @@ char			*get_env_by_key(t_all *all, char *key);
 void			print_error(t_all *all);
 void			check_env(t_all *all);
 char			*get_env(char *line, t_all *all);
-//int				key_len(char *line);
-int key_len(char *line, t_all *all);
+int				key_len(char *line, t_all *all);
+int				check_controls(t_all *all);
 
 /*
 **  signals
@@ -154,7 +154,7 @@ int     is_numeric(char *cmd);
 
 char *get_controls(char *line, t_all *all);
 char	*get_in_quotes(char *line, t_all *all);
-void *syntax_error(void);
+void *syntax_error(char *error);
 char	*get_word(char *line, t_all *all);
 int 	parse_line(char *line, t_all *all);
 char	*get_input(void);

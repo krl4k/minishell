@@ -25,15 +25,7 @@ char *get_word(char *line, t_all *all)
 			break;
 		if (line[all->i] == '$' && line[all->i - 1] != '\\')
 		{
-//			char *temp;
 			env = get_env(line, all);
-//			temp = ft_substr(line, 0, all->i);
-
-//			char *new_line;
-
-//			printf("env = %s\n", env);
-//			if (!*env)
-
 			res = ft_strjoin_free(res, env);
 			continue;
 		}

@@ -6,31 +6,41 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:59:06 by mwinter           #+#    #+#             */
-/*   Updated: 2021/01/26 13:39:09 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/02/12 20:42:13 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void *syntax_error(void)
+void	*syntax_error(char *error)
 {
-	write(1, "Syntax error\n", 13);
+	if (!error)
+		write(2, "Syntax error\n", 13);
+	else
+	{
+		write(2, PROMT_ERROR, ft_strlen(PROMT_ERROR));
+		write(2, "syntax error near unexpected token \0",
+			ft_strlen("syntax error near unexpected token \0"));
+		write(2, "`", 1);
+		write(2, error, ft_strlen(error));
+		ft_putendl_fd("\'", 2);
+	}
 	return (NULL);
 }
 
 char	*get_in_quotes(char *line, t_all *all)
 {
-	char	*res;
-	char	q;
-	char	*env;
+	char *res;
+	char q;
+	char *env;
 
 	q = line[all->i];
 	all->i++;
-	if (!(res = (char *)ft_calloc(sizeof(char), 2)))
+	if (!(res = (char *) ft_calloc(sizeof(char), 2)))
 		return (NULL);
 	while (line[all->i])
 	{
-		if (line[all->i] == q && line[all->i - 1] !='\\')
+		if (line[all->i] == q && line[all->i - 1] != '\\')
 			break;
 		if (line[all->i] == '$' && line[all->i - 1] != '\\')
 		{
@@ -44,7 +54,10 @@ char	*get_in_quotes(char *line, t_all *all)
 		all->i++;
 	}
 	if (line[all->i] != q)
-		return (syntax_error());
+	{
+		free(res);
+		return (syntax_error(NULL));
+	}
 	all->i++;
 	return (res);
 }

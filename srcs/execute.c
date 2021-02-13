@@ -6,13 +6,13 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:51:13 by fgrisell          #+#    #+#             */
-/*   Updated: 2021/01/26 13:41:21 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/02/12 20:34:24 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void execute_child_proc(t_all *all, char *command, int status)
+void		execute_child_proc(t_all *all, char *command, int status)
 {
 	status = execve(command, all->command_argv, all->env_array->str);
 	if (status == -1)
@@ -21,7 +21,7 @@ void execute_child_proc(t_all *all, char *command, int status)
 	exit(status);
 }
 
-static int is_directory_or_file(char *command)
+static int	is_directory_or_file(char *command)
 {
 	int i;
 	int flag;
@@ -38,13 +38,13 @@ static int is_directory_or_file(char *command)
 	while (command[i] && command[i] == '/' && command[i] == '.')
 		i++;
 	if (i == 1)
-		return 1;
+		return (1);
 	if (flag == 0)
 		return (0);
-	return 1;
+	return (1);
 }
 
-void print_error(t_all *all)
+void		print_error(t_all *all)
 {
 	struct stat s;
 
@@ -74,12 +74,12 @@ void print_error(t_all *all)
 	}
 }
 
-void execute_parent_proc(t_all *all, int status)
+void		execute_parent_proc(t_all *all, int status)
 {
 	if (status == 0)
 	{
 		g_exit_code = 0;
-		return;
+		return ;
 	}
 	if (WIFEXITED(status) != 0)
 	{
@@ -92,8 +92,7 @@ void execute_parent_proc(t_all *all, int status)
 	}
 }
 
-//!todo stat, check file: file or dir?
-int execute(t_all *all)
+int			execute(t_all *all)
 {
 	int		status;
 	char	*command;

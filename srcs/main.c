@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
-/*   By: fgrisell <fgrisell@student.42.fr>            +:+ +:+         +:+     */
+/*   									              +:+ +:+         +:+     */
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:59:06 by mwinter           #+#    #+#             */
-/*   Updated: 2021/01/26 13:39:09 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/02/12 20:39:14 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int g_exit_code = 0;
 
-void print_prompt(int fd)
+void	print_prompt(int fd)
 {
 	char *prompt;
 
@@ -22,7 +22,7 @@ void print_prompt(int fd)
 	ft_putstr_fd(prompt, fd);
 }
 
-int is_numeric(char *cmd)
+int		is_numeric(char *cmd)
 {
 	int i;
 
@@ -33,8 +33,9 @@ int is_numeric(char *cmd)
 	return (1);
 }
 
-/*!
-** set all->command_argv (command_argv this is a null-terminated array of strings)
+/*
+** set all->command_argv (command_argv this is a null-terminated array
+** of strings)
 ** \authors fgrisell and mwinter
 ** \version Temporary
 ** \example FIRST ARGUMENT: BIN FILE or BUILTIN COMMAND - argv[0] = /bin/ls
@@ -53,7 +54,7 @@ int		arr_size(char **arr)
 	return (i);
 }
 
-int found_sep_pos(char **array)
+int		found_sep_pos(char **array)
 {
 	int i;
 
@@ -67,7 +68,7 @@ int found_sep_pos(char **array)
 	return (i);
 }
 
-int count_sep(char **array)
+int		count_sep(char **array)
 {
 	int i;
 	int count;
@@ -81,9 +82,9 @@ int count_sep(char **array)
 		i++;
 	}
 	return (count + 1);
-
 }
-void 	sep_semicolon(t_all *all)
+
+void	sep_semicolon(t_all *all)
 {
 	int i;
 	int j;
@@ -109,9 +110,7 @@ void 	sep_semicolon(t_all *all)
 		if (all->tmp[k] && !ft_strcmp(all->tmp[k], ";"))
 			k++;
 		ft_execution(all);
-		for (int l = 0; l < pos_sep; l++)
-			free(all->command_argv[l]);
-		free(all->command_argv);
+		ft_free_split(all->command_argv);
 	}
 	ft_free_split(all->tmp);
 }
@@ -127,6 +126,8 @@ void    get_commands(t_all *all, char *line)
 		return;
 	}
 	free(line);
+	if (check_controls(all))
+		return ;
 	sep_semicolon(all);
 }
 
