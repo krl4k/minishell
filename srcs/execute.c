@@ -48,9 +48,6 @@ void		print_error(t_all *all)
 {
 	struct stat s;
 
-	ft_putstr_fd(PROMT_ERROR, 2);
-	ft_putstr_fd(all->command_argv[0], 2);
-	ft_putstr_fd(": ", 2);
 	stat(all->command_argv[0], &s);
 	if (S_ISDIR(s.st_mode))
 	{
@@ -87,6 +84,9 @@ void		execute_parent_proc(t_all *all, int status)
 		if (WEXITSTATUS(status) == 127)
 		{
 			g_exit_code = 1;
+			ft_putstr_fd(PROMT_ERROR, 2);
+			ft_putstr_fd(all->command_argv[0], 2);
+			ft_putstr_fd(": ", 2);
 			print_error(all);
 		}
 	}

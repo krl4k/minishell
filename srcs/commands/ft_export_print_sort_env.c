@@ -44,13 +44,13 @@ static void	sort_vars(char **env, int count, int *index)
 void		write_export(t_array *array, int i)
 {
 	if (ft_strncmp(array->str[i], "_=", 2) == 0)
-		return;
+		return ;
 	ft_putstr_fd("declare -x ", 1);
 	ft_putstr_fd(array->key[i], 1);
 	if (ft_strchr(array->str[i], '=') == NULL)
 	{
 		write(1, "\n", 1);
-		return;
+		return ;
 	}
 	ft_putstr_fd("=\"", 1);
 	ft_putstr_fd(array->value[i], 1);
@@ -92,10 +92,10 @@ int			ft_export_print_sort_env(t_all *all)
 	i = 0;
 	if (!(temp_env = (char **)ft_calloc(all->env_array->current_size + 1,
 	sizeof(char *))))
-		ft_perror("malloc error");
+		exit(2);
 	if (!(env_index = (int *)ft_calloc(all->env_array->current_size,
 	sizeof(int))))
-		ft_perror("malloc error");
+		exit(2);
 	print_sort_envs(all, temp_env, env_index);
 	while (temp_env[i])
 		free(temp_env[i++]);

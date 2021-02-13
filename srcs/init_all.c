@@ -6,7 +6,7 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:39:31 by fgrisell          #+#    #+#             */
-/*   Updated: 2021/02/12 20:31:11 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/01/26 13:42:07 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static void		init_env(t_all *all, char **env)
 	{
 		if (ft_strncmp(env[i], "SHLVL=", 6) == 0)
 			shell_lvl(env[i]);
-		all->env_array->push_back(all->env_array, env[i]);
+//		if (ft_strcmp("OLDPWD", all->env_array->key[i]) != 0)
+			all->env_array->push_back(all->env_array, env[i]);
 		if (ft_strcmp(all->env_array->key[i], "HOME") == 0)
 		{
 			all->old_home = ft_strdup(all->env_array->value[i]);
@@ -54,8 +55,9 @@ static void		init_env(t_all *all, char **env)
 		}
 		if (ft_strcmp("OLDPWD", all->env_array->key[i]) == 0)
 		{
-			if (!(all->old_pwd = ft_strdup(all->env_array->key[i])))
-				return ;
+			all->old_pwd = NULL;
+//			if (!(all->old_pwd = NULL))
+//				return;
 		}
 		i++;
 	}
@@ -66,4 +68,8 @@ void			init_all(t_all **all, char **env)
 	if (!(*all = (t_all *)malloc(sizeof(t_all))))
 		perror(MALLOC_ERROR);
 	init_env(*all, env);
+//	for (int i = 0; (*all)->env_array->value[i]; i++)
+//	{
+//		printf("envarray[%d] = %s\n",i, (*all)->env_array->value[i]);
+//	}
 }

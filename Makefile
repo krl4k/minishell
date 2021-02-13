@@ -12,6 +12,9 @@ HEADERS = ./includes/
 
 SRCS_ALL = $(addprefix $(SRCS_DIR), execute.c init_all.c main.c dynamic_array.c dynamic_array_utils.c get_env_by_key.c)#ADD ALL FILES IN ./srcs/
 SRC_PARSER = $(addprefix $(PARSER_DIR), ft_realloc_args.c get_input.c get_controls.c get_in_quotes.c get_word.c parse_line.c\
+				check_env.c get_env.c ft_strjoin_free.c ft_strjoinchar.c)#ADD ALL FILES IN ./srcs/parser/
+SRC_COMMANDS = $(addprefix $(COMMANDS_DIR), bin_commands.c\
+				ft_cd.c ft_cd_utils.c ft_env.c ft_pwd.c ft_exit.c ft_echo.c ft_export.c ft_export_utils.c ft_export_print_sort_env.c \
 				check_env.c get_env.c ft_strjoin_free.c ft_strjoinchar.c check_controls.c)#ADD ALL FILES IN ./srcs/parser/
 SRC_COMMANDS = $(addprefix $(COMMANDS_DIR), error_handler.c bin_commands.c\
 				ft_cd.c ft_cd_utils.c ft_env.c ft_pwd.c ft_exit.c ft_echo.c ft_export.c ft_export_print_sort_env.c \
@@ -30,20 +33,22 @@ all:$(NAME)
 $(NAME): $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@gcc $(CFLAGS) -I$(HEADERS) $(OBJS) $(FLAGS) $(LIBFT_DIR)/libft.a -o $(NAME)
-												#$(LIBFT_DIR)/
+	@echo srcs files compiled!
+
+
 $(OBJ_PARSER): %.o: %.c $(HEADERS)
-	$(CC) $(CFLAGS) -I$(HEADERS) -I$(LIBFT_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(HEADERS) -I$(LIBFT_DIR) -c $< -o $@
 
 $(OBJ_ALL): %.o: %.c $(HEADERS)
-	$(CC) $(CFLAGS) -I$(HEADERS) -I$(LIBFT_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(HEADERS) -I$(LIBFT_DIR) -c $< -o $@
 
 
 $(OBJ_COMMANDS): %.o: %.c $(HEADERS)
-	$(CC) $(CFLAGS) -I$(HEADERS) -I $(LIBFT_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(HEADERS) -I $(LIBFT_DIR) -c $< -o $@
 
 
 %.o:%.c%$(HEADERS)
-	$(CC) $(FLAGS) -o I$(HEADER)  $@ -c $<
+	@$(CC) $(FLAGS) -o I$(HEADER)  $@ -c $<
 
 clean:
 	@rm -rf *.o
@@ -61,12 +66,10 @@ start:
 	./minishell
 
 norme:
-	norminette ./engine/*.c ./includes/libft.h includes/cub3d.h includes/parser.h \
-	./mlx_helper/*.c parser/*.c libft/*.c libft/*.h
+	norminette
 
 forbidden:
-	cat ./engine/*.c ./includes/libft.h includes/cub3d.h includes/parser.h \
-        	./mlx_helper/*.c parser/*.c libft/*.c libft/*.h | grep "printf"
+	grep -Rn "printf" .
 
 re: fclean all
 

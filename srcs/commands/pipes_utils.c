@@ -21,12 +21,9 @@ int		input_redir_init(t_all *all, int index)
 	if ((index == 0) && (all->input_redir_flag == 1))
 	{
 		if ((all->input_file_descriptor = open(all->in_path, O_RDONLY)) < 0)
-			ft_perror("open()");
+			chdir_error(all);
 		if (all->input_file_descriptor == -1)
-		{
-			ft_perror("input file failed to open\n");
-			return (EXIT_FAILURE);
-		}
+			exit(EXIT_FAILURE);
 		close(READ);
 		dup(all->input_file_descriptor);
 		close(all->input_file_descriptor);
@@ -42,12 +39,9 @@ int		output_redir_init(t_all *all)
 {
 	if ((all->output_file_descriptor = open(all->out_path, O_WRONLY
 	| O_TRUNC | O_CREAT, 0644)) < 0)
-		ft_perror("open()");
+		exit(EXIT_FAILURE);
 	if (all->output_file_descriptor < 0)
-	{
-		ft_perror("output file failed to open\n");
-		return (EXIT_FAILURE);
-	}
+		exit(EXIT_FAILURE);
 	close(WRITE);
 	dup(all->output_file_descriptor);
 	close(all->output_file_descriptor);
@@ -62,15 +56,9 @@ int		append_redir_init(t_all *all)
 {
 	if ((all->output_file_descriptor = open(all->out_path,
 	O_WRONLY | O_APPEND | O_CREAT, 0644)) < 0)
-	{
-		ft_perror("open()");
-		return (EXIT_FAILURE);
-	}
+		exit(EXIT_FAILURE);
 	if (all->output_file_descriptor < 0)
-	{
-		ft_perror("output file failed to open");
-		return (EXIT_FAILURE);
-	}
+		exit(EXIT_FAILURE);
 	close(WRITE);
 	dup(all->output_file_descriptor);
 	close(all->output_file_descriptor);
