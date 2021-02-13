@@ -23,8 +23,6 @@ void	error_mes(char *command)
 	ft_putendl_fd("not a valid identifier", 2);
 }
 
-
-//!\todocheck first arg
 int		check_valid_argv(char *key)
 {
 	int i;

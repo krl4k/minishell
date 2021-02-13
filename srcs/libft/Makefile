@@ -9,9 +9,10 @@
 #    Updated: 2020/11/10 17:28:18 by fgrisell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 NAME = libft.a
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -I. -c
+CFLAGS = -Wall -Werror -Wextra
 
 SRC =  ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c\
 	   ft_memmove.c ft_memchr.c ft_memcmp.c\
@@ -30,26 +31,21 @@ SRC =  ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c\
 	   ft_setsplit.c\
 	   ft_strlen.c ft_strdup.c ft_strcmp.c ft_is_equal.c\
 	   ft_perror.c ft_realloc.c\
-#SRC2 = ft_strlen.s ft_strdup.s ft_write.s ft_read.s ft_strcmp.s
-#
-#NM = nasm
-#
-#NFLAGS = -f macho64
-#
+
 OBJ = $(SRC:.c=.o)
-
-#OBJ2 = $(SRC2:.s=.o)
-#
-#%.o: %.s
-#	$(NM) $(NFLAGS) $< -o $@
-
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(OBJ2)
-	@ar rc $(NAME) $(OBJ) $(OBJ2)
+$(NAME): $(OBJ)
+	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo Libft compiled!
+
+$(OBJ): %.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+%.o: %.c%
+	@$(CC) $(FLAGS) -o $@ -c $<
 
 clean:
 	@rm -f *.o

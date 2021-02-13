@@ -45,8 +45,10 @@ void	parent_proccess(t_all *all, int index)
 	all->l_pipe[READ] = all->r_pipe[READ];
 	all->l_pipe[WRITE] = all->r_pipe[WRITE];
 	wait(&all->status);
+	g_exit_code = 0;
 	if (WIFEXITED(all->status) != 0)
 	{
+		g_exit_code = 1;
 		if (WEXITSTATUS(all->status) == 3)
 		{
 			ft_putstr_fd(PROMT_ERROR, 2);

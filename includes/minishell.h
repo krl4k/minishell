@@ -104,17 +104,17 @@ int not_path_cd(t_all *all, char **h);
 
 
 
-
 void			ft_pwd(char **cmd);
 int				ft_env(t_all *all);
 void			ft_exit(char **cmd);
 int             check_n(char *flag, int *i);
 int				ft_export(t_all *all);
+void			check_zero(t_all *all, int i);
 int             ft_export_print_sort_env(t_all *all);
 void			error_mes(char *command);
 
 int				check_valid_argv(char *key);
-int             check_valid_key(t_all *all, char *key);
+int				check_valid_key(t_all *all, char *new_env, int i, int ret_v);
 int				ft_unset(t_all *all);
 
 
