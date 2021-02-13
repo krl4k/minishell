@@ -33,7 +33,6 @@ char	*get_in_quotes(char *line, t_all *all)
 {
 	char *res;
 	char q;
-	char *env;
 
 	q = line[all->i];
 	all->i++;
@@ -43,13 +42,7 @@ char	*get_in_quotes(char *line, t_all *all)
 	{
 		if (line[all->i] == q && line[all->i - 1] != '\\')
 			break;
-		if (line[all->i] == '$' && line[all->i - 1] != '\\')
-		{
-			env = get_env(line, all);
-			res = ft_strjoin_free(res, env);
-			continue;
-		}
-		if (line[all->i] == '\\' && ft_strchr("\'\"\\$<>|;", line[all->i + 1]))
+		if (line[all->i] == '\\' && ft_strchr("\'\"\\<>|;", line[all->i + 1]))
 			all->i++;
 		res = ft_strjoinchar(res, line[all->i]);
 		all->i++;

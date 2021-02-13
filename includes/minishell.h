@@ -159,6 +159,7 @@ int 	parse_line(char *line, t_all *all);
 char	*get_input(void);
 char *ft_strjoin_free(char *s1, char *s2);
 char	*ft_strjoinchar(char *str, char c);
+char	*substitution_env(t_all *all);
 
 
 
