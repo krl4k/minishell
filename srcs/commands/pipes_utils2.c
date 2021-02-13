@@ -20,7 +20,7 @@ void	set_flags(t_all *all, char **path, int *flag, int count)
 	if (ft_is_equal(all->command_argv[count], ">")
 	|| (ft_is_equal(all->command_argv[count], ">>")))
 	{
-		if ((fd = open(*path,  O_WRONLY | O_APPEND | O_CREAT, 0644)) < 0)
+		if ((fd = open(*path, O_WRONLY | O_APPEND | O_CREAT, 0644)) < 0)
 			exit(EXIT_FAILURE);
 		close(fd);
 		all->count_redir--;
@@ -54,7 +54,7 @@ void	free_handler_pipes(t_all *all)
 		free(all->arg_location);
 }
 
-void count_redir(t_all *all)
+void	count_redir(t_all *all)
 {
 	int i;
 
@@ -63,7 +63,7 @@ void count_redir(t_all *all)
 	while (all->command_argv[i])
 	{
 		if (ft_is_equal(all->command_argv[i], ">")
-		||ft_is_equal(all->command_argv[i], ">>"))
+		|| ft_is_equal(all->command_argv[i], ">>"))
 			all->count_redir++;
 		i++;
 	}
