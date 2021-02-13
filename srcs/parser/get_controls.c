@@ -6,15 +6,14 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:59:06 by mwinter           #+#    #+#             */
-/*   Updated: 2021/01/26 13:39:09 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/02/12 20:40:51 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char *get_controls(char *line, t_all *all)
+char	*get_controls(char *line, t_all *all)
 {
-
 	char *res;
 	char q[2];
 
@@ -28,7 +27,7 @@ char *get_controls(char *line, t_all *all)
 	{
 		q[0] = line[all->i];
 		all->i++;
-		if  (!(res = ft_strdup(q)))
+		if (!(res = ft_strdup(q)))
 			return (NULL);
 	}
 	return (res);

@@ -48,3 +48,27 @@ char *get_env(char *line, t_all *all)
 	return(env);
 
 }
+char *substitution_env(t_all *all)
+{
+	char	*new;
+	char 	*env;
+
+	if (!(new = (char *)ft_calloc(sizeof(char), 2)))
+		return (NULL);
+	all->i = 0;
+	while (all->input[all->i])
+	{
+		if (all->input[all->i])
+			if (all->input[all->i] == '$' && all->input[all->i - 1] != '\\' &&
+				all->input[all->i + 1])
+			{
+				env = get_env(all->input, all);
+				new = ft_strjoin_free(new, env);
+				continue;
+			}
+		new = ft_strjoinchar(new, all->input[all->i]);
+		all->i++;
+	}
+	free(all->input);
+	return (new);
+}

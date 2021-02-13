@@ -19,16 +19,16 @@ void check_env(t_all *all)
 	char *tmp;
 
 	i = 0;
-	while (all->tmp[i])
+	while (all->command_argv[i])
 	{
 		j = 0;
-		while (all->tmp[i][j])
+		while (all->command_argv[i][j])
 		{
-			if (all->tmp[i][j] == '$' && all->tmp[i][j - 1] != '\\')
+			if (all->command_argv[i][j] == '$' && all->command_argv[i][j - 1] != '\\')
 			{
-				tmp = all->tmp[i];
-				all->tmp[i][j++] = '\0';
-				all->tmp[i] = ft_strjoin(all->tmp[i], get_env_by_key(all, &all->tmp[i][j]));
+				tmp = all->command_argv[i];
+				all->command_argv[i][j++] = '\0';
+				all->command_argv[i] = ft_strjoin(all->command_argv[i], get_env_by_key(all, &all->command_argv[i][j]));
 				free(tmp);
 			}
 			j++;

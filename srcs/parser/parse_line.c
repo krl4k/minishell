@@ -21,10 +21,10 @@ static int check_quotes3(char *line, t_all *all)
 		!ft_strchr("<>|;", line[all->i - 1]) &&
 		!IS_SPACE(line[all->i - 1]))
 	{
-		tmp = all->tmp[all->k];
+		tmp = all->command_argv[all->k];
 		if (!(tmp2 = get_in_quotes(line, all)))
 			return(0);
-		if (!(all->tmp[all->k] = ft_strjoin(all->tmp[all->k], tmp2)))
+		if (!(all->command_argv[all->k] = ft_strjoin(all->command_argv[all->k], tmp2)))
 			return (0);
 		free(tmp2);
 		free(tmp);
@@ -40,10 +40,10 @@ static int check_quotes2(char *line, t_all *all)
 	if (ft_strchr("\'\"", line[all->i - 1]) && !ft_strchr("\'\"<>|;",
 						   line[all->i]) && !IS_SPACE(line[all->i]))
 	{
-		tmp = all->tmp[all->k];
+		tmp = all->command_argv[all->k];
 		if (!(tmp2 = get_word(line, all)))
 			return (0);
-		if (!(all->tmp[all->k] = ft_strjoin(all->tmp[all->k], tmp2)))
+		if (!(all->command_argv[all->k] = ft_strjoin(all->command_argv[all->k], tmp2)))
 			return (0);
 		free(tmp2);
 		free(tmp);
@@ -55,20 +55,19 @@ static int check_quotes2(char *line, t_all *all)
 
 static int check_quotes(char *line, t_all *all)
 {
-
 	if (ft_strchr("\'\"", line[all->i]))
 	{
-		if (!(all->tmp[all->k] = get_in_quotes(line, all)))
+		if (!(all->command_argv[all->k] = get_in_quotes(line, all)))
 			return (0);
 	}
 	else if (!ft_strchr("\'\"<>|;", line[all->i]) && !IS_SPACE(line[all->i]))
 	{
-		if (!(all->tmp[all->k] = get_word(line, all)))
+		if (!(all->command_argv[all->k] = get_word(line, all)))
 			return (0);
 	}
 	else if (ft_strchr("<>|;", line[all->i]))
 	{
-		if (!(all->tmp[all->k] = get_controls(line, all)))
+		if (!(all->command_argv[all->k] = get_controls(line, all)))
 			return (0);
 	}
 	if (!check_quotes2(line, all))
@@ -79,7 +78,6 @@ static int check_quotes(char *line, t_all *all)
 
 int 		parse_line(char *line, t_all *all)
 {
-	all->i = 0;
 	all->k = 0;
 	while (line[all->i])
 	{
@@ -91,9 +89,15 @@ int 		parse_line(char *line, t_all *all)
 				continue;
 			else
 			{
-				if (!(all->tmp = ft_realloc_args(all->tmp, all->k + 1)))
+				if (!(all->command_argv = ft_realloc_args(all->command_argv,
+														  all->k + 1)))
 					return (0);
-				continue;
+			}
+			if (!ft_strcmp(";", all->command_argv[all->k - 1]))
+			{
+				free(all->command_argv[all->k - 1]);
+				all->command_argv[all->k - 1] = NULL;
+				return (1);
 			}
 		}
 	}
