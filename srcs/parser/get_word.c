@@ -24,6 +24,8 @@ char	*get_word(char *line, t_all *all)
 			break ;
 		if (line[all->i] == '\\' && ft_strchr("\'\"\\ <>|$", line[all->i + 1]))
 			all->i++;
+		else if ((line[all->i] == '\\' && !ft_strchr("\'\"\\ <>|$", line[all->i + 1])))
+			all->i++;
 		res = ft_strjoinchar(res, line[all->i]);
 		all->i++;
 	}

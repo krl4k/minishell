@@ -134,7 +134,6 @@ void				free_handler_pipes(t_all *all);
 void				ft_execution(t_all *all);
 char				*get_env_by_key(t_all *all, char *key);
 void				print_error(t_all *all);
-void				check_env(t_all *all);
 char				*get_env(char *line, t_all *all);
 int					key_len(char *line, t_all *all);
 int					check_controls(t_all *all);
@@ -156,5 +155,6 @@ char				*ft_strjoin_free(char *s1, char *s2);
 char				*ft_strjoinchar(char *str, char c);
 void				substitution_env(t_all *all);
 void				get_commands(t_all *all, char *line);
+int					check_env(t_all *all, char **new);
 
 #endif

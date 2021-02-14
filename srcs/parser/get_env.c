@@ -31,7 +31,7 @@ static char	*get_key(char *line, t_all *all)
 	if (!(key = (char *)malloc(sizeof(char) * (key_len(line, all) + 1))))
 		return (NULL);
 	k = 0;
-	while (line[all->i] && !ft_strchr("\'\" <>|;$", line[all->i]))
+	while (line[all->i] && !ft_strchr("\'\" <>|;$\\", line[all->i]))
 		key[k++] = line[all->i++];
 	key[k] = '\0';
 	return (key);
@@ -78,23 +78,16 @@ static int	substitution_env2(t_all *all, char **new)
 void		substitution_env(t_all *all)
 {
 	char	*new;
-	char	*env;
 
 	all->i = 0;
 	if (!(new = (char *)ft_calloc(sizeof(char), 2)))
 		return ;
 	while (all->input[all->i])
 	{
-		if (all->input[all->i])
-			if (all->input[all->i] == '$' && all->input[all->i - 1] != '\\' &&
-				all->input[all->i + 1] != '\0')
-			{
-				env = get_env(all->input, all);
-				new = ft_strjoin_free(new, env);
-				continue;
-			}
-		if (substitution_env2(all, &new))
+		if (check_env(all, &new))
 			continue ;
+		if (substitution_env2(all, &new))
+				continue ;
 		new = ft_strjoinchar(new, all->input[all->i]);
 		all->i++;
 	}

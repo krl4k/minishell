@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,29 +12,22 @@
 
 #include "minishell.h"
 
-void	check_env(t_all *all)
+int check_env(t_all *all, char **new)
 {
-	int		i;
-	int		j;
-	char	*tmp;
+	char *env;
 
-	i = 0;
-	while (all->command_argv[i])
-	{
-		j = 0;
-		while (all->command_argv[i][j])
+	if (all->input[all->i])
+		if (all->input[all->i] == '$' &&
+			!ft_strchr("\\\'", all->input[all->i - 1]) &&
+			all->input[all->i + 1] != '\0')
 		{
-			if (all->command_argv[i][j] == '$' &&
-				all->command_argv[i][j - 1] != '\\')
+			if (ft_isdigit(all->input[all->i + 1]))
 			{
-				tmp = all->command_argv[i];
-				all->command_argv[i][j++] = '\0';
-				all->command_argv[i] = ft_strjoin(all->command_argv[i],
-						get_env_by_key(all, &all->command_argv[i][j]));
-				free(tmp);
+				all->i += 2;
+				return (0);
 			}
-			j++;
+			env = get_env(all->input, all);
+			*new = ft_strjoin_free(*new, env);
 		}
-		i++;
-	}
+	return (0);
 }
