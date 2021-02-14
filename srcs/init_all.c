@@ -43,6 +43,12 @@ static void		init_env(t_all *all, char **env)
 		if (ft_strncmp(env[i], "SHLVL=", 6) == 0)
 			shell_lvl(env[i]);
 		all->env_array->push_back(all->env_array, env[i]);
+		if (ft_strcmp("OLDPWD", all->env_array->key[i]) == 0)
+		{
+			all->env_array->delete_one_by_key(all->env_array, "OLDPWD");
+			all->env_array->push_back(all->env_array, "OLDPWD");
+			all->old_pwd = NULL;
+		}
 		if (ft_strcmp(all->env_array->key[i], "HOME") == 0)
 		{
 			all->old_home = ft_strdup(all->env_array->value[i]);
@@ -52,8 +58,6 @@ static void		init_env(t_all *all, char **env)
 			if (!(all->old_path = ft_split(all->env_array->value[i], ':')))
 				exit(12);
 		}
-		if (ft_strcmp("OLDPWD", all->env_array->key[i]) == 0)
-			all->old_pwd = NULL;
 		i++;
 	}
 }

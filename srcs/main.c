@@ -151,10 +151,10 @@ void    get_commands(t_all *all, char *line)
 int main(int ac, char **av, char **env)
 {
 	(void)ac;
+	(void)av;
 	t_all *all;
 
 	init_all(&all, env);
-	all->av = av;
 	while (1)
 	{
 		signals_init(1);

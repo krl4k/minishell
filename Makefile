@@ -63,10 +63,12 @@ start:
 	./minishell
 
 norme:
-	norminette
+	norminette $(SRCS) ./includes/*.h ./srcs/libft/*.c ./srcs/libft/*.h
+
 
 forbidden:
-	grep -Rn "printf" .
+	grep -Rn "printf" ./includes/*.h ./srcs/libft/*.c ./srcs/libft/*.h
+
 
 re: fclean all
 

@@ -25,11 +25,11 @@ void	chdir_error(t_all *all)
 
 void	home_not_set(t_all *all, char **h)
 {
+	(void)h;
 	ft_putstr_fd(PROMT_ERROR, 2);
 	ft_putstr_fd(all->command_argv[0], 2);
 	ft_putstr_fd(": ", 2);
 	ft_putendl_fd("HOME not set", 2);
-	free(*h);
 }
 
 void	oldpwd_not_set(t_all *all)
@@ -42,15 +42,15 @@ void	oldpwd_not_set(t_all *all)
 
 int		not_path_cd(t_all *all, char **h)
 {
-	if ((ft_strncmp("NULL", *h = home(all), 4)) == 0)
-	{
+	if (!(*h = home(all)))
 		home_not_set(all, h);
-		return (0);
-	}
 	else
 	{
-		all->command_argv[1] = (*h);
-		all->command_argv = ft_realloc_args(all->command_argv, 3);
+		save_oldpwd(all);
+		if ((chdir(*h)) == -1)
+			chdir_error(all);
+		new_pwd(all);
+		free(*h);
 	}
-	return (1);
+	return (0);
 }

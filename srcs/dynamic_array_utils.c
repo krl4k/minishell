@@ -14,9 +14,12 @@
 
 void			free_array_strs(t_array *array, int i)
 {
-	free((array)->str[i]);
-	free((array)->key[i]);
-	free((array)->value[i]);
+	if ((array)->str[i])
+		free((array)->str[i]);
+	if ((array)->key[i])
+		free((array)->key[i]);
+	if ((array)->value[i])
+		free((array)->value[i]);
 }
 
 static void		re_init(t_array *array, char **str, char **keys, char **values)

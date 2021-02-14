@@ -20,10 +20,15 @@ char		*home(t_all *all)
 	while (all->env_array->str[i])
 	{
 		if (ft_strcmp(all->env_array->key[i], "HOME") == 0)
-			return (ft_strdup(all->env_array->value[i]));
+		{
+			if (all->env_array->value[i])
+				return (ft_strdup(all->env_array->value[i]));
+			else
+				return (NULL);
+		}
 		i++;
 	}
-	return (ft_strdup("NULL"));
+	return (NULL);
 }
 
 void		save_oldpwd(t_all *all)
@@ -116,6 +121,7 @@ int			ft_cd(t_all *all)
 	if ((chdir(all->command_argv[1])) == -1)
 		chdir_error(all);
 	new_pwd(all);
-	free(h);
+	if (h)
+		free(h);
 	return (0);
 }
