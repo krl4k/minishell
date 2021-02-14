@@ -6,7 +6,7 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:59:06 by mwinter           #+#    #+#             */
-/*   Updated: 2021/02/12 20:42:13 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/02/14 17:53:42 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ char	*get_in_quotes(char *line, t_all *all)
 
 	q = line[all->i];
 	all->i++;
-	if (!(res = (char *) ft_calloc(sizeof(char), 2)))
+	if (!(res = (char *)ft_calloc(sizeof(char), 2)))
 		return (NULL);
 	while (line[all->i])
 	{
 		if (line[all->i] == q && line[all->i - 1] != '\\')
-			break;
+			break ;
 		if (line[all->i] == '\\' && ft_strchr("\'\"\\<>|;", line[all->i + 1]))
 			all->i++;
 		res = ft_strjoinchar(res, line[all->i]);

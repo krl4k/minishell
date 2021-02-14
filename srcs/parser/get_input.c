@@ -6,21 +6,21 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:59:06 by mwinter           #+#    #+#             */
-/*   Updated: 2021/01/26 13:39:09 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/02/13 20:40:47 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*!
+/*
 ** \brief return command and argument for execute func
 ** \warning you risk make shit
 */
 
-int get_str(char **input, int *i)
+int		get_str(char **input, int *i)
 {
-	int ret;
-	char c;
+	int		ret;
+	char	c;
 
 	while (((ret = read(0, &c, 1)) != -1) && c != '\n')
 	{
@@ -38,7 +38,7 @@ int get_str(char **input, int *i)
 		}
 	}
 	*(*input + *i) = '\0';
-	return ret;
+	return (ret);
 }
 
 char	*get_input(void)
@@ -61,13 +61,5 @@ char	*get_input(void)
 		else
 			get_str(&input, &i);
 	}
-//	if(!ret)
-//	{
-//		free(input);
-//		ft_exit(NULL);
-//		return (NULL);
-//	}
 	return (input);
 }
-
-

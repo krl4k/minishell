@@ -12,6 +12,7 @@
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
 # include <stdio.h>
 # include <stdlib.h>
 # include <errno.h>
@@ -153,5 +154,7 @@ int					parse_line(char *line, t_all *all);
 char				*get_input(void);
 char				*ft_strjoin_free(char *s1, char *s2);
 char				*ft_strjoinchar(char *str, char c);
-char				*substitution_env(t_all *all);
+void				substitution_env(t_all *all);
+void				get_commands(t_all *all, char *line);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:59:06 by mwinter           #+#    #+#             */
-/*   Updated: 2021/01/26 13:39:09 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/02/13 20:34:17 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,3 @@ char	*ft_strjoinchar(char *str, char c)
 	new[i + 1] = '\0';
 	return (new);
 }
-

@@ -6,13 +6,13 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:59:06 by mwinter           #+#    #+#             */
-/*   Updated: 2021/01/26 13:39:09 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/02/14 18:09:39 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int key_len(char *line, t_all *all)
+int			key_len(char *line, t_all *all)
 {
 	int i;
 
@@ -21,7 +21,8 @@ int key_len(char *line, t_all *all)
 		i++;
 	return (i);
 }
-static char *get_key(char *line, t_all *all)
+
+static char	*get_key(char *line, t_all *all)
 {
 	char	*key;
 	int		k;
@@ -36,7 +37,7 @@ static char *get_key(char *line, t_all *all)
 	return (key);
 }
 
-char *get_env(char *line, t_all *all)
+char		*get_env(char *line, t_all *all)
 {
 	char	*key;
 	char	*env;
@@ -45,30 +46,59 @@ char *get_env(char *line, t_all *all)
 		return (NULL);
 	env = get_env_by_key(all, key);
 	free(key);
-	return(env);
-
+	return (env);
 }
-char *substitution_env(t_all *all)
+
+static int	substitution_env2(t_all *all, char **new)
+{
+	char	q;
+	int		i;
+
+	if (ft_strchr("\'\"", all->input[all->i]) && all->input[all->i] != '\\')
+	{
+		q = all->input[all->i];
+		while (all->input[all->i] != q && all->input[all->i])
+		{
+			*new = ft_strjoinchar(*new, all->input[all->i]);
+			all->i++;
+		}
+	}
+	if (all->input[all->i] == ';' && all->input[all->i - 1] != '\\')
+	{
+		i = all->i;
+		get_commands(all, *new);
+		if (!(*new = (char *)ft_calloc(sizeof(char), 2)))
+			return (0);
+		all->i = ++i;
+		return (1);
+	}
+	return (0);
+}
+
+void		substitution_env(t_all *all)
 {
 	char	*new;
-	char 	*env;
+	char	*env;
 
-	if (!(new = (char *)ft_calloc(sizeof(char), 2)))
-		return (NULL);
 	all->i = 0;
+	if (!(new = (char *)ft_calloc(sizeof(char), 2)))
+		return ;
 	while (all->input[all->i])
 	{
 		if (all->input[all->i])
 			if (all->input[all->i] == '$' && all->input[all->i - 1] != '\\' &&
-				all->input[all->i + 1])
+				all->input[all->i + 1] != '\0')
 			{
 				env = get_env(all->input, all);
 				new = ft_strjoin_free(new, env);
 				continue;
 			}
+		if (substitution_env2(all, &new))
+			continue ;
 		new = ft_strjoinchar(new, all->input[all->i]);
 		all->i++;
 	}
+	if (new)
+		get_commands(all, new);
 	free(all->input);
-	return (new);
 }

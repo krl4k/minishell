@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*   									              +:+ +:+         +:+     */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/25 17:59:06 by mwinter           #+#    #+#             */
-/*   Updated: 2021/02/12 20:39:14 by mwinter          ###   ########.fr       */
+/*   Created: 2021/01/25 15:42:35 by mwinter           #+#    #+#             */
+/*   Updated: 2021/02/14 18:18:16 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,81 +44,10 @@ int		is_numeric(char *cmd)
 ** \warning The last argument should always be NULL!
 */
 
-int		arr_size(char **arr)
-{
-	int i;
-
-	i = 0;
-	while (arr[i] && ft_strcmp(arr[i], ";"))
-		i++;
-	return (i);
-}
-
-int		found_sep_pos(char **array)
-{
-	int i;
-
-	i = 0;
-	while (array[i])
-	{
-		if (ft_strcmp(array[i], ";") == 0)
-			return (i);
-		i++;
-	}
-	return (i);
-}
-
-int		count_sep(char **array)
-{
-	int i;
-	int count;
-
-	count = 0;
-	i = 0;
-	while (array[i])
-	{
-		if (ft_strcmp(array[i], ";") == 0)
-			count++;
-		i++;
-	}
-	return (count + 1);
-}
-
-//void	sep_semicolon(t_all *all)
-//{
-//	int i;
-//	int j;
-//	int k;
-//	int c_sep;
-//	int pos_sep;
-//
-//	k = 0;
-//	c_sep = count_sep(all->tmp);
-//	j = 0;
-//	while (j < c_sep && all->tmp[k])
-//	{
-//		i = 0;
-//		pos_sep = found_sep_pos(&all->tmp[k]);
-//		if (!(all->command_argv = (char **) ft_calloc(pos_sep + 1, sizeof(char *))))
-//			return;
-//		while (all->tmp[k] && (ft_strcmp(all->tmp[k], ";") !=0) && i < pos_sep)
-//		{
-//			all->command_argv[i] = ft_strdup(all->tmp[k]);
-//			k++;
-//			i++;
-//		}
-//		if (all->tmp[k] && !ft_strcmp(all->tmp[k], ";"))
-//			k++;
-//		ft_execution(all);
-//		ft_free_split(all->command_argv);
-//	}
-//	ft_free_split(all->tmp);
-//}
-
-void    get_commands(t_all *all, char *line)
+void	get_commands(t_all *all, char *line)
 {
 	all->i = 0;
-	while(line[all->i])
+	while (line[all->i])
 	{
 		if (!(all->command_argv = (char **)ft_calloc(sizeof(char *), 2)))
 			return ;
@@ -126,7 +55,7 @@ void    get_commands(t_all *all, char *line)
 		{
 			ft_free_split(all->command_argv);
 			free(line);
-			return;
+			return ;
 		}
 		if (check_controls(all))
 			return ;
@@ -134,34 +63,29 @@ void    get_commands(t_all *all, char *line)
 		ft_free_split(all->command_argv);
 	}
 	free(line);
-//	if (check_controls(all))
-//		return ;
-//	sep_semicolon(all);
 }
 
-/*!
+/*
 ** Entrypoint in minishell
-** 
 ** @param	ac	arguments count
 ** @param	av	arguments
 ** @param	env	environment variables
 ** @return	0 if success
 */
 
-int main(int ac, char **av, char **env)
+int		main(int ac, char **av, char **env)
 {
-	(void)ac;
-	(void)av;
 	t_all *all;
 
+	(void)ac;
+	(void)av;
 	init_all(&all, env);
 	while (1)
 	{
 		signals_init(1);
 		print_prompt(2);
 		all->input = get_input();
-		all->input = substitution_env(all);
-		get_commands(all, all->input);
+		substitution_env(all);
 	}
 	return (EXIT_SUCCESS);
 }

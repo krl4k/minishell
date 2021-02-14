@@ -6,7 +6,7 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:39:31 by fgrisell          #+#    #+#             */
-/*   Updated: 2021/01/26 13:42:07 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/02/14 18:11:08 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,10 @@ static void		init_env(t_all *all, char **env)
 			all->old_pwd = NULL;
 		}
 		if (ft_strcmp(all->env_array->key[i], "HOME") == 0)
-		{
 			all->old_home = ft_strdup(all->env_array->value[i]);
-		}
 		if (ft_strcmp("PATH", all->env_array->key[i]) == 0)
-		{
 			if (!(all->old_path = ft_split(all->env_array->value[i], ':')))
 				exit(12);
-		}
 		i++;
 	}
 }
