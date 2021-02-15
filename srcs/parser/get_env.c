@@ -6,7 +6,7 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:59:06 by mwinter           #+#    #+#             */
-/*   Updated: 2021/02/14 18:09:39 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/02/15 14:35:04 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		substitution_env(t_all *all)
 		if (check_env(all, &new))
 			continue ;
 		if (substitution_env2(all, &new))
-				continue ;
+			continue ;
 		new = ft_strjoinchar(new, all->input[all->i]);
 		all->i++;
 	}

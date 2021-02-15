@@ -6,7 +6,7 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:59:06 by mwinter           #+#    #+#             */
-/*   Updated: 2021/02/14 17:52:58 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/02/15 14:36:30 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ char	*get_word(char *line, t_all *all)
 			break ;
 		if (line[all->i] == '\\' && ft_strchr("\'\"\\ <>|$", line[all->i + 1]))
 			all->i++;
-		else if ((line[all->i] == '\\' && !ft_strchr("\'\"\\ <>|$", line[all->i + 1])))
+		else if ((line[all->i] == '\\' && !ft_strchr("\'\"\\ <>|$",
+				line[all->i + 1])))
 			all->i++;
 		res = ft_strjoinchar(res, line[all->i]);
 		all->i++;

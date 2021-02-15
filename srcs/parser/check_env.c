@@ -6,13 +6,13 @@
 /*   By: mwinter <mwinter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:59:06 by mwinter           #+#    #+#             */
-/*   Updated: 2021/02/13 20:36:51 by mwinter          ###   ########.fr       */
+/*   Updated: 2021/02/15 14:35:43 by mwinter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int check_env(t_all *all, char **new)
+int		check_env(t_all *all, char **new)
 {
 	char *env;
 
