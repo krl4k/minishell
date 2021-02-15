@@ -92,7 +92,6 @@ void		substitution_env(t_all *all)
 			new = ft_strjoinchar(new, all->input[all->i]);
 		all->i++;
 	}
-	printf("%s new\n", new);
 	if (new)
 		get_commands(all, new);
 	free(all->input);

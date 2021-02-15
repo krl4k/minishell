@@ -97,5 +97,9 @@ int			parse_line(char *line, t_all *all)
 			}
 		}
 	}
+	for (int i = 0; all->command_argv[i] ; ++i)
+	{
+		printf("%s commands\n", all->command_argv[i]);
+	}
 	return (1);
 }
