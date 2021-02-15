@@ -17,8 +17,9 @@ int		check_env(t_all *all, char **new)
 	char *env;
 
 	if (all->input[all->i])
+	{
 		if (all->input[all->i] == '$' &&
-			!ft_strchr("\\\'", all->input[all->i - 1]) &&
+			all->input[all->i - 1] != '\\' && all->input[all->i - 1] != '\'' &&
 			all->input[all->i + 1] != '\0')
 		{
 			if (ft_isdigit(all->input[all->i + 1]))
@@ -27,7 +28,8 @@ int		check_env(t_all *all, char **new)
 				return (0);
 			}
 			env = get_env(all->input, all);
-			*new = ft_strjoin_free(*new, env);
+			*new = ft_strjoin_free(new[0], env);
 		}
+	}
 	return (0);
 }
