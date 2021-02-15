@@ -88,9 +88,11 @@ void		substitution_env(t_all *all)
 			continue ;
 		if (substitution_env2(all, &new))
 			continue ;
-		new = ft_strjoinchar(new, all->input[all->i]);
+		if (all->input[all->i])
+			new = ft_strjoinchar(new, all->input[all->i]);
 		all->i++;
 	}
+	printf("%s new\n", new);
 	if (new)
 		get_commands(all, new);
 	free(all->input);
