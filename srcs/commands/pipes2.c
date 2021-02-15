@@ -115,7 +115,6 @@ int		pipes_work(t_all *all)
 {
 	init_handler_pipes(all);
 	count_redir(all);
-	printf("count readit = %d\n", all->count_redir);
 	check_flags(all);
 	execute_commands(all);
 	free_handler_pipes(all);
