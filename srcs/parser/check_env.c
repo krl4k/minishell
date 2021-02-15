@@ -29,6 +29,7 @@ int		check_env(t_all *all, char **new)
 			}
 			env = get_env(all->input, all);
 			*new = ft_strjoin_free(new[0], env);
+			return (1);
 		}
 	}
 	return (0);

@@ -89,8 +89,10 @@ void		substitution_env(t_all *all)
 		if (substitution_env2(all, &new))
 			continue ;
 		if (all->input[all->i])
+		{
 			new = ft_strjoinchar(new, all->input[all->i]);
-		all->i++;
+			all->i++;
+		}
 	}
 	if (new)
 		get_commands(all, new);
