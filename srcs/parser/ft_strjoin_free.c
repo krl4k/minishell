@@ -16,8 +16,10 @@ char	*ft_strjoin_free(char *s1, char *s2)
 {
 	char *res;
 
-	if (!s1 || !s2)
+	if (!s2)
 		return (NULL);
+	if (!s1)
+		s1 = ft_strdup("");
 	res = ft_strjoin(s1, s2);
 	if (s1)
 		free(s1);

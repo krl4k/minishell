@@ -21,7 +21,7 @@ char	*get_word(char *line, t_all *all)
 	while (line[all->i])
 	{
 		if (ft_strchr("\'\" <>|", line[all->i]) && line[all->i - 1] != '\\')
-			break ;
+			break;
 		if (line[all->i] == '\\' && ft_strchr("\'\"\\ <>|$", line[all->i + 1]))
 			all->i++;
 		else if ((line[all->i] == '\\' && !ft_strchr("\'\"\\ <>|$",

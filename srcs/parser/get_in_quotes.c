@@ -40,7 +40,8 @@ char	*get_in_quotes(char *line, t_all *all)
 		return (NULL);
 	while (line[all->i])
 	{
-		if (line[all->i] == q && line[all->i - 1] != '\\')
+		if ((line[all->i] == q && line[all->i - 1] != '\\') || (line[all->i - 2] == '\\'
+				&& line[all->i - 1] == '\\' && line[all->i] == q))
 			break ;
 		if (line[all->i] == '\\' && ft_strchr("\'\"\\<>|;", line[all->i + 1]))
 			all->i++;

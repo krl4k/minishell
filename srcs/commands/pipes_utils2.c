@@ -26,10 +26,7 @@ void	set_flags(t_all *all, char **path, int *flag, int count)
 		all->count_redir--;
 	}
 	if (all->count_redir > 0)
-	{
-		printf("%d redir\n", all->count_redir);
 		free(all->out_path);
-	}
 	free(all->command_argv[count]);
 	all->command_argv[count] = 0;
 	*flag = 1;
