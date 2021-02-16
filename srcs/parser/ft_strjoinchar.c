@@ -16,19 +16,20 @@ char	*ft_strjoinchar(char *str, char c)
 {
 	char	*new;
 	int		i;
+	int 	size;
 
 	if (!str || !c)
 		return (NULL);
-	if (!(new = (char *)malloc(sizeof(char) * (ft_strlen(str) + 2))))
+	size = ft_strlen(str);
+	if (!(new = (char *)ft_calloc(sizeof(char), (size + 2))))
 		return (NULL);
 	i = 0;
-	while (str[i])
+	while (i < size)
 	{
 		new[i] = str[i];
 		i++;
 	}
 	free(str);
 	new[i] = c;
-	new[i + 1] = '\0';
 	return (new);
 }

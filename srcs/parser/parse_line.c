@@ -14,41 +14,25 @@
 
 static int	check_quotes3(char *line, t_all *all)
 {
-	char *tmp;
-	char *tmp2;
-
 	if (line[all->i] && ft_strchr("\'\"", line[all->i]) &&
 		!ft_strchr("<>|", line[all->i - 1]) &&
 		!IS_SPACE(line[all->i - 1]))
 	{
-		tmp = all->command_argv[all->k];
-		if (!(tmp2 = get_in_quotes(line, all)))
+		if (!(all->command_argv[all->k] = ft_strjoin_free(
+				all->command_argv[all->k], get_in_quotes(line, all))))
 			return (0);
-		if (!(all->command_argv[all->k] = ft_strjoin(all->command_argv[all->k],
-				tmp2)))
-			return (0);
-		free(tmp2);
-		free(tmp);
 	}
 	return (1);
 }
 
 static int	check_quotes2(char *line, t_all *all)
 {
-	char *tmp;
-	char *tmp2;
-
 	if (ft_strchr("\'\"", line[all->i - 1]) && !ft_strchr("\'\"<>|",
 			line[all->i]) && !IS_SPACE(line[all->i]))
 	{
-		tmp = all->command_argv[all->k];
-		if (!(tmp2 = get_word(line, all)))
+		if (!(all->command_argv[all->k] = ft_strjoin_free
+				(all->command_argv[all->k], get_word(line, all))))
 			return (0);
-		if (!(all->command_argv[all->k] = ft_strjoin(all->command_argv[all->k],
-			tmp2)))
-			return (0);
-		free(tmp2);
-		free(tmp);
 	}
 	else if (!(check_quotes3(line, all)))
 		return (0);
@@ -88,7 +72,7 @@ int			parse_line(char *line, t_all *all)
 		if (line[all->i])
 		{
 			if (!check_quotes(line, all))
-				continue;
+				return (0);
 			else
 			{
 				if (!(all->command_argv = ft_realloc_args(all->command_argv,

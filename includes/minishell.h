@@ -57,6 +57,8 @@ typedef struct		s_all
 	int				status;
 	int				i;
 	int				k;
+	int 			save;
+	char 			q;
 }					t_all;
 
 /*
@@ -156,5 +158,6 @@ char				*ft_strjoinchar(char *str, char c);
 void				substitution_env(t_all *all);
 void				get_commands(t_all *all, char *line);
 int					check_env(t_all *all, char **new);
+void				substitution_env3(t_all *all, char **new);
 
 #endif

@@ -51,25 +51,14 @@ char		*get_env(char *line, t_all *all)
 
 static int	substitution_env2(t_all *all, char **new)
 {
-	char	q;
-	int		i;
-
-	if (ft_strchr("\'\"", all->input[all->i]) && all->input[all->i] != '\\')
-	{
-		q = all->input[all->i];
-		while (all->input[all->i] != q && all->input[all->i])
-		{
-			*new = ft_strjoinchar(*new, all->input[all->i]);
-			all->i++;
-		}
-	}
+	substitution_env3(all, new);
 	if (all->input[all->i] == ';' && all->input[all->i - 1] != '\\')
 	{
-		i = all->i;
+		all->save = all->i;
 		get_commands(all, *new);
 		if (!(*new = (char *)ft_calloc(sizeof(char), 2)))
 			return (0);
-		all->i = ++i;
+		all->i = ++all->save;
 		return (1);
 	}
 	return (0);

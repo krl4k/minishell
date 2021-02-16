@@ -16,7 +16,7 @@ void	*syntax_error(char *error)
 {
 	g_exit_code = 258;
 	if (!error)
-		write(2, "Syntax error", 13);
+		write(2, "Syntax error\n", 13);
 	else
 	{
 		write(2, PROMT_ERROR, ft_strlen(PROMT_ERROR));

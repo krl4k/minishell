@@ -28,9 +28,33 @@ int		check_env(t_all *all, char **new)
 				return (0);
 			}
 			env = get_env(all->input, all);
-			*new = ft_strjoin_free(new[0], env);
+			*new = ft_strjoin_free(*new, env);
 			return (1);
 		}
 	}
 	return (0);
+}
+
+void substitution_env3(t_all *all, char **new)
+{
+	if (ft_strchr("\'\"", all->input[all->i]) && all->input[all->i] != '\\')
+	{
+		*new = ft_strjoinchar(*new, all->input[all->i]);
+		all->q = all->input[all->i++];
+		while (all->input[all->i])
+		{
+			if (all->input[all->i] == all->q && all->input[all->i] != '\\')
+			{
+				*new = ft_strjoinchar(*new, all->input[all->i]);
+				all->i++;
+				break ;
+			}
+			if (all->input[all->i] == '$' && all->q != '\'' &&
+				all->input[all->i - 1] != '\\')
+				if (check_env(all, new))
+					continue ;
+			*new = ft_strjoinchar(*new, all->input[all->i]);
+			all->i++;
+		}
+	}
 }
