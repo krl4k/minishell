@@ -6,7 +6,7 @@
 /*   By: fgrisell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 20:59:05 by fgrisell          #+#    #+#             */
-/*   Updated: 2021/02/04 20:59:07 by fgrisell         ###   ########.fr       */
+/*   Updated: 2021/02/18 18:05:04 by fgrisell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,14 @@ int		input_redir_init(t_all *all, int index)
 	if ((index == 0) && (all->input_redir_flag == 1))
 	{
 		if ((all->input_file_descriptor = open(all->in_path, O_RDONLY)) < 0)
-			chdir_error(all);
+		{
+			g_exit_code = 1;
+			ft_putstr_fd(PROMT_ERROR, 2);
+			ft_putstr_fd(all->in_path, 2);
+			ft_putstr_fd(": ", 2);
+			ft_putendl_fd(strerror(errno), 2);
+			exit(EXIT_FAILURE);
+		}
 		if (all->input_file_descriptor == -1)
 			exit(EXIT_FAILURE);
 		close(READ);
@@ -38,7 +45,7 @@ int		input_redir_init(t_all *all, int index)
 int		output_redir_init(t_all *all)
 {
 	if ((all->output_file_descriptor = open(all->out_path, O_WRONLY
-	| O_TRUNC | O_CREAT, 0644)) < 0)
+					| O_TRUNC | O_CREAT, 0644)) < 0)
 		exit(EXIT_FAILURE);
 	if (all->output_file_descriptor < 0)
 		exit(EXIT_FAILURE);
@@ -55,7 +62,7 @@ int		output_redir_init(t_all *all)
 int		append_redir_init(t_all *all)
 {
 	if ((all->output_file_descriptor = open(all->out_path,
-	O_WRONLY | O_APPEND | O_CREAT, 0644)) < 0)
+					O_WRONLY | O_APPEND | O_CREAT, 0644)) < 0)
 		exit(EXIT_FAILURE);
 	if (all->output_file_descriptor < 0)
 		exit(EXIT_FAILURE);

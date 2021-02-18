@@ -37,6 +37,7 @@ int g_exit_code;
 typedef struct		s_all
 {
 	char			**command_argv;
+	int				count_argv;
 	char			*old_home;
 	char			*old_pwd;
 	char			*input;
@@ -57,9 +58,9 @@ typedef struct		s_all
 	int				status;
 	int				i;
 	int				k;
-	int 			save;
-	char 			q;
-	int      flag[1024];
+	int				save;
+	char			q;
+	int				flag[1024];
 }					t_all;
 
 /*
@@ -124,6 +125,8 @@ int					ft_export_print_sort_env(t_all *all);
 */
 
 int					pipes_work(t_all *all);
+int					normal_order(t_all *all);
+void				swap_argv(t_all *all);
 int					input_redir_init(t_all *all, int index);
 int					output_redir_init(t_all *all);
 int					append_redir_init(t_all *all);

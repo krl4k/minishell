@@ -19,4 +19,4 @@ add_executable(minishell_myFork
         ${SOURCE_LIBFT}
         ${SOURCE_COMMANDS}
         ${SOURCE_SRCS}
-        )
+        srcs/commands/pipes_normal.c)

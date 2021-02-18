@@ -60,6 +60,20 @@ void			ft_free_split(char **res)
 	}
 }
 
+void			ft_free_split_count(char **res, int count)
+{
+    int i;
+
+    i = 0;
+    while (i < count)
+    {
+        if (res[i])
+            free(res[i]);
+        i++;
+    }
+    free(res);
+}
+
 char			**ft_setsplit(const char *s, char *set)
 {
 	char	**res;

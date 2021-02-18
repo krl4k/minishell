@@ -92,28 +92,29 @@ void	check_flags(t_all *all)
 	count = 0;
 	while (all->command_argv[count])
 	{
-		if (all->flag[count])
+		if (ft_strcmp(all->command_argv[count], "|") == 0)
 		{
-            if (ft_strcmp(all->command_argv[count], "|") == 0) {
-                free(all->command_argv[count]);
-                all->command_argv[count] = 0;
-                all->arg_location[all->pipes + 1] = count + 1;
-                ++(all->pipes);
-            } else if (ft_strcmp(all->command_argv[count], "<") == 0)
-                set_flags(all, &all->in_path, &all->input_redir_flag, count);
-            else if (ft_strcmp(all->command_argv[count], ">") == 0)
-                set_flags(all, &all->out_path, &all->output_redir_flag, count);
-            else if (ft_strcmp(all->command_argv[count], ">>") == 0)
-                set_flags(all, &all->out_path, &all->append_redir_flag, count);
-            else
-                all->arg_location[count] = count;
-        }
+			free(all->command_argv[count]);
+			all->command_argv[count] = 0;
+			all->arg_location[all->pipes + 1] = count + 1;
+			++(all->pipes);
+		}
+		else if (ft_strcmp(all->command_argv[count], "<") == 0)
+			set_flags(all, &all->in_path, &all->input_redir_flag, count);
+		else if (ft_strcmp(all->command_argv[count], ">") == 0)
+			set_flags(all, &all->out_path, &all->output_redir_flag, count);
+		else if (ft_strcmp(all->command_argv[count], ">>") == 0)
+			set_flags(all, &all->out_path, &all->append_redir_flag, count);
+		else
+			all->arg_location[count] = count;
 		++count;
 	}
 }
 
 int		pipes_work(t_all *all)
 {
+	while (!normal_order(all))
+		swap_argv(all);
 	init_handler_pipes(all);
 	count_redir(all);
 	check_flags(all);

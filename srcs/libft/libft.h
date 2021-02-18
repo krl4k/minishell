@@ -88,4 +88,6 @@ int				ft_is_equal(char *s1, char *s2);
 size_t			ft_wordcount(char const *s, char *set);
 void			ft_perror(char *s);
 void			*ft_realloc(void *p, size_t p_size, size_t n_size);
+void			ft_free_split_count(char **res, int count);
+
 #endif

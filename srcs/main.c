@@ -33,6 +33,16 @@ int		is_numeric(char *cmd)
 	return (1);
 }
 
+int		count_argv(t_all *all)
+{
+    int i;
+
+    i = 0;
+    while (all->command_argv[i])
+        i++;
+    return (i);
+}
+
 /*
 ** set all->command_argv (command_argv this is a null-terminated array
 ** of strings)
@@ -60,9 +70,10 @@ void	get_commands(t_all *all, char *line)
 			free(line);
 			return ;
 		}
-		if (!check_controls(all))
+        all->count_argv = count_argv(all);
+        if (!check_controls(all))
             ft_execution(all);
-		ft_free_split(all->command_argv);
+		ft_free_split_count(all->command_argv, all->count_argv);
 	}
 	free(line);
 }
