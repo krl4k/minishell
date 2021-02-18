@@ -47,6 +47,9 @@ int		is_numeric(char *cmd)
 void	get_commands(t_all *all, char *line)
 {
 	all->i = 0;
+	while (all->i < 1024)
+	    all->flag[all->i++] = 0;
+	all->i = 0;
 	while (line[all->i])
 	{
 		if (!(all->command_argv = (char **)ft_calloc(sizeof(char *), 2)))
@@ -57,9 +60,8 @@ void	get_commands(t_all *all, char *line)
 			free(line);
 			return ;
 		}
-		if (check_controls(all))
-			return ;
-		ft_execution(all);
+		if (!check_controls(all))
+            ft_execution(all);
 		ft_free_split(all->command_argv);
 	}
 	free(line);

@@ -59,6 +59,7 @@ typedef struct		s_all
 	int				k;
 	int 			save;
 	char 			q;
+	int      flag[1024];
 }					t_all;
 
 /*

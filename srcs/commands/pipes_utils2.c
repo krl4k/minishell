@@ -62,8 +62,8 @@ void	count_redir(t_all *all)
 	all->count_redir = 0;
 	while (all->command_argv[i])
 	{
-		if (ft_is_equal(all->command_argv[i], ">")
-		|| ft_is_equal(all->command_argv[i], ">>"))
+		if ((ft_is_equal(all->command_argv[i], ">")
+		|| ft_is_equal(all->command_argv[i], ">>")) && all->flag[i])
 			all->count_redir++;
 		i++;
 	}

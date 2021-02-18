@@ -19,24 +19,15 @@ int	check_controls(t_all *all)
 	i = 0;
 	while (all->command_argv[i])
 	{
-		if (all->command_argv[i][0] &&
-			ft_strchr("<|>", all->command_argv[i][0]) &&
-			(!all->command_argv[i + 1] || all->command_argv[i + 1][0] == ';'))
-		{
-			printf("tut0\n");
-			if (all->command_argv[i + 1] && all->command_argv[i + 1][0] == ';')
-			{
-				printf("tyt1\n");
-				syntax_error(all->command_argv[i + 1]);
-			}
-			else
-			{
-				printf("tut3\n");
-				syntax_error(all->command_argv[i]);
-			}
-			ft_free_split(all->command_argv);
-			return (1);
-		}
+        if ((!ft_strcmp("<", all->command_argv[i]) || !ft_strcmp(">", all->command_argv[i]) ||
+            !ft_strcmp("|", all->command_argv[i]) || !ft_strcmp(">>", all->command_argv[i])) && all->flag[i] &&
+            (!all->command_argv[i + 1] || ((!ft_strcmp("<", all->command_argv[i + 1]) ||
+            !ft_strcmp(">", all->command_argv[i + 1]) || !ft_strcmp("|", all->command_argv[i + 1]) ||
+            !ft_strcmp(">>", all->command_argv[i + 1])) && all->flag[i + 1])))
+        {
+            syntax_error(all->command_argv[i]);
+            return (1);
+        }
 		i++;
 	}
 	return (0);

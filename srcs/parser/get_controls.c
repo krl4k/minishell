@@ -30,5 +30,6 @@ char	*get_controls(char *line, t_all *all)
 		if (!(res = ft_strdup(q)))
 			return (NULL);
 	}
+	all->flag[all->k] = 1;
 	return (res);
 }

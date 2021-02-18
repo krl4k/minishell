@@ -42,8 +42,8 @@ char	*get_in_quotes(char *line, t_all *all)
 	{
 		if ((line[all->i] == q && line[all->i - 1] != '\\') || (line[all->i - 2] == '\\'
 				&& line[all->i - 1] == '\\' && line[all->i] == q))
-			break ;
-		if (line[all->i] == '\\' && ft_strchr("\'\"\\<>|;", line[all->i + 1]))
+		    break;
+        if (line[all->i] == '\\' && ft_strchr("\'\"\\<>|;", line[all->i + 1]))
 			all->i++;
 		res = ft_strjoinchar(res, line[all->i]);
 		all->i++;
