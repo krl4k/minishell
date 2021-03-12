@@ -1,5 +1,7 @@
 # Minishell
 
+[![jaeskim's 42Project Score](https://badge42.herokuapp.com/api/project/fgrisell/minishell)](https://github.com/JaeSeoKim/badge42)
+
 ---
 The goal of the project was to write its own command shell.
 
