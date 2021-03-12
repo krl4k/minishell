@@ -5,7 +5,7 @@
 ---
 The goal of the project was to write its own command shell.
 
-![Alt Text](http://g.recordit.co/osneCOi4BN.gif)
+![Alt Text](http://g.recordit.co/VDFU0qh8AK.gif)
 
 
 The project was made by students of school 21.
